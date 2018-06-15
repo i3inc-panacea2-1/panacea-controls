@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AudioManager.cs" />
     <Compile Include="IAudioManager.cs" />
     <Compile Include="PanaceaWindow.cs" />
     <Compile Include="RelayCommand.cs" />
