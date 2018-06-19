@@ -8,12 +8,13 @@ namespace Panacea.Controls
 {
     public class AudioManager : IAudioManager
     {
-        public float SpeakersVolume { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public float MicrophoneVolume { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //todo add implementation
+        public float SpeakersVolume { get ; set; }
+        public float MicrophoneVolume { get; set; }
 
         public void MaxDevicesExceptDefault()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
