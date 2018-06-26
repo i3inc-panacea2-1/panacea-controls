@@ -17,15 +17,12 @@ namespace Panacea.Controls
     /// <summary>
     /// Interaction logic for ToastNotification.xaml
     /// </summary>
-    public partial class ToastNotification : Window
+    public partial class ToastNotification : DialogBaseWindow
     {
-        public ToastNotification(string text, Window owner)
+        public ToastNotification(string text, Window owner) : base(owner)
         {
             InitializeComponent();
             Text = text;
-            Owner = owner;
-            SizeToContent = SizeToContent.WidthAndHeight;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
 

@@ -17,16 +17,13 @@ namespace Panacea.Controls
     /// <summary>
     /// Interaction logic for DialogBox.xaml
     /// </summary>
-    public partial class DialogBox : Window
+    public partial class DialogBox : DialogBaseWindow
     {
-        public DialogBox(string text, Window owner)
+        public DialogBox(string text, Window owner):base(owner)
         {
             InitializeComponent();
-            
-            SizeToContent = SizeToContent.WidthAndHeight;
+
             Text = text;
-            Owner = owner;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
 
