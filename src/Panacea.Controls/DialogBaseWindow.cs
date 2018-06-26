@@ -11,13 +11,11 @@ namespace Panacea.Controls
     public class DialogBaseWindow: Window
     {
         public DialogBaseWindow() { }
-        public DialogBaseWindow(Window owner) :base()
+        public DialogBaseWindow(PanaceaWindow owner) :base()
         {
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
             Owner = owner;
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            SizeToContent = SizeToContent.WidthAndHeight;
             ShowInTaskbar = false;
         }
     }

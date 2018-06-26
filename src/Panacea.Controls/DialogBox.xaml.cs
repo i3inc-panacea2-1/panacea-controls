@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,11 +20,18 @@ namespace Panacea.Controls
     /// </summary>
     public partial class DialogBox : DialogBaseWindow
     {
-        public DialogBox(string text, Window owner):base(owner)
+        public DialogBox(string text, PanaceaWindow owner):base(owner)
         {
             InitializeComponent();
 
             Text = text;
+
+            Width = Screen.PrimaryScreen.WorkingArea.Width-20;
+            Height = Screen.PrimaryScreen.WorkingArea.Height-20;
+            Left = Screen.PrimaryScreen.WorkingArea.Left+10;
+            Top = Screen.PrimaryScreen.WorkingArea.Top+10;
+
+            //WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
 
