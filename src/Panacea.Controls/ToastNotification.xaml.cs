@@ -35,7 +35,7 @@ namespace Panacea.Controls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(ToastNotification), new PropertyMetadata(null));
 
-        private async Task Main_LoadedAsync(object sender, RoutedEventArgs e)
+        private async void Main_Loaded(object sender, RoutedEventArgs e)
         {
             await Task.Delay(3000);
             Close();
