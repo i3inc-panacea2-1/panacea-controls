@@ -17,7 +17,7 @@ namespace Panacea.Controls
     /// <summary>
     /// Interaction logic for ToastNotification.xaml
     /// </summary>
-    public partial class ToastNotification : PanaceaWindow
+    public partial class ToastNotification : Window
     {
         public ToastNotification()
         {
