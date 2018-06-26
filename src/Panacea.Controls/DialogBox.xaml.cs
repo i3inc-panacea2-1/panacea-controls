@@ -56,13 +56,13 @@ namespace Panacea.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Owner.IsEnabled = true;
+            Owner.Opacity = 1;
             Close();
         }
 
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            //Owner.IsEnabled = false;
+            Owner.Opacity = 0.5;
         }
     }
 }
