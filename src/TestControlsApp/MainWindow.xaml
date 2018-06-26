@@ -9,8 +9,8 @@
         Title="MainWindow"
                         Background="Red">
     <Grid>
-        <Button Click="Toast_Click" Content="Toast" HorizontalAlignment="Left" Height="77" Margin="97,109,0,0" VerticalAlignment="Top" Width="235"/>
-        <Button Click="Dialog_Click" Content="Dialog" HorizontalAlignment="Left" Height="77" Margin="367,109,0,0" VerticalAlignment="Top" Width="235"/>
+        <Button Click="Toast_Click" Content="Toast" HorizontalAlignment="Left" Height="77" Margin="0,109,0,0" VerticalAlignment="Top" Width="235"/>
+        <Button Click="Dialog_Click" Content="Dialog" HorizontalAlignment="Left" Height="77" Margin="525,365,0,0" VerticalAlignment="Top" Width="235"/>
 
     </Grid>
 </controls:PanaceaWindow>
