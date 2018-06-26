@@ -5,15 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Panacea.Controls"
         mc:Ignorable="d"
-        Title="ToastNotification"
         x:Name="Main"
-                     Loaded="Main_Loaded"
+        Loaded="Main_Loaded"
         WindowStyle="None"
-        AllowsTransparency="True"
-        Opacity="0"
-        Width="400"
-        Height="40">
+        ResizeMode="NoResize"
+        >
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Duration="00:00:00.200" Storyboard.TargetProperty="Opacity" From="0" To="1" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid DataContext="{Binding ElementName=Main}">
-        <TextBlock Text="{Binding Text}"></TextBlock>
+        <Border BorderBrush="LightGray" BorderThickness="1">
+            <TextBlock Margin="10" Text="{Binding Text}">
+            </TextBlock>
+        </Border>
     </Grid>
 </Window>

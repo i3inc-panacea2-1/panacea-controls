@@ -19,10 +19,13 @@ namespace Panacea.Controls
     /// </summary>
     public partial class ToastNotification : Window
     {
-        public ToastNotification(string text)
+        public ToastNotification(string text, Window owner)
         {
             InitializeComponent();
             Text = text;
+            Owner = owner;
+            SizeToContent = SizeToContent.WidthAndHeight;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
 
