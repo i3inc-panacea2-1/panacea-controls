@@ -90,7 +90,6 @@
     <Compile Include="DialogBox.xaml.cs">
       <DependentUpon>DialogBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DialogWindowBase.cs" />
     <Compile Include="IAudioManager.cs" />
     <Compile Include="PanaceaWindow.cs" />
     <Compile Include="RelayCommand.cs" />

@@ -21,8 +21,10 @@
     </Window.Triggers>
     <Grid DataContext="{Binding ElementName=Main}">
         <Border BorderBrush="LightGray" BorderThickness="1">
-            <TextBlock Margin="10" Text="{Binding Text}">
-            </TextBlock>
+            <Grid>
+                <TextBlock Margin="10" Text="{Binding Text}">
+                </TextBlock>
+            </Grid>
         </Border>
     </Grid>
 </Window>
