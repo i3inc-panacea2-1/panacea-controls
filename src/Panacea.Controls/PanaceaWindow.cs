@@ -18,6 +18,7 @@ namespace Panacea.Controls
             Height = Screen.PrimaryScreen.WorkingArea.Height;
             Left = Screen.PrimaryScreen.WorkingArea.Left;
             Top = Screen.PrimaryScreen.WorkingArea.Top;
+            ShowInTaskbar = false;
         }
     }
 }
