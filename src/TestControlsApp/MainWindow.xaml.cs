@@ -36,7 +36,7 @@ namespace TestControlsApp
         private void Dialog_Click(object sender, RoutedEventArgs e)
         {
             DialogBox dlg = new DialogBox("Test Title", "Test Messsage", this);
-            dlg.ShowDialog();
+            dlg.Show();
         }
     }
 }

@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         x:Name="Main"
         Loaded="Main_Loaded"
+                        AllowsTransparency="True"
+                        Opacity="0"
         >
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Duration="00:00:00.200" Storyboard.TargetProperty="Opacity" From="0" To="1" />
+                    <DoubleAnimation Duration="00:00:00.200" Storyboard.TargetProperty="Opacity" From="0" To="0.85" />
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>

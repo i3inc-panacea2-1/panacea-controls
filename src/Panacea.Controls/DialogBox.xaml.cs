@@ -20,7 +20,7 @@ namespace Panacea.Controls
     /// </summary>
     public partial class DialogBox : DialogBaseWindow
     {
-        public DialogBox(string title, string text, PanaceaWindow owner, bool fitToContent = false):base(owner)
+        public DialogBox(string title, string text, PanaceaWindow owner, bool fitToContent = true):base(owner)
         {
             InitializeComponent();
 
@@ -31,6 +31,8 @@ namespace Panacea.Controls
             {
                 MaxWidth = Screen.PrimaryScreen.WorkingArea.Width - 20;
                 MaxHeight = Screen.PrimaryScreen.WorkingArea.Height - 20;
+                MinWidth = Screen.PrimaryScreen.WorkingArea.Width * 0.2;
+                MinHeight = Screen.PrimaryScreen.WorkingArea.Height * 0.2;
                 SizeToContent = SizeToContent.WidthAndHeight;
             }
             else
@@ -56,12 +58,14 @@ namespace Panacea.Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Owner.IsEnabled = true;
             Owner.Opacity = 1;
             Close();
         }
 
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
+            Owner.IsEnabled = false;
             Owner.Opacity = 0.5;
         }
     }

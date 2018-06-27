@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -43,7 +44,19 @@ namespace Panacea.Controls
         private async void Main_Loaded(object sender, RoutedEventArgs e)
         {
             await Task.Delay(3000);
+
+            Storyboard sb = new Storyboard();
+            DoubleAnimation da = new DoubleAnimation(0.85, 0, new Duration(new TimeSpan(0, 0, 0, 0, 200)));
+            //< DoubleAnimation Duration = "00:00:00.200" Storyboard.TargetProperty = "Opacity" From = "0" To = "0.85" />
+            Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
+            sb.Children.Add(da);
+
+            this.BeginStoryboard(sb);
+
+            await Task.Delay(200);
+
             Close();
         }
+        
     }
 }
