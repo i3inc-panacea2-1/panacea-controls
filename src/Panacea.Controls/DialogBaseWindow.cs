@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,18 +12,23 @@ namespace Panacea.Controls
 {
     public class DialogBaseWindow: Window
     {
+        private readonly int _animationMiliseconds;
+        private readonly double _opacity;
+
         public DialogBaseWindow() { }
-        public DialogBaseWindow(PanaceaWindow owner) :base()
+        public DialogBaseWindow(PanaceaWindow owner, int animationMiliseconds, double opacity = 1) :base()
         {
+            _animationMiliseconds = animationMiliseconds;
+            _opacity = opacity;
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
             Owner = owner;
             ShowInTaskbar = false;
         }
-        public async Task FadeOut(int miliseconds, double opacity=1)
+        public async Task FadeOut(int miliseconds)
         {
             Storyboard sb = new Storyboard();
-            DoubleAnimation da = new DoubleAnimation(opacity, 0, new Duration(new TimeSpan(0, 0, 0, 0, miliseconds)));
+            DoubleAnimation da = new DoubleAnimation(_opacity, 0, new Duration(new TimeSpan(0, 0, 0, 0, miliseconds)));
 
             Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
             sb.Children.Add(da);
@@ -31,10 +37,10 @@ namespace Panacea.Controls
 
             await Task.Delay(miliseconds);
         }
-        public async Task FadeIn(int miliseconds, double opacity = 1)
+        public async Task FadeIn(int miliseconds)
         {
             Storyboard sb = new Storyboard();
-            DoubleAnimation da = new DoubleAnimation(0, opacity, new Duration(new TimeSpan(0, 0, 0, 0, miliseconds)));
+            DoubleAnimation da = new DoubleAnimation(0, _opacity, new Duration(new TimeSpan(0, 0, 0, 0, miliseconds)));
 
             Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
             sb.Children.Add(da);
@@ -42,6 +48,18 @@ namespace Panacea.Controls
             this.BeginStoryboard(sb);
 
             await Task.Delay(miliseconds);
+        }
+
+        protected override async void OnActivated(EventArgs e)
+        {
+            await FadeIn(_animationMiliseconds);
+            base.OnActivated(e);
+        }
+
+        protected virtual async void AnimatedClose()
+        {
+            await FadeOut(_animationMiliseconds);
+            Close();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Panacea.Controls
     /// </summary>
     public partial class ToastNotification : DialogBaseWindow
     {
-        public ToastNotification(string text, PanaceaWindow owner, int miliseconds = 3000) : base(owner)
+        public ToastNotification(string text, PanaceaWindow owner, int miliseconds = 3000) : base(owner, 1000, 0.85)
         {
             InitializeComponent();
             Text = text;
@@ -45,12 +45,12 @@ namespace Panacea.Controls
 
         private async void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            await FadeIn(300, 0.85);
+            //await FadeIn(300, 0.85);
             await Task.Delay(_miliseconds);
 
-            await FadeOut(300, 0.85);
+            //await FadeOut(300, 0.85);
 
-            Close();
+            AnimatedClose();
         }
         
     }

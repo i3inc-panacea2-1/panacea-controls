@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Panacea.Controls"
         mc:Ignorable="d"
                         x:Name="Main"
-                        Loaded="Main_Loaded">
+                        Loaded="Main_Loaded"
+                        AllowsTransparency="True"
+                        Opacity="0">
     <Grid DataContext="{Binding ElementName=Main}">
         <Border BorderBrush="LightGray" BorderThickness="1">
             <Grid HorizontalAlignment="Center">

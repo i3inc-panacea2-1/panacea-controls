@@ -20,7 +20,7 @@ namespace Panacea.Controls
     /// </summary>
     public partial class DialogBox : DialogBaseWindow
     {
-        public DialogBox(string title, string text, PanaceaWindow owner, bool fitToContent = true):base(owner)
+        public DialogBox(string title, string text, PanaceaWindow owner, bool fitToContent = true):base(owner, 1000)
         {
             InitializeComponent();
 
@@ -56,19 +56,17 @@ namespace Panacea.Controls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(DialogBox), new PropertyMetadata(null));
 
-        private async void Close_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
-            await FadeOut(300);
+            AnimatedClose();
             Owner.IsEnabled = true;
             Owner.Opacity = 1;
-            Close();
         }
 
-        private async void Main_Loaded(object sender, RoutedEventArgs e)
+        private void Main_Loaded(object sender, RoutedEventArgs e)
         {
             Owner.IsEnabled = false;
             Owner.Opacity = 0.5;
-            await FadeIn(300);
         }
     }
 }
