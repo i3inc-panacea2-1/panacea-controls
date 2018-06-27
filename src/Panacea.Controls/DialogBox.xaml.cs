@@ -56,7 +56,7 @@ namespace Panacea.Controls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(DialogBox), new PropertyMetadata(null));
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
             Owner.IsEnabled = true;
             Owner.Opacity = 1;

@@ -19,7 +19,7 @@
                 </TextBlock>
                 <TextBlock Grid.Row="1" Margin="10" Text="{Binding Text}">
                 </TextBlock>
-                <Button Grid.Row="2" Click="Button_Click">Close</Button>
+                <Button Grid.Row="2" Click="Close_Click">Close</Button>
             </Grid>
         </Border>
     </Grid>

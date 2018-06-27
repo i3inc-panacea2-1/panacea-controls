@@ -21,13 +21,14 @@ namespace Panacea.Controls
     /// </summary>
     public partial class ToastNotification : DialogBaseWindow
     {
-        public ToastNotification(string text, PanaceaWindow owner) : base(owner)
+        public ToastNotification(string text, PanaceaWindow owner, int miliseconds = 3000) : base(owner)
         {
             InitializeComponent();
             Text = text;
             SizeToContent = SizeToContent.WidthAndHeight;
             Left = Screen.PrimaryScreen.WorkingArea.Left + Screen.PrimaryScreen.WorkingArea.Width / 2;
             Top = Screen.PrimaryScreen.WorkingArea.Top + Screen.PrimaryScreen.WorkingArea.Height - 50;
+            _miliseconds = miliseconds;
         }
 
 
@@ -40,14 +41,15 @@ namespace Panacea.Controls
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(ToastNotification), new PropertyMetadata(null));
+        private readonly int _miliseconds;
 
         private async void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            await Task.Delay(3000);
+            await Task.Delay(_miliseconds);
 
             Storyboard sb = new Storyboard();
             DoubleAnimation da = new DoubleAnimation(0.85, 0, new Duration(new TimeSpan(0, 0, 0, 0, 200)));
-            //< DoubleAnimation Duration = "00:00:00.200" Storyboard.TargetProperty = "Opacity" From = "0" To = "0.85" />
+            
             Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
             sb.Children.Add(da);
 
