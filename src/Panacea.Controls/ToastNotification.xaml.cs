@@ -45,17 +45,10 @@ namespace Panacea.Controls
 
         private async void Main_Loaded(object sender, RoutedEventArgs e)
         {
+            await FadeIn(300, 0.85);
             await Task.Delay(_miliseconds);
 
-            Storyboard sb = new Storyboard();
-            DoubleAnimation da = new DoubleAnimation(0.85, 0, new Duration(new TimeSpan(0, 0, 0, 0, 200)));
-            
-            Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
-            sb.Children.Add(da);
-
-            this.BeginStoryboard(sb);
-
-            await Task.Delay(200);
+            await FadeOut(300, 0.85);
 
             Close();
         }

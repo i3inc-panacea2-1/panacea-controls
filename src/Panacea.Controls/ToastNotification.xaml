@@ -10,7 +10,7 @@
                         AllowsTransparency="True"
                         Opacity="0"
         >
-    <Window.Triggers>
+    <!--<Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
             <BeginStoryboard>
                 <Storyboard>
@@ -18,7 +18,7 @@
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
-    </Window.Triggers>
+    </Window.Triggers>-->
     <Grid DataContext="{Binding ElementName=Main}">
         <Border BorderBrush="LightGray" BorderThickness="1">
             <Grid>
