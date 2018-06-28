@@ -20,7 +20,7 @@ namespace Panacea.Controls
     /// </summary>
     public partial class DialogBox : DialogBaseWindow
     {
-        public DialogBox(string title, string text, PanaceaWindow owner, bool fitToContent = true):base(owner, 1000)
+        public DialogBox(string title, string text, PanaceaWindow owner, bool fitToContent = true):base(owner)
         {
             InitializeComponent();
 
