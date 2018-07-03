@@ -15,24 +15,21 @@ namespace Panacea.Controls
         private readonly int _animationMiliseconds;
         private readonly double _opacity;
 
-        public DialogBaseWindow() { }
-        public DialogBaseWindow(PanaceaWindow owner) :base()
+        public DialogBaseWindow() :base()
         {
             _animationMiliseconds = 200;
             _opacity = 1;
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
-            Owner = owner;
             ShowInTaskbar = false;
         }
 
-        public DialogBaseWindow(PanaceaWindow owner, int animationMiliseconds, double opacity = 1) : base()
+        public DialogBaseWindow(int animationMiliseconds, double opacity = 1) : base()
         {
             _animationMiliseconds = animationMiliseconds;
             _opacity = opacity;
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
-            Owner = owner;
             ShowInTaskbar = false;
         }
         public async Task FadeOut(int miliseconds)

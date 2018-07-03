@@ -21,7 +21,7 @@ namespace Panacea.Controls
     /// </summary>
     public partial class ToastNotification : DialogBaseWindow
     {
-        public ToastNotification(string text, PanaceaWindow owner, int miliseconds = 3000) : base(owner, 200, 0.85)
+        public ToastNotification(string text, int miliseconds = 3000) : base(200, 0.85)
         {
             InitializeComponent();
             Text = text;

@@ -28,7 +28,7 @@ namespace TestControlsApp
 
         private void Toast_Click(object sender, RoutedEventArgs e)
         {
-            ToastNotification not = new ToastNotification("test message", this);
+            ToastNotification not = new ToastNotification("test message");
             //not.Opacity = 0;
             not.Show();
         }
