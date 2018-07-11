@@ -83,7 +83,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="AudioManager.cs" />
-    <Compile Include="SizeObserver.cs" />
     <Compile Include="DialogBox.xaml.cs">
       <DependentUpon>DialogBox.xaml</DependentUpon>
     </Compile>
