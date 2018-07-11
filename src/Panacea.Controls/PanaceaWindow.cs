@@ -12,6 +12,7 @@ namespace Panacea.Controls
     {
         public PanaceaWindow():base()
         {
+#if !DEBUG
             WindowStyle = WindowStyle.None;
             ResizeMode = ResizeMode.NoResize;
             Width = Screen.PrimaryScreen.WorkingArea.Width;
@@ -19,6 +20,7 @@ namespace Panacea.Controls
             Left = Screen.PrimaryScreen.WorkingArea.Left;
             Top = Screen.PrimaryScreen.WorkingArea.Top;
             ShowInTaskbar = false;
+#endif
         }
     }
 }

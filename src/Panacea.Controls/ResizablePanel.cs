@@ -12,7 +12,10 @@ namespace Panacea.Controls
     public class ResizablePanel : UniformGrid
     {
 
+        public ResizablePanel()
+        {
 
+        }
 
         public int Capacity
         {
