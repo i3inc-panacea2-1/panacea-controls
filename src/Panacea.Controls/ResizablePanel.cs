@@ -5,59 +5,53 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Panacea.Controls
 {
-    public class ResizablePanel : WrapPanel
+    public class ResizablePanel : UniformGrid
     {
-        public double TileWidth { get; set; }
 
 
-        public int ItemsCount
+
+        public int Capacity
         {
-            get { return (int)GetValue(ItemsCountProperty); }
-            set { SetValue(ItemsCountProperty, value); }
+            get { return (int)GetValue(CapacityProperty); }
+            set { SetValue(CapacityProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ItemsCount.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ItemsCountProperty =
-            DependencyProperty.Register("ItemsCount", typeof(int), typeof(ResizablePanel), new PropertyMetadata(0));
+        // Using a DependencyProperty as the backing store for Capacity.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CapacityProperty =
+            DependencyProperty.Register("Capacity", typeof(int), typeof(ResizablePanel), new PropertyMetadata(0));
 
 
-        protected override Size MeasureOverride(Size constraint)
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
-            //return base.MeasureOverride(constraint);
-            int minTileWidth = 150;
-            int maxColumns = 5;
-            int columns;
+            base.OnRenderSizeChanged(sizeInfo);
+            double width = ActualWidth;
+            double height = ActualHeight;
 
-            double width = constraint.Width;
-            double height = constraint.Height;
-
-            if (width <= minTileWidth)
+            double ratio = width / height;
+            if (ratio > 1)
             {
-                TileWidth = width;
-                columns = 1;
+                //landscape
+                Rows = 2;
             }
             else
             {
-                columns = (int) width / minTileWidth;
+                //portrait
+                Rows = 4;
             }
 
-            if (columns > maxColumns)
-            {
-                columns = maxColumns;
-                TileWidth = width / maxColumns;
-            }
+            double itemHeight = height / Rows;
+            double itemWidth = itemHeight / 2;
 
-            int rows = (int) height / (int) TileWidth / 2;
-            ItemsCount = columns * rows;
-            return new Size(width, height);
+            Columns = (int)width / (int)itemWidth;
+
+            Capacity = Columns * Rows;
+
         }
-        protected override Size ArrangeOverride(Size finalSize)
-        {
-            return base.ArrangeOverride(finalSize);
-        }
-       
+
+
     }
 }
