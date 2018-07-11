@@ -11,7 +11,19 @@ namespace Panacea.Controls
     public class ResizablePanel : WrapPanel
     {
         public double TileWidth { get; set; }
-        public int ItemsCount { get; set; }
+
+
+        public int ItemsCount
+        {
+            get { return (int)GetValue(ItemsCountProperty); }
+            set { SetValue(ItemsCountProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ItemsCount.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ItemsCountProperty =
+            DependencyProperty.Register("ItemsCount", typeof(int), typeof(ResizablePanel), new PropertyMetadata(0));
+
+
         protected override Size MeasureOverride(Size constraint)
         {
             //return base.MeasureOverride(constraint);
