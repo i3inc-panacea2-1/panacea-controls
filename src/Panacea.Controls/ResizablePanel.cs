@@ -34,24 +34,26 @@ namespace Panacea.Controls
             double width = ActualWidth;
             double height = ActualHeight;
 
-            double ratio = width / height;
-            if (ratio > 1)
+            if (width>0 && height>0)
             {
-                //landscape
-                Rows = 2;
+                if (width >= height)
+                {
+                    //landscape
+                    Rows = 2;
+                }
+                else
+                {
+                    //portrait
+                    Rows = 4;
+                }
+
+                double itemHeight = height / Rows;
+                double itemWidth = itemHeight / 2;
+
+                Columns = (int)width / (int)itemWidth;
+
+                Capacity = Columns * Rows;
             }
-            else
-            {
-                //portrait
-                Rows = 4;
-            }
-
-            double itemHeight = height / Rows;
-            double itemWidth = itemHeight / 2;
-
-            Columns = (int)width / (int)itemWidth;
-
-            Capacity = Columns * Rows;
 
         }
 
