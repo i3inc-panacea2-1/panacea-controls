@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Panacea.Controls.Styles">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Panacea.Controls.Styles">
     <Style
         x:Key="SimpleWithBackground"
         BasedOn="{x:Null}"
@@ -38,8 +39,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
+
+
     <Style
         x:Key="Simple"
         BasedOn="{x:Null}"
