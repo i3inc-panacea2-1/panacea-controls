@@ -40,7 +40,7 @@ namespace Panacea.Controls
                 {
                     //landscape
                     
-                    Rows = 2;
+                    Rows = 1;
                 }
                 else
                 {
