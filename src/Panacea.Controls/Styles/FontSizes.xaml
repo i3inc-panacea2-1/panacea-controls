@@ -1,7 +1,8 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Panacea.Controls.Styles"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Panacea.Controls.Styles"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <sys:Double x:Key="FontSize-Xxx-Huge">85</sys:Double>
     <sys:Double x:Key="FontSize-Xx-Huge">65</sys:Double>
     <sys:Double x:Key="FontSize-X-Huge">60</sys:Double>

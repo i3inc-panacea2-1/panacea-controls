@@ -104,9 +104,9 @@
                                     <Border
                                         Name="PART_border"
                                         Grid.Row="1"
+                                        HorizontalAlignment="Left"
                                         BorderBrush="{TemplateBinding LineColor}"
-                                        BorderThickness="0,3,0,0" 
-                                        HorizontalAlignment="Left"/>
+                                        BorderThickness="0,3,0,0" />
                                 </Grid>
                             </Viewbox>
                             <Border
