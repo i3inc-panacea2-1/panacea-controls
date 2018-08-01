@@ -7,18 +7,36 @@
                         xmlns:controls="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
         mc:Ignorable="d"
         Title="MainWindow"
-                        Background="Red">
-    <controls:ResizablePanel>
-        <Button Click="Toast_Click" Content="Toast" Margin="20"/>
-        <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
-        <Button Click="Toast_Click" Content="Toast" Margin="20"/>
-        <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
-        <Button Click="Toast_Click" Content="Toast" Margin="20"/>
-        <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
-        <Button Click="Toast_Click" Content="Toast" Margin="20"/>
-        <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
-        <Button Click="Toast_Click" Content="Toast" Margin="20"/>
-        <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
-        
-    </controls:ResizablePanel>
+                        >
+    <TabControl>
+        <TabItem Header="Resizable">
+            <controls:ResizablePanel>
+                <Button Click="Toast_Click" Content="Toast" Margin="20"/>
+                <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
+                <Button Click="Toast_Click" Content="Toast" Margin="20"/>
+                <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
+                <Button Click="Toast_Click" Content="Toast" Margin="20"/>
+                <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
+                <Button Click="Toast_Click" Content="Toast" Margin="20"/>
+                <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
+                <Button Click="Toast_Click" Content="Toast" Margin="20"/>
+                <Button Click="Dialog_Click" Content="Dialog" Margin="20"/>
+
+            </controls:ResizablePanel>
+        </TabItem>
+        <TabItem Header="Tab Control">
+            <controls:TabControlEx LineColor="Blue">
+                <TabItem Header="test">
+                    <Image Source="http://intelliassist.co.in/wp-content/uploads/2015/11/movies-that-changed-my-life.png"/>
+                </TabItem> 
+                <TabItem Header="test 2">
+                    <Image Source="https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/INTRO_AvengersAgeUltron_FINAL.jpg"/>
+                </TabItem>
+                <TabItem Header="Long text in header">
+                    
+                </TabItem>
+            </controls:TabControlEx>
+        </TabItem>
+    </TabControl>
+   
 </controls:PanaceaWindow>

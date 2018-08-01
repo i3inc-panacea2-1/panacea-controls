@@ -39,6 +39,7 @@ namespace Panacea.Controls
                 if (width >= height)
                 {
                     //landscape
+                    
                     Rows = 2;
                 }
                 else
