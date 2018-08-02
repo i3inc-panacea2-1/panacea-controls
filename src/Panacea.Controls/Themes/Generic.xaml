@@ -84,8 +84,8 @@
                     <Grid KeyboardNavigation.TabNavigation="Local">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="11*" />
+                                <RowDefinition Height="{TemplateBinding TopRowHeight}" />
+                                <RowDefinition Height="{TemplateBinding BottomRowHeight}"  />
                             </Grid.RowDefinitions>
                             <Viewbox HorizontalAlignment="Left">
                                 <Grid>

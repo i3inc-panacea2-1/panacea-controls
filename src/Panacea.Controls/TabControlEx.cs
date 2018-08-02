@@ -63,6 +63,29 @@ namespace Panacea.Controls
 
 
 
+        public GridLength TopRowHeight
+        {
+            get { return (GridLength)GetValue(TopRowHeightProperty); }
+            set { SetValue(TopRowHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TopRowHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TopRowHeightProperty =
+            DependencyProperty.Register("TopRowHeight", typeof(GridLength), typeof(TabControlEx), new PropertyMetadata(new GridLength(1, GridUnitType.Star)));
+
+        public GridLength BottomRowHeight
+        {
+            get { return (GridLength)GetValue(BottomRowHeightProperty); }
+            set { SetValue(BottomRowHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TopRowHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BottomRowHeightProperty =
+            DependencyProperty.Register("BottomRowHeight", typeof(GridLength), typeof(TabControlEx), new PropertyMetadata(new GridLength(12, GridUnitType.Star)));
+
+
+
+
         static TabControlEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TabControlEx), new FrameworkPropertyMetadata(typeof(TabControlEx)));
