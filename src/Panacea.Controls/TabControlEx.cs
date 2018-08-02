@@ -96,10 +96,9 @@ namespace Panacea.Controls
             base.OnSelectionChanged(e);
             UpdateLine();
         }
-
-        protected override void OnRender(DrawingContext drawingContext)
+        public override void OnApplyTemplate()
         {
-            base.OnRender(drawingContext);
+            base.OnApplyTemplate();
             var border = Template.FindName("PART_border", this) as Border;
             border.Margin = new Thickness(0, 0, 0, 0);
             border.Width = 0;

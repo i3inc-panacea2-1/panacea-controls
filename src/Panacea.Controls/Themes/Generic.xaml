@@ -85,7 +85,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="{TemplateBinding TopRowHeight}" />
-                                <RowDefinition Height="{TemplateBinding BottomRowHeight}"  />
+                                <RowDefinition Height="{TemplateBinding BottomRowHeight}" />
                             </Grid.RowDefinitions>
                             <Viewbox HorizontalAlignment="Left">
                                 <Grid>
