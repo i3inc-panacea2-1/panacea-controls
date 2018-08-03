@@ -52,7 +52,8 @@
 
     <Style TargetType="{x:Type local:TabControlEx}">
         <Setter Property="FontSize" Value="18" />
-        <Setter Property="LineColor" Value="{DynamicResource Primary}" />
+        <Setter Property="LineColor" Value="{DynamicResource ColorPrimary}" />
+        <Setter Property="local:RippleEffectDecorator.HighlightBackground" Value="#11888888"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TabControlEx}">

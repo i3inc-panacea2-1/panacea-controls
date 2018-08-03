@@ -78,12 +78,12 @@
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Padding" Value="10,5,10,8" />
+        <Setter Property="Padding" Value="12,7,12,10" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
-        <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource BackgroundHover}" />
-        <Setter Property="Foreground" Value="{StaticResource Primary}" />
+        <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorPrimary}" />
         <Setter Property="Margin" Value="2" />
         <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="Template">
@@ -110,7 +110,7 @@
         x:Key="OutlinedButton"
         BasedOn="{StaticResource TextButton}"
         TargetType="Button">
-        <Setter Property="BorderBrush" Value="{StaticResource BackgroundHover}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ColorBackgroundHover}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
@@ -137,7 +137,7 @@
         x:Key="OutlinedSecondaryButton"
         BasedOn="{StaticResource OutlinedButton}"
         TargetType="Button">
-        <Setter Property="Foreground" Value="{StaticResource Secondary}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorSecondary}" />
     </Style>
 
 
@@ -145,8 +145,8 @@
         x:Key="PrimaryButton"
         BasedOn="{StaticResource TextButton}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource Primary}" />
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}" />
+        <Setter Property="Background" Value="{StaticResource ColorPrimary}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorPrimaryForeground}" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="#77FFFFFF" />
         <Setter Property="Template">
             <Setter.Value>
@@ -178,7 +178,7 @@
         x:Key="SecondaryButton"
         BasedOn="{StaticResource PrimaryButton}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource Secondary}" />
-        <Setter Property="Foreground" Value="{StaticResource SecondaryForeground}" />
+        <Setter Property="Background" Value="{StaticResource ColorSecondary}" />
+        <Setter Property="Foreground" Value="{StaticResource ColorSecondaryForeground}" />
     </Style>
 </ResourceDictionary>

@@ -3,18 +3,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Panacea.Controls.Styles.Colors">
 
-    <SolidColorBrush x:Key="Background" Color="#FFF" />
-    <SolidColorBrush x:Key="BackgroundHover" Color="#EFEFEF" />
+    <SolidColorBrush x:Key="ColorBackground" Color="#FFF" />
+    <SolidColorBrush x:Key="ColorBackgroundHover" Color="#EFEFEF" />
 
-    <SolidColorBrush x:Key="Primary" Color="#43bb9c" />
-    <SolidColorBrush x:Key="PrimaryForeground" Color="#FFF" />
-    <SolidColorBrush x:Key="PrimaryForegroundDark" Color="#BBB" />
+    <SolidColorBrush x:Key="ColorPrimary" Color="#43bb9c" />
+    <SolidColorBrush x:Key="ColorPrimaryForeground" Color="#FFF" />
+    <SolidColorBrush x:Key="ColorPrimaryForegroundDark" Color="#BBB" />
 
-    <SolidColorBrush x:Key="PrimaryDark" Color="#217468" />
-    <SolidColorBrush x:Key="PrimaryDarkForegroundColor" Color="#FFF" />
-    <SolidColorBrush x:Key="PrimaryDarkForegroundDark" Color="#BBB" />
+    <SolidColorBrush x:Key="ColorPrimaryDark" Color="#217468" />
+    <SolidColorBrush x:Key="ColorPrimaryDarkForeground" Color="#FFF" />
+    <SolidColorBrush x:Key="ColorPrimaryDarkForegroundDark" Color="#BBB" />
 
-    <SolidColorBrush x:Key="Secondary" Color="#e79932" />
-    <SolidColorBrush x:Key="SecondaryForeground" Color="#FFF" />
-    <SolidColorBrush x:Key="SecondaryForegroundDark" Color="#BBB" />
+    <SolidColorBrush x:Key="ColorSecondary" Color="#e79932" />
+    <SolidColorBrush x:Key="ColorSecondaryForeground" Color="#FFF" />
+    <SolidColorBrush x:Key="ColorSecondaryForegroundDark" Color="#BBB" />
 </ResourceDictionary>

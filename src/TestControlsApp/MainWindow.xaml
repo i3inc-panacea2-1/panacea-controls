@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
     mc:Ignorable="d">
-    <controls:TabControlEx controls:RippleEffectDecorator.HighlightBackground="#22888888">
+    <controls:TabControlEx >
         <TabItem Header="Resizable">
             <controls:ResizablePanel>
                 <Button
@@ -61,7 +61,7 @@
                 <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
                 <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
                 <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
-                <Button Style="{StaticResource SecondaryButton}">econdary Button</Button>
+                <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
             </WrapPanel>
         </TabItem>
 
