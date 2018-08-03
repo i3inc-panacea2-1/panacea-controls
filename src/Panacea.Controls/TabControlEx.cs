@@ -105,6 +105,11 @@ namespace Panacea.Controls
             UpdateLine();
         }
 
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            UpdateLine();
+        }
+
         private void UpdateLine()
         {
             var border = Template.FindName("PART_border", this) as Border;

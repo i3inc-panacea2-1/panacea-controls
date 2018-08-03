@@ -8,13 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
     mc:Ignorable="d">
-    <TabControl>
+    <controls:TabControlEx controls:RippleEffectDecorator.HighlightBackground="#22888888">
         <TabItem Header="Resizable">
             <controls:ResizablePanel>
                 <Button
                     Margin="20"
                     Click="Toast_Click"
-                    Content="Toast" />
+                    Content="Toast"
+                    Style="{StaticResource TextButton}" />
                 <Button
                     Margin="20"
                     Click="Dialog_Click"
@@ -54,17 +55,16 @@
 
             </controls:ResizablePanel>
         </TabItem>
-        <TabItem Header="Tab Control">
-            <controls:TabControlEx LineColor="Blue">
-                <TabItem Header="test">
-                    <Image Source="http://intelliassist.co.in/wp-content/uploads/2015/11/movies-that-changed-my-life.png" />
-                </TabItem>
-                <TabItem Header="test 2">
-                    <Image Source="https://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/INTRO_AvengersAgeUltron_FINAL.jpg" />
-                </TabItem>
-                <TabItem Header="Long text in header" />
-            </controls:TabControlEx>
+        <TabItem Header="Buttons">
+            <WrapPanel Margin="0,20,0,0">
+                <Button Style="{StaticResource TextButton}">Text Button</Button>
+                <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
+                <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
+                <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
+                <Button Style="{StaticResource SecondaryButton}">econdary Button</Button>
+            </WrapPanel>
         </TabItem>
-    </TabControl>
+
+    </controls:TabControlEx>
 
 </controls:PanaceaWindow>

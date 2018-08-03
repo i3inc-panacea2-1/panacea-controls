@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Panacea.Controls.Styles.Colors">
+
+    <SolidColorBrush x:Key="Background" Color="#FFF"/>
+    <SolidColorBrush x:Key="BackgroundHover" Color="#EFEFEF"/>
+
+    <SolidColorBrush x:Key="Primary" Color="#43bb9c"/>
+    <SolidColorBrush x:Key="PrimaryForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="PrimaryForegroundDark" Color="#BBB"/>
+    
+    <SolidColorBrush x:Key="PrimaryDark" Color="#217468"/>
+    <SolidColorBrush x:Key="PrimaryDarkForegroundColor" Color="#FFF"/>
+    <SolidColorBrush x:Key="PrimaryDarkForegroundDark" Color="#BBB"/>
+
+    <SolidColorBrush x:Key="Secondary" Color="#e79932"/>
+    <SolidColorBrush x:Key="SecondaryForeground" Color="#FFF"/>
+    <SolidColorBrush x:Key="SecondaryForegroundDark" Color="#BBB"/>
+</ResourceDictionary>
