@@ -52,7 +52,7 @@
 
     <Style TargetType="{x:Type local:TabControlEx}">
         <Setter Property="FontSize" Value="18" />
-        <Setter Property="LineColor" Value="{DynamicResource Primary}"/>
+        <Setter Property="LineColor" Value="{DynamicResource Primary}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TabControlEx}">
@@ -68,12 +68,12 @@
                                             BorderBrush="Gainsboro"
                                             BorderThickness="0">
                                             <local:RippleEffectDecorator>
-                                            <ContentPresenter
-                                                x:Name="ContentSite"
-                                                Margin="20,10"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                ContentSource="Header" />
+                                                <ContentPresenter
+                                                    x:Name="ContentSite"
+                                                    Margin="20,10"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    ContentSource="Header" />
                                             </local:RippleEffectDecorator>
                                         </Border>
 
@@ -142,33 +142,51 @@
     </Style>
 
     <Style TargetType="{x:Type local:RippleEffectDecorator}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="ClipToBounds" Value="True"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RippleEffectDecorator}">
-                    <Grid x:Name="PART_grid" ClipToBounds="True" Background="{TemplateBinding Background}"
-                          Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
-                          Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
-                          Stylus.IsPressAndHoldEnabled="False">
-                        <Ellipse x:Name="PART_ellipse"
-                                 Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}"
-                                 Width="0" Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
-                                 HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <Grid
+                        x:Name="PART_grid"
+                        Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
+                        Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
+                        Background="{TemplateBinding Background}"
+                        ClipToBounds="True"
+                        Stylus.IsPressAndHoldEnabled="False">
+                        <Ellipse
+                            x:Name="PART_ellipse"
+                            Width="0"
+                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
 
                         <ContentPresenter x:Name="PART_contentpresenter" />
 
                         <Grid.Resources>
                             <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
-                                <DoubleAnimation Storyboard.TargetProperty="Width" From="0" Duration="0:0:0.55" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width"
+                                    From="0"
+                                    Duration="0:0:0.55" />
                                 <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.55" />
 
-                                <DoubleAnimation Storyboard.TargetProperty="Width" To="0" BeginTime="0:0:2.25"
-                                                 Duration="0:0:0" />
-                                <DoubleAnimation Duration="0:0:0" 
-                                                 Storyboard.TargetProperty="Opacity" To="1" />
-                                <DoubleAnimation BeginTime="0:0:0.3" Duration="0:0:0.55"
-                                                 Storyboard.TargetProperty="Opacity" From="1" To="0" />
+                                <DoubleAnimation
+                                    BeginTime="0:0:2.25"
+                                    Storyboard.TargetProperty="Width"
+                                    To="0"
+                                    Duration="0:0:0" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="1"
+                                    Duration="0:0:0" />
+                                <DoubleAnimation
+                                    BeginTime="0:0:0.3"
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1"
+                                    To="0"
+                                    Duration="0:0:0.55" />
                             </Storyboard>
                         </Grid.Resources>
                     </Grid>

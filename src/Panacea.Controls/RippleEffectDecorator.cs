@@ -80,7 +80,7 @@ namespace Panacea.Controls
             var factor = 1.8;
             var targetWidth = Math.Max(ActualWidth, ActualHeight) * 3;
             var mousePosition = e.GetPosition(this);
-            Console.WriteLine($"{mousePosition.X} {mousePosition.Y}");
+           
             var startMargin = new Thickness(mousePosition.X, mousePosition.Y, 0, 0);
             //set initial margin to mouse position
             ellipse.Margin = startMargin;

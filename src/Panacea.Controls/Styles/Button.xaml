@@ -75,17 +75,17 @@
     </Style>
 
     <Style x:Key="TextButton" TargetType="Button">
-        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="Padding" Value="10 5 10 8" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="10,5,10,8" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource BackgroundHover}" />
         <Setter Property="Foreground" Value="{StaticResource Primary}" />
         <Setter Property="Margin" Value="2" />
-        <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight"/>
+        <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -93,12 +93,11 @@
 
                         <Border
                             Name="Border"
-                            
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             BorderThickness="0">
 
-                            <ContentPresenter VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" />
                         </Border>
                     </controls:RippleEffectDecorator>
 
@@ -119,14 +118,13 @@
                     <controls:RippleEffectDecorator>
                         <Border
                             Name="Border"
-                            
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="3">
 
-                            <ContentPresenter VerticalAlignment="Center" Margin="{TemplateBinding Padding}" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" />
                         </Border>
                     </controls:RippleEffectDecorator>
 
@@ -147,8 +145,8 @@
         x:Key="PrimaryButton"
         BasedOn="{StaticResource TextButton}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource Primary}"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"/>
+        <Setter Property="Background" Value="{StaticResource Primary}" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="#77FFFFFF" />
         <Setter Property="Template">
             <Setter.Value>
@@ -157,20 +155,18 @@
                         <Grid.OpacityMask>
                             <VisualBrush Visual="{Binding ElementName=Border}" />
                         </Grid.OpacityMask>
-                        <Border 
-                        Name="Border"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
+                        <Border
+                            Name="Border"
+                            MinWidth="{Binding ElementName=Ripple, Path=ActualWidth}"
+                            MinHeight="{Binding ElementName=Ripple, Path=ActualHeight}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            CornerRadius="3"
                             Background="White"
-                            MinHeight="{Binding ElementName=Ripple, Path=ActualHeight}"
-                            MinWidth="{Binding ElementName=Ripple, Path=ActualWidth}">
-
-                        </Border>
-                        <controls:RippleEffectDecorator Background="{TemplateBinding Background}" x:Name="Ripple">
-                            <ContentPresenter VerticalAlignment="Center" Margin="{TemplateBinding Padding}" />
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="3" />
+                        <controls:RippleEffectDecorator x:Name="Ripple" Background="{TemplateBinding Background}">
+                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" />
                         </controls:RippleEffectDecorator>
                     </Grid>
 
@@ -182,7 +178,7 @@
         x:Key="SecondaryButton"
         BasedOn="{StaticResource PrimaryButton}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource Secondary}"/>
-        <Setter Property="Foreground" Value="{StaticResource SecondaryForeground}"/>
+        <Setter Property="Background" Value="{StaticResource Secondary}" />
+        <Setter Property="Foreground" Value="{StaticResource SecondaryForeground}" />
     </Style>
 </ResourceDictionary>
