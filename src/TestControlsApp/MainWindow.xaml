@@ -64,7 +64,13 @@
                 <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
             </WrapPanel>
         </TabItem>
-
+        <TabItem Header="Textbox">
+            <WrapPanel>
+                <TextBox Width="200"/>
+                <TextBox Width="200"/>
+                <TextBox Width="200"/>
+            </WrapPanel>
+        </TabItem>
     </controls:TabControlEx>
 
 </controls:PanaceaWindow>
