@@ -65,12 +65,37 @@
             </WrapPanel>
         </TabItem>
         <TabItem Header="Textbox">
-            <WrapPanel>
-                <TextBox Width="200" controls:TextboxProperties.Label="Test"/>
-                <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
-                <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
-            </WrapPanel>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Padding="10" Background="CornflowerBlue">
+                    <TextBox HorizontalAlignment="Stretch" Style="{StaticResource BarTextBox}" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                </Border>
+                <StackPanel Grid.Row="1">
+                    <WrapPanel Margin="5" TextElement.FontSize="12">
+                        <TextBox Width="200" controls:TextboxProperties.Label="Test"
+                         controls:TextboxProperties.Hint="This is a small hint"/>
+                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="5">
+                        <TextBox Width="200" controls:TextboxProperties.Label="Test"
+                         controls:TextboxProperties.Hint="This is a small hint"/>
+                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="5" TextElement.FontSize="25">
+                        <TextBox Width="200" controls:TextboxProperties.Label="Test"
+                         controls:TextboxProperties.Hint="This is a small hint"/>
+                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                    </WrapPanel>
+                </StackPanel>
+                
+            </Grid>
+
         </TabItem>
     </controls:TabControlEx>
-
 </controls:PanaceaWindow>

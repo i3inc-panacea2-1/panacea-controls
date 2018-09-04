@@ -1,12 +1,14 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Panacea.Controls.Styles"
     xmlns:controls="clr-namespace:Panacea.Controls"
+    xmlns:local="clr-namespace:Panacea.Controls.Styles"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <controls:MultiplyConverter x:Key="multiplyConverter"/>
-    
+ 
+    <controls:HintVisibilityConverter x:Key="hintVisibilityConverter" />
+    <controls:TransformationConverter x:Key="TransformationConverter" />
+
     <Style x:Key="{x:Type TextBox}" TargetType="TextBoxBase">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -15,91 +17,118 @@
         <Setter Property="MinWidth" Value="120" />
         <Setter Property="MinHeight" Value="20" />
         <Setter Property="AllowDrop" Value="true" />
-        <Setter Property="Padding" Value="0 5"/>
-        <Setter Property="Margin" Value="2"/>
-        <Setter Property="UseLayoutRounding" Value="True"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
                     <ControlTemplate.Resources>
                         <sys:Double x:Key="ScaleMin">.7</sys:Double>
-                        <sys:Double x:Key="TranslateMin">15</sys:Double>
-                        <sys:Double x:Key="TranslateMax">30</sys:Double>
+                        <sys:Double x:Key="ScaleMax">.93</sys:Double>
+                        <sys:Double x:Key="TranslateMin">16</sys:Double>
                     </ControlTemplate.Resources>
                     <Border
                         Name="Border"
                         Padding="{TemplateBinding Padding}"
-                        Background="Transparent"
-                       
+                        Background="{TemplateBinding Background}"
                         BorderThickness="0"
                         CornerRadius="0">
                         <Grid>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" Name="FirstRow" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ScrollViewer Grid.Row="1" x:Name="PART_ContentHost" Margin="0" />
-                            <TextBlock 
-                                Grid.Row="0"
-                                Name="Label"
-                                Text="{Binding Path=(controls:TextboxProperties.Label), RelativeSource={RelativeSource TemplatedParent}}"
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Grid.Row="1"
+                                Margin="0" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="1,0,0,0"
                                 VerticalAlignment="Center"
-                                Margin="1 0 0 0">
+                                Opacity=".2"
+                                Text="{Binding Path=(controls:TextboxProperties.Hint), RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock.Visibility>
+                                    <MultiBinding Converter="{StaticResource hintVisibilityConverter}">
+                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="(controls:TextboxProperties.Hint)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    </MultiBinding>
+                                </TextBlock.Visibility>
+
+                            </TextBlock>
+                            <TextBlock
+                                Name="Label"
+                                Grid.Row="0"
+                                Margin="1,0,0,0"
+                                VerticalAlignment="Bottom"
+                                Text="{Binding Path=(controls:TextboxProperties.Label), RelativeSource={RelativeSource TemplatedParent}}">
                                 <TextBlock.RenderTransform>
                                     <TransformGroup>
-                                        
                                         <TranslateTransform x:Name="TranslateTransform">
                                             <TranslateTransform.Y>
-                                                <MultiBinding Converter="{StaticResource multiplyConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
-                                                    <Binding Path="Width" ElementName="TransformElement" />
-                                                    <Binding Source="{StaticResource TranslateMin}"/>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource TranslateMin}" />
+                                                    <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
                                                 </MultiBinding>
                                             </TranslateTransform.Y>
                                         </TranslateTransform>
                                         <ScaleTransform x:Name="ScaleTransform">
-                                            
                                             <ScaleTransform.ScaleX>
-                                                <MultiBinding Converter="{StaticResource multiplyConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
-                                                    <Binding Path="Width" ElementName="ScaleElement" />
-                                                    <Binding Source="{StaticResource ScaleMin}"/>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource ScaleMin}" />
+                                                    <Binding Source="{StaticResource ScaleMax}" />
                                                 </MultiBinding>
                                             </ScaleTransform.ScaleX>
                                             <ScaleTransform.ScaleY>
-                                                <MultiBinding Converter="{StaticResource multiplyConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
-                                                    <Binding Path="Width" ElementName="ScaleElement" />
-                                                    <Binding Source="{StaticResource ScaleMin}"/>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource ScaleMin}" />
+                                                    <Binding Source="{StaticResource ScaleMax}" />
                                                 </MultiBinding>
                                             </ScaleTransform.ScaleY>
                                         </ScaleTransform>
                                     </TransformGroup>
                                 </TextBlock.RenderTransform>
                                 <TextBlock.Opacity>
-                                    <MultiBinding Converter="{StaticResource multiplyConverter}">
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
-                                        <Binding Path="Width" ElementName="ScaleElement" />
-                                        <Binding Source="{StaticResource ScaleMin}"/>
+                                    <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding ElementName="HiddenBorder" Path="Width" />
+                                        <Binding Source="{StaticResource ScaleMin}" />
+                                        <Binding Source="{StaticResource ScaleMax}" />
                                     </MultiBinding>
                                 </TextBlock.Opacity>
                             </TextBlock>
-                           
-                            <Border Visibility="Collapsed" Name="TransformElement" Width="0"/>
-                            <Border Visibility="Collapsed" Name="ScaleElement" Width="0"/>
+
+                            <Border
+                                Name="HiddenBorder"
+                                Width="0"
+                                Visibility="Collapsed" />
+
+
                             <Border
                                 Grid.Row="2"
+                                VerticalAlignment="Top"
                                 BorderBrush="#eeeeee"
-                                BorderThickness="0,0,0,2"/>
+                                BorderThickness="0,0,0,2" />
                             <Border
-                                Grid.Row="2"
                                 Name="HighlightBorder"
+                                Grid.Row="2"
+                                Margin="50,0"
+                                VerticalAlignment="Top"
                                 BorderBrush="{DynamicResource ColorPrimary}"
                                 BorderThickness="0,0,0,2"
-                                Margin="50 0"
-                                Opacity="0"/>
+                                Opacity="0" />
+                           
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -111,7 +140,7 @@
                         <EventTrigger RoutedEvent="GotFocus">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ThicknessAnimation 
+                                    <ThicknessAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
                                         To="0 0 0 0"
@@ -120,26 +149,21 @@
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Opacity"
                                         To="1"
-                                        Duration="0:0:0.2"/>
+                                        Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                        Storyboard.TargetName="TransformElement"
-                                        Storyboard.TargetProperty="Width"
-                                        From="{StaticResource TranslateMax}"
-                                        To="{StaticResource TranslateMin}"
-                                        Duration="0:0:0.2"/>
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="ScaleElement"
+                                        Storyboard.TargetName="HiddenBorder"
                                         Storyboard.TargetProperty="Width"
                                         From="1"
-                                        To="{StaticResource ScaleMin}"
-                                        Duration="0:0:0.2"/>
+                                        To="0"
+                                        Duration="0:0:0.2" />
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
-                        <EventTrigger RoutedEvent="LostFocus" >
+                        <EventTrigger RoutedEvent="LostFocus">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ThicknessAnimation 
+                                    <ThicknessAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
                                         To="50 0"
@@ -148,30 +172,70 @@
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Opacity"
                                         To="0"
-                                        Duration="0:0:0.2"/>
+                                        Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                        Storyboard.TargetName="TransformElement"
+                                        Storyboard.TargetName="HiddenBorder"
                                         Storyboard.TargetProperty="Width"
-                                        From="{StaticResource TranslateMin}"
-                                        To="{StaticResource TranslateMax}"
-                                        Duration="0:0:0.2"/>
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="ScaleElement"
-                                        Storyboard.TargetProperty="Width"
-                                        From="{StaticResource ScaleMin}"
+                                        From="0"
                                         To="1"
-                                        Duration="0:0:0.2"/>
+                                        Duration="0:0:0.2" />
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <Trigger Property="IsFocused" Value="False">
-                            
-                            <Setter Property="Width" TargetName="ScaleElement" Value="1"/>
-                            <Setter Property="Width" TargetName="TransformElement" Value="{StaticResource TranslateMax}"/>
-                            <Setter Property="Opacity" TargetName="HighlightBorder" Value="0"/>
-                            <Setter Property="Margin" TargetName="HighlightBorder" Value="50 0"/>
+                            <Setter TargetName="HiddenBorder" Property="Width" Value="1" />
+                            <Setter TargetName="HighlightBorder" Property="Opacity" Value="0" />
+                            <Setter TargetName="HighlightBorder" Property="Margin" Value="50,0" />
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="BarTextBox" TargetType="TextBoxBase">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <Border Background="White" CornerRadius="2">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect
+                                    Direction="0"
+                                    Opacity=".2"
+                                    ShadowDepth="0"
+                                    Softness="3"
+                                    Color="Black" />
+                            </Border.BitmapEffect>
+                        </Border>
+                        <Border
+                            Name="Border"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            CornerRadius="2">
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Grid.Row="1"
+                                Margin="0" />
+
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

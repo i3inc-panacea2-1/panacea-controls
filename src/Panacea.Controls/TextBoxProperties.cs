@@ -28,17 +28,90 @@ namespace Panacea.Controls
                 typeof(string),
                 typeof(TextboxProperties),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
-    }
 
-    public class MultiplyConverter : IMultiValueConverter
+
+        public static string GetHint(DependencyObject obj)
+        {
+            return (string)obj.GetValue(HintProperty);
+        }
+
+        public static void SetHint(DependencyObject obj, string value)
+        {
+            obj.SetValue(HintProperty, value);
+        }
+
+        public static readonly DependencyProperty HintProperty =
+            DependencyProperty.RegisterAttached(
+                "Hint",
+                typeof(string),
+                typeof(TextboxProperties),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+    }
+    
+
+    /// <summary>
+    /// Converts a value between 0 and 1 to a value of a different range that has the same distance from start and end.
+    /// </summary>
+    public class ZeroToOneRangeConverterConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if(values[0] is TextBox && !string.IsNullOrEmpty( (values[0] as TextBox).Text))
+            var currentZeroToOneValue = (double)values[0];
+            var newMinimum = (double)values[1];
+            var newMaximum = (double)values[2];
+            var res = currentZeroToOneValue * (newMaximum - newMinimum) / 1 + newMinimum;
+            return res;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new Exception("Not implemented");
+        }
+    }
+
+    public class StringToRangeConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!string.IsNullOrEmpty(values[0]?.ToString()))
             {
-                return values[2];
+                return 0.0;
             }
-            return values[1];
+            return (double)values[1];
+            
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new Exception("Not implemented");
+        }
+    }
+
+    public class TransformationConverter : IMultiValueConverter
+    {
+        
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var res = new StringToRangeConverter().Convert(new object[] { values[0], values[1],  }, targetType, parameter, culture);
+            res = new ZeroToOneRangeConverterConverter().Convert(new object[] { res, values[2], values[3] }, targetType, parameter, culture);
+            return res;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new Exception("Not implemented");
+        }
+    }
+
+    public class HintVisibilityConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (!string.IsNullOrEmpty(values[0]?.ToString()) || !(bool)values[1])
+            {
+                return Visibility.Hidden;
+            }
+            return Visibility.Visible;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
