@@ -67,8 +67,8 @@
         <TabItem Header="Textbox">
             <WrapPanel>
                 <TextBox Width="200" controls:TextboxProperties.Label="Test"/>
-                <TextBox Width="200"/>
-                <TextBox Width="200"/>
+                <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
             </WrapPanel>
         </TabItem>
     </controls:TabControlEx>

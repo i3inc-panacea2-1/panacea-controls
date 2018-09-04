@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Panacea.Controls
@@ -33,14 +34,11 @@ namespace Panacea.Controls
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            double result = 1.0;
-            for (int i = 0; i < values.Length; i++)
+            if(values[0] is TextBox && !string.IsNullOrEmpty( (values[0] as TextBox).Text))
             {
-                if (values[i] is double)
-                    result *= (double)values[i];
+                return values[2];
             }
-
-            return result - 5;
+            return values[1];
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
