@@ -27,7 +27,8 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
-                            TextBlock.Foreground="{TemplateBinding Foreground}" />
+                            TextBlock.Foreground="{TemplateBinding Foreground}"
+                            TextBlock.TextAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -97,7 +98,8 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             BorderThickness="0">
 
-                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                              TextBlock.TextAlignment="Center"/>
                         </Border>
                     </controls:RippleEffectDecorator>
 
@@ -124,7 +126,8 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="4">
 
-                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                              TextBlock.TextAlignment="Center"/>
                         </Border>
                     </controls:RippleEffectDecorator>
 
@@ -166,7 +169,8 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="4" />
                         <controls:RippleEffectDecorator x:Name="Ripple" Background="{TemplateBinding Background}">
-                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center" />
+                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                              TextBlock.TextAlignment="Center"/>
                         </controls:RippleEffectDecorator>
                     </Grid>
 

@@ -57,7 +57,7 @@
             </controls:ResizablePanel>
         </TabItem>
         <TabItem Header="Buttons">
-            <WrapPanel Margin="0,20,0,0">
+            <WrapPanel Margin="0,20,0,0" >
                 <Button Style="{StaticResource TextButton}">Text Button</Button>
                 <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
                 <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>

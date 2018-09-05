@@ -7,16 +7,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="Main"
     AllowsTransparency="True"
-    Loaded="Main_Loaded"
-    Unloaded="Main_Unloaded"
-    Opacity="1"
     Background="#66000000"
+    Loaded="Main_Loaded"
+    Opacity="1"
+    Unloaded="Main_Unloaded"
     mc:Ignorable="d">
 
-    <Border DataContext="{Binding ElementName=Main}" VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="100" MinWidth="200" 
-            Background="White" BorderBrush="White" 
-            BorderThickness="0" 
-            CornerRadius="4">
+    <Border
+        MinWidth="300"
+        MinHeight="100"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Background="White"
+        BorderBrush="White"
+        BorderThickness="0"
+        CornerRadius="4"
+        DataContext="{Binding ElementName=Main}">
         <Grid HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -24,14 +30,19 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock
-                    Margin="10"
-                    FontSize="24"
-                    Text="{Binding Title}" />
+                Margin="10"
+                FontSize="24"
+                Text="{Binding Title}" />
             <TextBlock
-                    Grid.Row="1"
-                    Margin="10"
-                    Text="{Binding Text}" />
-            <Button Grid.Row="2" Click="Close_Click">Close</Button>
+                Grid.Row="1"
+                Margin="10"
+                Text="{Binding Text}" />
+            <Button
+                Grid.Row="2"
+                Click="Close_Click"
+                Style="{StaticResource PrimaryButton}">
+                Close
+            </Button>
         </Grid>
     </Border>
 
