@@ -7,8 +7,9 @@
     xmlns:local="clr-namespace:TestControlsApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    mc:Ignorable="d">
-    <controls:TabControlEx >
+    mc:Ignorable="d"
+    >
+    <TabControl controls:Material.HighlightEnabled="True">
         <TabItem Header="Resizable">
             <controls:ResizablePanel>
                 <Button
@@ -65,37 +66,49 @@
             </WrapPanel>
         </TabItem>
         <TabItem Header="Textbox">
-            <Grid >
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" Padding="10" Background="CornflowerBlue">
-                    <TextBox HorizontalAlignment="Stretch" Style="{StaticResource BarTextBox}" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                <Border
+                    Grid.Row="0"
+                    Padding="10"
+                    Background="CornflowerBlue">
+                    <TextBox
+                        HorizontalAlignment="Stretch"
+                        controls:Material.Label="This is a very long label aaa ooo"
+                        Style="{StaticResource BarTextBox}" />
                 </Border>
                 <StackPanel Grid.Row="1">
                     <WrapPanel Margin="5" TextElement.FontSize="12">
-                        <TextBox Width="200" controls:TextboxProperties.Label="Test"
-                         controls:TextboxProperties.Hint="This is a small hint"/>
-                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
-                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                        <TextBox
+                            Width="200"
+                            controls:Material.Hint="This is a small hint"
+                            controls:Material.Label="Test" />
+                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
+                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                     </WrapPanel>
                     <WrapPanel Margin="5">
-                        <TextBox Width="200" controls:TextboxProperties.Label="Test"
-                         controls:TextboxProperties.Hint="This is a small hint"/>
-                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
-                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                        <TextBox
+                            Width="200"
+                            controls:Material.Hint="This is a small hint"
+                            controls:Material.Label="Test" />
+                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
+                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                     </WrapPanel>
                     <WrapPanel Margin="5" TextElement.FontSize="25">
-                        <TextBox Width="200" controls:TextboxProperties.Label="Test"
-                         controls:TextboxProperties.Hint="This is a small hint"/>
-                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
-                        <TextBox Width="200" controls:TextboxProperties.Label="This is a very long label aaa ooo"/>
+                        <TextBox
+                            Width="200"
+                            controls:Material.Hint="This is a small hint"
+                            controls:Material.Label="Test" />
+                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
+                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                     </WrapPanel>
                 </StackPanel>
-                
+
             </Grid>
 
         </TabItem>
-    </controls:TabControlEx>
+    </TabControl>
 </controls:PanaceaWindow>

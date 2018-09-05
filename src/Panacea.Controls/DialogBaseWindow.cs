@@ -40,7 +40,7 @@ namespace Panacea.Controls
             Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
             sb.Children.Add(da);
 
-            this.BeginStoryboard(sb);
+            BeginStoryboard(sb);
 
             await Task.Delay(miliseconds);
         }
@@ -52,7 +52,7 @@ namespace Panacea.Controls
             Storyboard.SetTargetProperty(da, new PropertyPath("Opacity"));
             sb.Children.Add(da);
 
-            this.BeginStoryboard(sb);
+            BeginStoryboard(sb);
 
             await Task.Delay(miliseconds);
         }

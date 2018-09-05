@@ -27,25 +27,25 @@ namespace Panacea.Controls
             Owner = owner;
             Text = text;
             Title = title;
+            
+            ResizeToOwner();
+            
+        }
+        void ResizeToOwner()
+        {
+            var element = Owner.Content as FrameworkElement;
+            Width = element.ActualWidth;
+            Height = element.ActualHeight;
 
-            if (fitToContent == true)
-            {
-                MaxWidth = Screen.PrimaryScreen.WorkingArea.Width - 20;
-                MaxHeight = Screen.PrimaryScreen.WorkingArea.Height - 20;
-                MinWidth = Screen.PrimaryScreen.WorkingArea.Width * 0.2;
-                MinHeight = Screen.PrimaryScreen.WorkingArea.Height * 0.2;
-                SizeToContent = SizeToContent.WidthAndHeight;
-            }
-            else
-            {
-                Width = Screen.PrimaryScreen.WorkingArea.Width - 20;
-                Height = Screen.PrimaryScreen.WorkingArea.Height - 20;
-            }
-
-            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            var p = element.PointToScreen(new Point(0, 0));
+            Left = p.X;
+            Top = p.Y;
         }
 
-
+        private void Owner_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ResizeToOwner();
+        }
 
         public string Text
         {
@@ -60,14 +60,23 @@ namespace Panacea.Controls
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             AnimatedClose();
-            Owner.IsEnabled = true;
-            Owner.Opacity = 1;
         }
 
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            Owner.IsEnabled = false;
-            Owner.Opacity = 0.5;
+            Owner.SizeChanged += Owner_SizeChanged;
+            Owner.LocationChanged += Owner_LocationChanged;
+        }
+
+        private void Owner_LocationChanged(object sender, EventArgs e)
+        {
+            ResizeToOwner();
+        }
+
+        private void Main_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Owner.SizeChanged -= Owner_SizeChanged;
+            Owner.LocationChanged -= Owner_LocationChanged;
         }
     }
 }

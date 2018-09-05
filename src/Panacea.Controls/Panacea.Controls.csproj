@@ -78,6 +78,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\TabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="AudioManager.cs" />
+    <Compile Include="Converters\HintVisibilityConverter.cs" />
+    <Compile Include="Converters\StringToRangeConverter.cs" />
+    <Compile Include="Converters\TransformationConverter.cs" />
+    <Compile Include="Converters\ZeroToOneRangeConverter.cs" />
     <Compile Include="ResizablePanel.cs" />
     <Compile Include="DialogBox.xaml.cs">
       <DependentUpon>DialogBox.xaml</DependentUpon>
@@ -104,8 +112,7 @@
     <Compile Include="SplashScreenWindow.xaml.cs">
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TabControlEx.cs" />
-    <Compile Include="TextBoxProperties.cs" />
+    <Compile Include="Material.cs" />
     <Compile Include="ToastNotification.xaml.cs">
       <DependentUpon>ToastNotification.xaml</DependentUpon>
     </Compile>

@@ -8,26 +8,31 @@
     x:Name="Main"
     AllowsTransparency="True"
     Loaded="Main_Loaded"
-    Opacity="0"
+    Unloaded="Main_Unloaded"
+    Opacity="1"
+    Background="#66000000"
     mc:Ignorable="d">
-    <Grid DataContext="{Binding ElementName=Main}">
-        <Border BorderBrush="LightGray" BorderThickness="1">
-            <Grid HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock
+
+    <Border DataContext="{Binding ElementName=Main}" VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="100" MinWidth="200" 
+            Background="White" BorderBrush="White" 
+            BorderThickness="0" 
+            CornerRadius="4">
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
                     Margin="10"
                     FontSize="24"
                     Text="{Binding Title}" />
-                <TextBlock
+            <TextBlock
                     Grid.Row="1"
                     Margin="10"
                     Text="{Binding Text}" />
-                <Button Grid.Row="2" Click="Close_Click">Close</Button>
-            </Grid>
-        </Border>
-    </Grid>
+            <Button Grid.Row="2" Click="Close_Click">Close</Button>
+        </Grid>
+    </Border>
+
 </local:DialogBaseWindow>

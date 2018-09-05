@@ -78,7 +78,7 @@
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Padding" Value="15,6,15,10" />
+        <Setter Property="Padding" Value="15,5,15,10" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Typography.Capitals" Value="AllSmallCaps" />

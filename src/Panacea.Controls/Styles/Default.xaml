@@ -7,5 +7,6 @@
         <ResourceDictionary Source="Colors.xaml" />
         <ResourceDictionary Source="FontSizes.xaml" />
         <ResourceDictionary Source="TextBox.xaml" />
+        <ResourceDictionary Source="TabControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
