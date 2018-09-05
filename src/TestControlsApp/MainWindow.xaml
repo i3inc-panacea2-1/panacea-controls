@@ -75,10 +75,25 @@
                     Grid.Row="0"
                     Padding="10"
                     Background="CornflowerBlue">
-                    <TextBox
-                        HorizontalAlignment="Stretch"
-                        controls:Material.Label="This is a very long label aaa ooo"
-                        Style="{StaticResource BarTextBox}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            HorizontalAlignment="Stretch"
+                            controls:Material.Label="This is a very long label aaa ooo"
+                            Style="{StaticResource BarTextBox}" />
+
+                        <Button HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource TextButton}" VerticalContentAlignment="Center">
+                            <Viewbox >
+                                <Canvas Width="24" Height="24" >
+                                    <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="White" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+                    </Grid>
+                    
                 </Border>
                 <StackPanel Grid.Row="1">
                     <WrapPanel Margin="5" TextElement.FontSize="12">
