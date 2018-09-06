@@ -125,5 +125,23 @@
             </Grid>
 
         </TabItem>
+        <TabItem Header="ComboBox">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel >
+                    <WrapPanel Margin="5" TextElement.FontSize="12">
+                        <ComboBox>
+                            <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
+                            <ComboBoxItem >ComboBox Item #2</ComboBoxItem>
+                            <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+                        </ComboBox>
+                    </WrapPanel>
+                </StackPanel>
+
+            </Grid>
+
+        </TabItem>
     </TabControl>
 </controls:PanaceaWindow>
