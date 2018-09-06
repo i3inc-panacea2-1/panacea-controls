@@ -20,42 +20,37 @@ namespace Panacea.Controls
     /// </summary>
     public partial class DialogBox : DialogBaseWindow
     {
-        public DialogBox(string title, string text, Window owner, bool fitToContent = true):base()
+       
+        public DialogBox(Window owner, string title, FrameworkElement content, string negativeText, ICommand negativeCommand,
+            string positiveText, ICommand positiveCommand, bool fitToContent = true) : base()
         {
             InitializeComponent();
 
             Owner = owner;
-            Text = text;
+            //DialogContent = content;
+            ContentGrid.Children.Add(content);
             Title = title;
-            PositiveText = "Close";
-            PositiveCommand = new RelayCommand(() =>
+
+            if (negativeCommand!=null)
             {
-                AnimatedClose();
-            });
+                NegativeButtonVisibility = Visibility.Visible;
+                NegativeText = negativeText;
+                NegativeCommand = new RelayCommand(() => {
+                    negativeCommand.Execute(null);
+                    AnimatedClose();
+                }, () => negativeCommand.CanExecute(null));
+            }
             
-            ResizeToOwner();
+            if (positiveCommand != null)
+            {
+                PositiveButtonVisibility = Visibility.Visible;
+                PositiveText = positiveText;
+                PositiveCommand = new RelayCommand(() => {
+                    positiveCommand.Execute(null);
+                    AnimatedClose();
+                }, () => positiveCommand.CanExecute(null));
+            }
             
-        }
-        public DialogBox(string title, string text, Window owner, string negativeText, string positiveTest,
-            ICommand negativeCommand, ICommand positiveCommand, bool fitToContent = true) : base()
-        {
-            InitializeComponent();
-
-            Owner = owner;
-            Text = text;
-            Title = title;
-            NegativeButtonVisibility = Visibility.Visible;
-            NegativeText = negativeText;
-            PositiveText = positiveTest;
-            NegativeCommand = new RelayCommand(()=> {
-                negativeCommand.Execute(null);
-                AnimatedClose();
-            });
-            PositiveCommand = new RelayCommand(() => {
-                positiveCommand.Execute(null);
-                AnimatedClose();
-            });
-
             ResizeToOwner();
 
         }
@@ -97,7 +92,7 @@ namespace Panacea.Controls
 
         // Using a DependencyProperty as the backing store for PositiveButtonVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PositiveButtonVisibilityProperty =
-            DependencyProperty.Register("PositiveButtonVisibility", typeof(Visibility), typeof(DialogBox), new PropertyMetadata(Visibility.Visible));
+            DependencyProperty.Register("PositiveButtonVisibility", typeof(Visibility), typeof(DialogBox), new PropertyMetadata(Visibility.Collapsed));
 
 
 
@@ -147,19 +142,6 @@ namespace Panacea.Controls
         // Using a DependencyProperty as the backing store for NegativeCommand.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NegativeCommandProperty =
             DependencyProperty.Register("NegativeCommand", typeof(ICommand), typeof(DialogBox), new PropertyMetadata(null));
-
-
-
-
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(DialogBox), new PropertyMetadata(null));
 
 
         private void Main_Loaded(object sender, RoutedEventArgs e)

@@ -17,16 +17,9 @@ namespace Panacea.Controls
 
         public Window Owner { get; }
 
-
-        public void Show(string title, string text, bool fitToContent = true)
+        public void Show(string title, FrameworkElement content, string negativeText, ICommand negativeCommand, string positiveText, ICommand positiveCommand, bool fitToContent = true)
         {
-            DialogBox dlg = new DialogBox(title, text, Owner, fitToContent);
-            dlg.Show();
-        }
-
-        public void Show(string title, string text, string negativeText, string positiveText, ICommand negativeCommand, ICommand positiveCommand, bool fitToContent = true)
-        {
-            DialogBox dlg = new DialogBox(title, text, Owner, negativeText, positiveText, negativeCommand, positiveCommand, fitToContent);
+            DialogBox dlg = new DialogBox(Owner, title, content, negativeText, negativeCommand, positiveText, positiveCommand, fitToContent);
             dlg.Show();
         }
     }

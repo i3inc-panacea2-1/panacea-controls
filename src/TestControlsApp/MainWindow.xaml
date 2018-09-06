@@ -27,7 +27,7 @@
                     Content="Toast" />
                 <Button
                     Margin="20"
-                    Click="Dialog_Click"
+                    Click="Dialog_Click2"
                     Content="Dialog" />
                 <Button
                     Margin="20"

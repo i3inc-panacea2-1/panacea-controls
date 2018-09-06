@@ -10,8 +10,7 @@ namespace Panacea.Controls
 {
     public interface IDialogService
     {
-        void Show(string title, string text, bool fitToContent = true);
-        void Show(string title, string text, string negativeText, string positiveText, ICommand negativeCommand, ICommand positiveCommand, bool fitToContent = true);
+        void Show(string title, FrameworkElement content, string negativeText, ICommand negativeCommand, string positiveText, ICommand positiveCommand, bool fitToContent = true);
         Window Owner { get; }
     }
 }
