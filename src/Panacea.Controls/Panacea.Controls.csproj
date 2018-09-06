@@ -99,6 +99,8 @@
     <Compile Include="Converters\StringToRangeConverter.cs" />
     <Compile Include="Converters\TransformationConverter.cs" />
     <Compile Include="Converters\ZeroToOneRangeConverter.cs" />
+    <Compile Include="DialogService.cs" />
+    <Compile Include="IDialogService.cs" />
     <Compile Include="ResizablePanel.cs" />
     <Compile Include="DialogBox.xaml.cs">
       <DependentUpon>DialogBox.xaml</DependentUpon>

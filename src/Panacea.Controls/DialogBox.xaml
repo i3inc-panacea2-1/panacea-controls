@@ -37,12 +37,22 @@
                 Grid.Row="1"
                 Margin="10"
                 Text="{Binding Text}" />
-            <Button
-                Grid.Row="2"
-                Click="Close_Click"
-                Style="{StaticResource PrimaryButton}">
-                Close
-            </Button>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button
+                    Margin="5"
+                    Visibility="{Binding NegativeButtonVisibility}"
+                    Command="{Binding NegativeCommand}"
+                    Style="{StaticResource OutlinedButton}"
+                    Content="{Binding NegativeText}">
+                </Button>
+                <Button
+                    Margin="5"
+                    Visibility="{Binding PositiveButtonVisibility}"
+                    Command="{Binding PositiveCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    Content="{Binding PositiveText}">
+                </Button>
+            </StackPanel>
         </Grid>
     </Border>
 
