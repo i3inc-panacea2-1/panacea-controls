@@ -33,16 +33,24 @@
                 Margin="10"
                 FontSize="24"
                 Text="{Binding Title}" />
-            <TextBlock
-                Grid.Row="1"
-                Margin="10"
-                Text="{Binding Text}" />
-            <Button
-                Grid.Row="2"
-                Click="Close_Click"
-                Style="{StaticResource PrimaryButton}">
-                Close
-            </Button>
+            <Grid Margin="10" HorizontalAlignment="Center"
+                Name="ContentGrid" Grid.Row="1"></Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                    Margin="5"
+                    Visibility="{Binding NegativeButtonVisibility}"
+                    Command="{Binding NegativeCommand}"
+                    Style="{StaticResource OutlinedButton}"
+                    Content="{Binding NegativeText}">
+                </Button>
+                <Button
+                    Margin="5"
+                    Visibility="{Binding PositiveButtonVisibility}"
+                    Command="{Binding PositiveCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    Content="{Binding PositiveText}">
+                </Button>
+            </StackPanel>
         </Grid>
     </Border>
 

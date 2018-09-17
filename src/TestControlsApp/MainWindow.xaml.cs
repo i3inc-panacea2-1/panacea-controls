@@ -37,8 +37,10 @@ namespace TestControlsApp
         public MainWindow()
         {
             InitializeComponent();
-        }
+            dialog = new DialogService(this);
 
+        }
+        IDialogService dialog;
         private void Toast_Click(object sender, RoutedEventArgs e)
         {
             ToastNotification not = new ToastNotification("test message");
@@ -48,8 +50,24 @@ namespace TestControlsApp
 
         private void Dialog_Click(object sender, RoutedEventArgs e)
         {
-            DialogBox dlg = new DialogBox("Test Title", "Test Messsage", this);
-            dlg.Show();
+            dialog.Show("Test Title",new TextBlock() { Text = "Test Messsage" }, null, null, "Yes",
+                 new RelayCommand(() => {
+                    ToastNotification not = new ToastNotification("YES");
+                    not.Show();
+                }));
+        }
+
+        private void Dialog_Click2(object sender, RoutedEventArgs e)
+        {
+            dialog.Show("Test Title", new TextBlock() { Text = "Test Messsage" }, "No", new RelayCommand(()=>
+            {
+                ToastNotification not = new ToastNotification("NO");
+                not.Show();
+            }), "Yes",
+                   new RelayCommand(() => {
+                       ToastNotification not = new ToastNotification("YES");
+                       not.Show();
+                   }));
         }
     }
 }
