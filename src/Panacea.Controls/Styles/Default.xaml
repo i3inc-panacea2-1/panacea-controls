@@ -4,9 +4,13 @@
     xmlns:local="clr-namespace:Panacea.Controls.Styles">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Button.xaml" />
+        <ResourceDictionary Source="ToggleButton.xaml" />
         <ResourceDictionary Source="Colors.xaml" />
         <ResourceDictionary Source="FontSizes.xaml" />
         <ResourceDictionary Source="TextBox.xaml" />
         <ResourceDictionary Source="TabControl.xaml" />
+        <ResourceDictionary Source="Slider.xaml" />
+        <ResourceDictionary Source="ComboBox.xaml" />
+        <ResourceDictionary Source="Scrollbar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

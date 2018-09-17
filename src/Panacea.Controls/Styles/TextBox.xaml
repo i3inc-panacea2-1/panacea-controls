@@ -9,8 +9,271 @@
 
     <converters:HintVisibilityConverter x:Key="hintVisibilityConverter" />
     <converters:TransformationConverter x:Key="TransformationConverter" />
-
+    <converters:PercentageConverter x:Key="PercentageConverter" />
+    
     <Style x:Key="{x:Type TextBox}" TargetType="TextBoxBase">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <ControlTemplate.Resources>
+                        <sys:Double x:Key="ScaleMin">.7</sys:Double>
+                        <sys:Double x:Key="ScaleMax">.93</sys:Double>
+                        <sys:Double x:Key="TranslateMin">15</sys:Double>
+                        <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888"/>
+                    </ControlTemplate.Resources>
+                    <Border
+                        Name="Border"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        CornerRadius="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Grid.Row="1"
+                                Margin="-1 0 0 0"
+                                Padding="0"/>
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="1,0,0,0"
+                                VerticalAlignment="Center"
+                                Opacity=".2"
+                                Text="{Binding Path=(controls:Material.Hint), RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock.Visibility>
+                                    <MultiBinding Converter="{StaticResource hintVisibilityConverter}">
+                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="(controls:Material.Hint)" RelativeSource="{RelativeSource TemplatedParent}" />
+                                    </MultiBinding>
+                                </TextBlock.Visibility>
+
+                            </TextBlock>
+                            <TextBlock
+                                Name="Label"
+                                Grid.Row="0"
+                                Margin="1,0,0,0"
+                                VerticalAlignment="Bottom"
+                                Text="{Binding Path=(controls:Material.Label), RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform x:Name="TranslateTransform">
+                                            <TranslateTransform.Y>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource TranslateMin}" />
+                                                    <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
+                                                </MultiBinding>
+                                            </TranslateTransform.Y>
+                                        </TranslateTransform>
+                                        <ScaleTransform x:Name="ScaleTransform">
+                                            <ScaleTransform.ScaleX>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource ScaleMin}" />
+                                                    <Binding Source="{StaticResource ScaleMax}" />
+                                                </MultiBinding>
+                                            </ScaleTransform.ScaleX>
+                                            <ScaleTransform.ScaleY>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource ScaleMin}" />
+                                                    <Binding Source="{StaticResource ScaleMax}" />
+                                                </MultiBinding>
+                                            </ScaleTransform.ScaleY>
+                                        </ScaleTransform>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                                <TextBlock.Opacity>
+                                    <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding ElementName="HiddenBorder" Path="Width" />
+                                        <Binding Source="{StaticResource ScaleMin}" />
+                                        <Binding Source="{StaticResource ScaleMax}" />
+                                    </MultiBinding>
+                                </TextBlock.Opacity>
+                            </TextBlock>
+
+                            <Border
+                                Name="HiddenBorder"
+                                Width="0"
+                                Visibility="Collapsed" />
+
+
+                            <Border
+                                Grid.Row="2"
+                                VerticalAlignment="Top"
+                                BorderBrush="{StaticResource NormalBorderColor}"
+                                BorderThickness="0,0,0,2"
+                                Name="NormalBorder"/>
+                            <Border
+                                Name="HighlightBorder"
+                                Grid.Row="2"
+                                Margin="50,0"
+                                VerticalAlignment="Top"
+                                BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
+                                BorderThickness="0,0,0,2"
+                                Opacity="0" />
+                            <TextBlock Grid.Row="3" Margin="2 0 0 0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="Red" Name="ErrorText"
+                                       >
+                                <TextBlock.Resources>
+                                    <sys:Double x:Key="Percentage">.7</sys:Double>
+                                </TextBlock.Resources>
+                                <TextBlock.FontSize>
+                                    <MultiBinding Converter="{StaticResource PercentageConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize"></Binding>
+                                        <Binding Source="{StaticResource Percentage}" />
+                                    </MultiBinding>
+                                </TextBlock.FontSize>
+                                
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                        </Trigger>
+                        <EventTrigger RoutedEvent="GotFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ThicknessAnimation
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Margin"
+                                        To="0 0 0 0"
+                                        Duration="0:0:0.2" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="1"
+                                        Duration="0:0:0.2" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="HiddenBorder"
+                                        Storyboard.TargetProperty="Width"
+                                        From="1"
+                                        To="0"
+                                        Duration="0:0:0.2" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="LostFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ThicknessAnimation
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Margin"
+                                        To="50 0"
+                                        Duration="0:0:0.2" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0"
+                                        Duration="0:0:0.2" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="HiddenBorder"
+                                        Storyboard.TargetProperty="Width"
+                                        From="0"
+                                        To="1"
+                                        Duration="0:0:0.2" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsFocused" Value="False">
+                            <Setter TargetName="HiddenBorder" Property="Width" Value="1" />
+                            <Setter TargetName="HighlightBorder" Property="Opacity" Value="0" />
+                            <Setter TargetName="HighlightBorder" Property="Margin" Value="50,0" />
+                        </Trigger>
+
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(Validation.Errors)[0].ErrorContent}" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="False">
+                            <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{StaticResource NormalBorderColor}" />
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(controls:Material.HighlightColor)}" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+
+    </Style>
+
+
+
+    <Style x:Key="BarTextBox" TargetType="TextBoxBase">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <Border Background="White" CornerRadius="2">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect
+                                    Direction="0"
+                                    Opacity=".2"
+                                    ShadowDepth="0"
+                                    Softness="3"
+                                    Color="Black" />
+                            </Border.BitmapEffect>
+                        </Border>
+                        <Border
+                            Name="Border"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            CornerRadius="2">
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Grid.Row="1"
+                                Margin="0" />
+
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="PasswordBox">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
@@ -23,13 +286,15 @@
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
                     <ControlTemplate.Resources>
                         <sys:Double x:Key="ScaleMin">.7</sys:Double>
                         <sys:Double x:Key="ScaleMax">.93</sys:Double>
                         <sys:Double x:Key="TranslateMin">15</sys:Double>
+                        <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888"/>
                     </ControlTemplate.Resources>
                     <Border
                         Name="Border"
@@ -39,7 +304,8 @@
                         CornerRadius="0">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Name="FirstRow" Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -119,17 +385,30 @@
                             <Border
                                 Grid.Row="2"
                                 VerticalAlignment="Top"
-                                BorderBrush="#eeeeee"
-                                BorderThickness="0,0,0,2" />
+                                BorderBrush="{StaticResource NormalBorderColor}"
+                                BorderThickness="0,0,0,2"
+                                Name="NormalBorder"/>
                             <Border
                                 Name="HighlightBorder"
                                 Grid.Row="2"
                                 Margin="50,0"
                                 VerticalAlignment="Top"
-                                BorderBrush="{DynamicResource ColorPrimary}"
+                                BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
                                 Opacity="0" />
+                            <TextBlock Grid.Row="3" Margin="2 0 0 0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="Red" Name="ErrorText"
+                                       >
+                                <TextBlock.Resources>
+                                    <sys:Double x:Key="Percentage">.7</sys:Double>
+                                </TextBlock.Resources>
+                                <TextBlock.FontSize>
+                                    <MultiBinding Converter="{StaticResource PercentageConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize"></Binding>
+                                        <Binding Source="{StaticResource Percentage}" />
+                                    </MultiBinding>
+                                </TextBlock.FontSize>
 
+                            </TextBlock>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -145,18 +424,30 @@
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
                                         To="0 0 0 0"
-                                        Duration="0:0:0.2" />
+                                        Duration="0:0:0.3" >
+                                        <ThicknessAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseIn"/>
+                                        </ThicknessAnimation.EasingFunction>
+                                    </ThicknessAnimation>
                                     <DoubleAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Opacity"
                                         To="1"
-                                        Duration="0:0:0.2" />
+                                        Duration="0:0:0.3" >
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
                                     <DoubleAnimation
                                         Storyboard.TargetName="HiddenBorder"
                                         Storyboard.TargetProperty="Width"
                                         From="1"
                                         To="0"
-                                        Duration="0:0:0.2" />
+                                        Duration="0:0:0.2" >
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
 
                                 </Storyboard>
                             </BeginStoryboard>
@@ -168,18 +459,30 @@
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
                                         To="50 0"
-                                        Duration="0:0:0.2" />
+                                        Duration="0:0:0.3" >
+                                        <ThicknessAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseIn"/>
+                                        </ThicknessAnimation.EasingFunction>
+                                    </ThicknessAnimation>
                                     <DoubleAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Opacity"
                                         To="0"
-                                        Duration="0:0:0.2" />
+                                        Duration="0:0:0.3" >
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
                                     <DoubleAnimation
                                         Storyboard.TargetName="HiddenBorder"
                                         Storyboard.TargetProperty="Width"
                                         From="0"
                                         To="1"
-                                        Duration="0:0:0.2" />
+                                        Duration="0:0:0.2" >
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseIn"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
 
                                 </Storyboard>
                             </BeginStoryboard>
@@ -189,57 +492,21 @@
                             <Setter TargetName="HighlightBorder" Property="Opacity" Value="0" />
                             <Setter TargetName="HighlightBorder" Property="Margin" Value="50,0" />
                         </Trigger>
+
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(Validation.Errors)[0].ErrorContent}" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="False">
+                            <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{StaticResource NormalBorderColor}" />
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(controls:Material.HighlightColor)}" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
     </Style>
-
-
-
-    <Style x:Key="BarTextBox" TargetType="TextBoxBase">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="MinWidth" Value="120" />
-        <Setter Property="MinHeight" Value="20" />
-        <Setter Property="AllowDrop" Value="true" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Background" Value="White" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
-                        <Border Background="White" CornerRadius="2">
-                            <Border.BitmapEffect>
-                                <DropShadowBitmapEffect
-                                    Direction="0"
-                                    Opacity=".2"
-                                    ShadowDepth="0"
-                                    Softness="3"
-                                    Color="Black" />
-                            </Border.BitmapEffect>
-                        </Border>
-                        <Border
-                            Name="Border"
-                            Padding="{TemplateBinding Padding}"
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="0"
-                            CornerRadius="2">
-                            <ScrollViewer
-                                x:Name="PART_ContentHost"
-                                Grid.Row="1"
-                                Margin="0" />
-
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
 </ResourceDictionary>

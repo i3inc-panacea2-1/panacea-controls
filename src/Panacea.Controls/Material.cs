@@ -16,6 +16,7 @@ namespace Panacea.Controls
 {
     public class Material
     {
+        #region Label
         public static string GetLabel(DependencyObject obj)
         {
             return (string)obj.GetValue(LabelProperty);
@@ -33,7 +34,9 @@ namespace Panacea.Controls
                 typeof(Material),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
+        #endregion
 
+        #region Hint
         public static string GetHint(DependencyObject obj)
         {
             return (string)obj.GetValue(HintProperty);
@@ -50,8 +53,9 @@ namespace Panacea.Controls
                 typeof(string),
                 typeof(Material),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
 
-
+        #region HighlightColor
         public static Brush GetHighlightColor(DependencyObject obj)
         {
             return (Brush)obj.GetValue(HighlightColorProperty);
@@ -68,7 +72,9 @@ namespace Panacea.Controls
                 typeof(Brush),
                 typeof(Material),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
 
+        #region HightlightEnabled
         public static bool GetHighlightEnabled(DependencyObject obj)
         {
             return (bool)obj.GetValue(HighlightEnabledProperty);
@@ -92,7 +98,17 @@ namespace Panacea.Controls
                     tc.Loaded -= Tc_Initialized;
                 }
             }
+        }
 
+        public static readonly DependencyProperty HighlightEnabledProperty =
+            DependencyProperty.RegisterAttached(
+                "HighlightEnabled",
+                typeof(bool),
+                typeof(Material),
+                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsRender, HighlightEnabledChanged));
+        private static void HighlightEnabledChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        {
+            SetHighlightEnabled(sender, (bool)args.NewValue);
         }
 
         private static void Tc_Initialized(object sender, EventArgs e)
@@ -102,7 +118,26 @@ namespace Panacea.Controls
 
         private static void Tc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+            if (e.AddedItems != null && !e.AddedItems.Cast<object>().Any(c => c is TabItem)) return;
             UpdateLine(sender as Control);
+            
+            var element = sender as Control;
+            var presenter = element.Template.FindName("PART_SelectedContentHost", element) as FrameworkElement;
+            if (presenter == null) return;
+            presenter.Opacity = 0;
+            var animation2 = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromMilliseconds(200)
+            };
+            
+            Storyboard.SetTarget(animation2, presenter);
+            Storyboard.SetTargetProperty(animation2, new PropertyPath(FrameworkElement.OpacityProperty));
+            Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
+            myColorAnimatedButtonStoryboard.Children.Add(animation2);
+            myColorAnimatedButtonStoryboard.Begin();
         }
 
 
@@ -141,36 +176,55 @@ namespace Panacea.Controls
             Storyboard.SetTarget(animation3, border);
             Storyboard.SetTargetProperty(animation3, new PropertyPath(FrameworkElement.WidthProperty));
 
-            var presenter = element.Template.FindName("PART_SelectedContentHost", element) as FrameworkElement;
-            presenter.Opacity = 0;
-            var animation2 = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromMilliseconds(200)
-            };
-            Storyboard.SetTarget(animation2, presenter);
-            Storyboard.SetTargetProperty(animation2, new PropertyPath(FrameworkElement.OpacityProperty));
+            
 
             // Create a storyboard to contain the animation.
             Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
 
             myColorAnimatedButtonStoryboard.Children.Add(animation);
-            myColorAnimatedButtonStoryboard.Children.Add(animation2);
+            
             myColorAnimatedButtonStoryboard.Children.Add(animation3);
             myColorAnimatedButtonStoryboard.Begin();
-
         }
+        #endregion
 
-        public static readonly DependencyProperty HighlightEnabledProperty =
-            DependencyProperty.RegisterAttached(
-                "HighlightEnabled",
-                typeof(bool),
-                typeof(Material),
-                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsRender, HighlightEnabledChanged));
-        private static void HighlightEnabledChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        #region SliderLabelConverter
+        public static Brush GetSliderLabelConverter(DependencyObject obj)
         {
-            SetHighlightEnabled(sender, (bool)args.NewValue);
+            return (Brush)obj.GetValue(SliderLabelConverterProperty);
         }
+
+        public static void SetSliderLabelConverter(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(SliderLabelConverterProperty, value);
+        }
+
+        public static readonly DependencyProperty SliderLabelConverterProperty =
+            DependencyProperty.RegisterAttached(
+                "SliderLabel",
+                typeof(IValueConverter),
+                typeof(Material),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
+
+        #region Icon
+        public static ControlTemplate GetIcon(DependencyObject obj)
+        {
+            return (ControlTemplate)obj.GetValue(IconProperty);
+        }
+
+        public static void SetIcon(DependencyObject obj, ControlTemplate value)
+        {
+            obj.SetValue(IconProperty, value);
+        }
+
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.RegisterAttached(
+                "Icon",
+                typeof(ControlTemplate),
+                typeof(Material),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
+
     }
 }
