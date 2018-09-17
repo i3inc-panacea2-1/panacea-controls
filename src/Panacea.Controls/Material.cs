@@ -113,7 +113,7 @@ namespace Panacea.Controls
 
         private static void Tc_Initialized(object sender, EventArgs e)
         {
-            UpdateLine(sender as Control);
+            UpdateLine(sender as Control, false);
         }
 
         private static void Tc_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -123,6 +123,8 @@ namespace Panacea.Controls
             UpdateLine(sender as Control);
             
             var element = sender as Control;
+            if (element == null) return;
+            if (element.Template == null) return;
             var presenter = element.Template.FindName("PART_SelectedContentHost", element) as FrameworkElement;
             if (presenter == null) return;
             presenter.Opacity = 0;
@@ -142,51 +144,60 @@ namespace Panacea.Controls
 
 
 
-        private static void UpdateLine(Control element)
+        private static void UpdateLine(Control element, bool animate = true)
         {
             if (element == null) return;
+            if (element.Template == null) return;
             var border = element.Template.FindName("PART_border", element) as Border;
             var panel = element.Template.FindName("HeaderPanel", element) as TabPanel;
             if (border == null || panel == null) return;
             var item = panel.Children.Cast<TabItem>().FirstOrDefault(t => t.IsSelected);
             if (item == null) return;
-            var point = item.TranslatePoint(new Point(0, 0), panel);
-            var animation = new ThicknessAnimation
+            var point = item.TranslatePoint(new Point(0, 0), element);
+            if (animate)
             {
-                From = border.Margin,
-                To = new Thickness(point.X, 0, 0, 0),
-                Duration = TimeSpan.FromMilliseconds(200),
-                EasingFunction = new SineEase()
+                var animation = new ThicknessAnimation
                 {
-                    EasingMode = EasingMode.EaseInOut
-                }
-            };
-            Storyboard.SetTarget(animation, border);
-            Storyboard.SetTargetProperty(animation, new PropertyPath(FrameworkElement.MarginProperty));
+                    From = border.Margin,
+                    To = new Thickness(point.X, 0, 0, 0),
+                    Duration = TimeSpan.FromMilliseconds(200),
+                    EasingFunction = new SineEase()
+                    {
+                        EasingMode = EasingMode.EaseInOut
+                    }
+                };
+                Storyboard.SetTarget(animation, border);
+                Storyboard.SetTargetProperty(animation, new PropertyPath(FrameworkElement.MarginProperty));
 
 
-            var animation3 = new DoubleAnimation
+                var animation3 = new DoubleAnimation
+                {
+                    From = border.ActualWidth,
+                    To = item.ActualWidth,
+                    Duration = TimeSpan.FromMilliseconds(200),
+                    EasingFunction = new SineEase()
+                    {
+                        EasingMode = EasingMode.EaseInOut
+                    }
+                };
+                Storyboard.SetTarget(animation3, border);
+                Storyboard.SetTargetProperty(animation3, new PropertyPath(FrameworkElement.WidthProperty));
+
+
+
+                // Create a storyboard to contain the animation.
+                Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
+
+                myColorAnimatedButtonStoryboard.Children.Add(animation);
+
+                myColorAnimatedButtonStoryboard.Children.Add(animation3);
+                myColorAnimatedButtonStoryboard.Begin();
+            }
+            else
             {
-                From = border.ActualWidth,
-                To = item.ActualWidth,
-                Duration = TimeSpan.FromMilliseconds(200),
-                EasingFunction = new SineEase()
-                {
-                    EasingMode = EasingMode.EaseInOut
-                }
-            };
-            Storyboard.SetTarget(animation3, border);
-            Storyboard.SetTargetProperty(animation3, new PropertyPath(FrameworkElement.WidthProperty));
-
-            
-
-            // Create a storyboard to contain the animation.
-            Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
-
-            myColorAnimatedButtonStoryboard.Children.Add(animation);
-            
-            myColorAnimatedButtonStoryboard.Children.Add(animation3);
-            myColorAnimatedButtonStoryboard.Begin();
+                border.Margin = new Thickness(point.X, 0, 0, 0);
+                border.Width = item.ActualWidth;
+            }
         }
         #endregion
 
