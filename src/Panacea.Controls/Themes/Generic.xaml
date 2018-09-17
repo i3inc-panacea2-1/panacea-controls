@@ -58,14 +58,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RippleEffectDecorator}">
-                    <Grid
+                    <Grid>
+                        <Grid
                         x:Name="PART_grid"
                         Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
                         Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
                         Background="{TemplateBinding Background}"
                         ClipToBounds="True"
                         Stylus.IsPressAndHoldEnabled="False">
-                        <Ellipse
+                            <Ellipse
                             x:Name="PART_ellipse"
                             Width="0"
                             Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
@@ -73,33 +74,35 @@
                             VerticalAlignment="Top"
                             Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
 
-                        <ContentPresenter x:Name="PART_contentpresenter" />
+                           
 
-                        <Grid.Resources>
-                            <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
-                                <DoubleAnimation
+                            <Grid.Resources>
+                                <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
+                                    <DoubleAnimation
                                     Storyboard.TargetProperty="Width"
                                     From="0"
                                     Duration="0:0:0.55" />
-                                <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.55" />
+                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.55" />
 
-                                <DoubleAnimation
+                                    <DoubleAnimation
                                     BeginTime="0:0:2.25"
                                     Storyboard.TargetProperty="Width"
                                     To="0"
                                     Duration="0:0:0" />
-                                <DoubleAnimation
+                                    <DoubleAnimation
                                     Storyboard.TargetProperty="Opacity"
                                     To="1"
                                     Duration="0:0:0" />
-                                <DoubleAnimation
+                                    <DoubleAnimation
                                     BeginTime="0:0:0.3"
                                     Storyboard.TargetProperty="Opacity"
                                     From="1"
                                     To="0"
                                     Duration="0:0:0.55" />
-                            </Storyboard>
-                        </Grid.Resources>
+                                </Storyboard>
+                            </Grid.Resources>
+                        </Grid>
+                        <ContentPresenter x:Name="PART_contentpresenter" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
