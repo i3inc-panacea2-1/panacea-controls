@@ -98,7 +98,6 @@
                             <Popup
                                 x:Name="Popup"
                                 Grid.Row="1"
-                                
                                 AllowsTransparency="True"
                                 Focusable="False"
                                 IsOpen="{Binding IsDropDownOpen, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
@@ -107,10 +106,10 @@
                                 StaysOpen="False">
                                 <Popup.Style>
                                     <Style TargetType="{x:Type Popup}">
-                                        <Setter Property="StaysOpen" Value="False"/>
+                                        <Setter Property="StaysOpen" Value="False" />
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding IsMouseOver, ElementName=DropDown}" Value="True">
-                                                <Setter Property="StaysOpen" Value="True"/>
+                                                <Setter Property="StaysOpen" Value="True" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -141,9 +140,9 @@
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                                     </ScrollViewer>
                                 </Grid>
-                                
+
                             </Popup>
-                           
+
                         </Border>
 
                         <ContentPresenter

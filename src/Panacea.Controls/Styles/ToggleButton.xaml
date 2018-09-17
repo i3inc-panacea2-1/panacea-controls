@@ -32,14 +32,14 @@
                         <controls:RippleEffectDecorator x:Name="Ripple" Background="Transparent">
                             <ContentPresenter
                                 Margin="{TemplateBinding Padding}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 TextBlock.TextAlignment="Center" />
                         </controls:RippleEffectDecorator>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" TargetName="Ripple" Value="#22000000"/>
+                            <Setter TargetName="Ripple" Property="Background" Value="#22000000" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -148,7 +148,8 @@ namespace Panacea.Controls
             var border = element.Template.FindName("PART_border", element) as Border;
             var panel = element.Template.FindName("HeaderPanel", element) as TabPanel;
             if (border == null || panel == null) return;
-            var item = panel.Children.Cast<TabItem>().First(t => t.IsSelected);
+            var item = panel.Children.Cast<TabItem>().FirstOrDefault(t => t.IsSelected);
+            if (item == null) return;
             var point = item.TranslatePoint(new Point(0, 0), panel);
             var animation = new ThicknessAnimation
             {

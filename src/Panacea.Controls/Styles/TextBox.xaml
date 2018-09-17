@@ -10,9 +10,9 @@
     <converters:HintVisibilityConverter x:Key="hintVisibilityConverter" />
     <converters:TransformationConverter x:Key="TransformationConverter" />
     <converters:PercentageConverter x:Key="PercentageConverter" />
-    
+
     <Style x:Key="{x:Type TextBox}" TargetType="TextBoxBase">
-        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
@@ -25,7 +25,7 @@
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}"/>
+        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
@@ -33,7 +33,7 @@
                         <sys:Double x:Key="ScaleMin">.7</sys:Double>
                         <sys:Double x:Key="ScaleMax">.93</sys:Double>
                         <sys:Double x:Key="TranslateMin">15</sys:Double>
-                        <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888"/>
+                        <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888" />
                     </ControlTemplate.Resources>
                     <Border
                         Name="Border"
@@ -51,8 +51,8 @@
                             <ScrollViewer
                                 x:Name="PART_ContentHost"
                                 Grid.Row="1"
-                                Margin="-1 0 0 0"
-                                Padding="0"/>
+                                Margin="-1,0,0,0"
+                                Padding="0" />
                             <TextBlock
                                 Grid.Row="1"
                                 Margin="1,0,0,0"
@@ -123,11 +123,11 @@
 
 
                             <Border
+                                Name="NormalBorder"
                                 Grid.Row="2"
                                 VerticalAlignment="Top"
                                 BorderBrush="{StaticResource NormalBorderColor}"
-                                BorderThickness="0,0,0,2"
-                                Name="NormalBorder"/>
+                                BorderThickness="0,0,0,2" />
                             <Border
                                 Name="HighlightBorder"
                                 Grid.Row="2"
@@ -136,18 +136,23 @@
                                 BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
                                 Opacity="0" />
-                            <TextBlock Grid.Row="3" Margin="2 0 0 0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="Red" Name="ErrorText"
-                                       >
+                            <TextBlock
+                                Name="ErrorText"
+                                Grid.Row="3"
+                                Margin="2,0,0,0"
+                                Foreground="Red"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap">
                                 <TextBlock.Resources>
                                     <sys:Double x:Key="Percentage">.7</sys:Double>
                                 </TextBlock.Resources>
                                 <TextBlock.FontSize>
                                     <MultiBinding Converter="{StaticResource PercentageConverter}">
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize"></Binding>
+                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding Source="{StaticResource Percentage}" />
                                     </MultiBinding>
                                 </TextBlock.FontSize>
-                                
+
                             </TextBlock>
                         </Grid>
                     </Border>
@@ -223,14 +228,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
 
     </Style>
 
 
 
     <Style x:Key="BarTextBox" TargetType="TextBoxBase">
-        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
@@ -276,7 +281,7 @@
     </Style>
 
     <Style TargetType="PasswordBox">
-        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
@@ -288,7 +293,7 @@
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}"/>
+        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
@@ -296,7 +301,7 @@
                         <sys:Double x:Key="ScaleMin">.7</sys:Double>
                         <sys:Double x:Key="ScaleMax">.93</sys:Double>
                         <sys:Double x:Key="TranslateMin">15</sys:Double>
-                        <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888"/>
+                        <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888" />
                     </ControlTemplate.Resources>
                     <Border
                         Name="Border"
@@ -385,11 +390,11 @@
 
 
                             <Border
+                                Name="NormalBorder"
                                 Grid.Row="2"
                                 VerticalAlignment="Top"
                                 BorderBrush="{StaticResource NormalBorderColor}"
-                                BorderThickness="0,0,0,2"
-                                Name="NormalBorder"/>
+                                BorderThickness="0,0,0,2" />
                             <Border
                                 Name="HighlightBorder"
                                 Grid.Row="2"
@@ -398,14 +403,19 @@
                                 BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
                                 Opacity="0" />
-                            <TextBlock Grid.Row="3" Margin="2 0 0 0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="Red" Name="ErrorText"
-                                       >
+                            <TextBlock
+                                Name="ErrorText"
+                                Grid.Row="3"
+                                Margin="2,0,0,0"
+                                Foreground="Red"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap">
                                 <TextBlock.Resources>
                                     <sys:Double x:Key="Percentage">.7</sys:Double>
                                 </TextBlock.Resources>
                                 <TextBlock.FontSize>
                                     <MultiBinding Converter="{StaticResource PercentageConverter}">
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="FontSize"></Binding>
+                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding Source="{StaticResource Percentage}" />
                                     </MultiBinding>
                                 </TextBlock.FontSize>
@@ -426,18 +436,18 @@
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
                                         To="0 0 0 0"
-                                        Duration="0:0:0.3" >
+                                        Duration="0:0:0.3">
                                         <ThicknessAnimation.EasingFunction>
-                                            <CubicEase EasingMode="EaseIn"/>
+                                            <CubicEase EasingMode="EaseIn" />
                                         </ThicknessAnimation.EasingFunction>
                                     </ThicknessAnimation>
                                     <DoubleAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Opacity"
                                         To="1"
-                                        Duration="0:0:0.3" >
+                                        Duration="0:0:0.3">
                                         <DoubleAnimation.EasingFunction>
-                                            <CubicEase EasingMode="EaseIn"/>
+                                            <CubicEase EasingMode="EaseIn" />
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                     <DoubleAnimation
@@ -445,9 +455,9 @@
                                         Storyboard.TargetProperty="Width"
                                         From="1"
                                         To="0"
-                                        Duration="0:0:0.2" >
+                                        Duration="0:0:0.2">
                                         <DoubleAnimation.EasingFunction>
-                                            <CubicEase EasingMode="EaseIn"/>
+                                            <CubicEase EasingMode="EaseIn" />
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
 
@@ -461,18 +471,18 @@
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
                                         To="50 0"
-                                        Duration="0:0:0.3" >
+                                        Duration="0:0:0.3">
                                         <ThicknessAnimation.EasingFunction>
-                                            <CubicEase EasingMode="EaseIn"/>
+                                            <CubicEase EasingMode="EaseIn" />
                                         </ThicknessAnimation.EasingFunction>
                                     </ThicknessAnimation>
                                     <DoubleAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Opacity"
                                         To="0"
-                                        Duration="0:0:0.3" >
+                                        Duration="0:0:0.3">
                                         <DoubleAnimation.EasingFunction>
-                                            <CubicEase EasingMode="EaseIn"/>
+                                            <CubicEase EasingMode="EaseIn" />
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
                                     <DoubleAnimation
@@ -480,9 +490,9 @@
                                         Storyboard.TargetProperty="Width"
                                         From="0"
                                         To="1"
-                                        Duration="0:0:0.2" >
+                                        Duration="0:0:0.2">
                                         <DoubleAnimation.EasingFunction>
-                                            <CubicEase EasingMode="EaseIn"/>
+                                            <CubicEase EasingMode="EaseIn" />
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
 
@@ -509,6 +519,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
     </Style>
 </ResourceDictionary>

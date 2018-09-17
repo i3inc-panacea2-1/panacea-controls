@@ -60,45 +60,45 @@
                 <ControlTemplate TargetType="{x:Type local:RippleEffectDecorator}">
                     <Grid>
                         <Grid
-                        x:Name="PART_grid"
-                        Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
-                        Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
-                        Background="{TemplateBinding Background}"
-                        ClipToBounds="True"
-                        Stylus.IsPressAndHoldEnabled="False">
+                            x:Name="PART_grid"
+                            Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
+                            Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
+                            Background="{TemplateBinding Background}"
+                            ClipToBounds="True"
+                            Stylus.IsPressAndHoldEnabled="False">
                             <Ellipse
-                            x:Name="PART_ellipse"
-                            Width="0"
-                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+                                x:Name="PART_ellipse"
+                                Width="0"
+                                Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
 
-                           
+
 
                             <Grid.Resources>
                                 <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
                                     <DoubleAnimation
-                                    Storyboard.TargetProperty="Width"
-                                    From="0"
-                                    Duration="0:0:0.55" />
+                                        Storyboard.TargetProperty="Width"
+                                        From="0"
+                                        Duration="0:0:0.55" />
                                     <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.55" />
 
                                     <DoubleAnimation
-                                    BeginTime="0:0:2.25"
-                                    Storyboard.TargetProperty="Width"
-                                    To="0"
-                                    Duration="0:0:0" />
+                                        BeginTime="0:0:2.25"
+                                        Storyboard.TargetProperty="Width"
+                                        To="0"
+                                        Duration="0:0:0" />
                                     <DoubleAnimation
-                                    Storyboard.TargetProperty="Opacity"
-                                    To="1"
-                                    Duration="0:0:0" />
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="1"
+                                        Duration="0:0:0" />
                                     <DoubleAnimation
-                                    BeginTime="0:0:0.3"
-                                    Storyboard.TargetProperty="Opacity"
-                                    From="1"
-                                    To="0"
-                                    Duration="0:0:0.55" />
+                                        BeginTime="0:0:0.3"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="1"
+                                        To="0"
+                                        Duration="0:0:0.55" />
                                 </Storyboard>
                             </Grid.Resources>
                         </Grid>
