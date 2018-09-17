@@ -12,6 +12,7 @@
     <converters:PercentageConverter x:Key="PercentageConverter" />
     
     <Style x:Key="{x:Type TextBox}" TargetType="TextBoxBase">
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
@@ -229,6 +230,7 @@
 
 
     <Style x:Key="BarTextBox" TargetType="TextBoxBase">
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
@@ -274,15 +276,15 @@
     </Style>
 
     <Style TargetType="PasswordBox">
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}"/>
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="MinWidth" Value="120" />
-        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="MinWidth" Value="100" />
         <Setter Property="AllowDrop" Value="true" />
-        <Setter Property="Padding" Value="0,5" />
-        <Setter Property="Margin" Value="2" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="Transparent" />
@@ -321,7 +323,7 @@
                                 Text="{Binding Path=(controls:Material.Hint), RelativeSource={RelativeSource TemplatedParent}}">
                                 <TextBlock.Visibility>
                                     <MultiBinding Converter="{StaticResource hintVisibilityConverter}">
-                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding Path="(controls:Material.Hint)" RelativeSource="{RelativeSource TemplatedParent}" />
                                     </MultiBinding>
@@ -339,7 +341,7 @@
                                         <TranslateTransform x:Name="TranslateTransform">
                                             <TranslateTransform.Y>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource TranslateMin}" />
                                                     <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
@@ -349,7 +351,7 @@
                                         <ScaleTransform x:Name="ScaleTransform">
                                             <ScaleTransform.ScaleX>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -357,7 +359,7 @@
                                             </ScaleTransform.ScaleX>
                                             <ScaleTransform.ScaleY>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -368,7 +370,7 @@
                                 </TextBlock.RenderTransform>
                                 <TextBlock.Opacity>
                                     <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding ElementName="HiddenBorder" Path="Width" />
                                         <Binding Source="{StaticResource ScaleMin}" />
                                         <Binding Source="{StaticResource ScaleMax}" />
@@ -496,11 +498,11 @@
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
                             <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
-                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=PasswordBox}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="False">
                             <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{StaticResource NormalBorderColor}" />
-                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(controls:Material.HighlightColor)}" />
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=PasswordBox}, Path=(controls:Material.HighlightColor)}" />
                             <Setter TargetName="ErrorText" Property="Text" Value="" />
                         </Trigger>
                     </ControlTemplate.Triggers>

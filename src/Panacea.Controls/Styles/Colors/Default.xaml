@@ -2,6 +2,7 @@
 
     <SolidColorBrush x:Key="ColorBackground" Color="#FFF" />
     <SolidColorBrush x:Key="ColorBackgroundHover" Color="#EFEFEF" />
+    <SolidColorBrush x:Key="ColorForeground" Color="#ff222222" />
 
     <SolidColorBrush x:Key="ColorPrimary" Color="#43bb9c" />
     <SolidColorBrush x:Key="ColorPrimaryForeground" Color="#FFF" />
@@ -14,6 +15,8 @@
     <SolidColorBrush x:Key="ColorSecondary" Color="#e79932" />
     <SolidColorBrush x:Key="ColorSecondaryForeground" Color="#FFF" />
     <SolidColorBrush x:Key="ColorSecondaryForegroundDark" Color="#BBB" />
+
+
 
 
 

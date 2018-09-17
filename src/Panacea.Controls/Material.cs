@@ -144,6 +144,7 @@ namespace Panacea.Controls
 
         private static void UpdateLine(Control element)
         {
+            if (element == null) return;
             var border = element.Template.FindName("PART_border", element) as Border;
             var panel = element.Template.FindName("HeaderPanel", element) as TabPanel;
             if (border == null || panel == null) return;

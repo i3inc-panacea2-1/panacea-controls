@@ -140,7 +140,7 @@
                             controls:Material.Hint="This is a small hint"
                             controls:Material.Label="Test" />
                         <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
+                        <PasswordBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                     </WrapPanel>
                     <WrapPanel Margin="5">
                         <ComboBox
