@@ -221,12 +221,12 @@ namespace Panacea.Controls
         #endregion
 
         #region Icon
-        public static ControlTemplate GetIcon(DependencyObject obj)
+        public static MaterialIconType GetIcon(DependencyObject obj)
         {
-            return (ControlTemplate)obj.GetValue(IconProperty);
+            return (MaterialIconType)obj.GetValue(IconProperty);
         }
 
-        public static void SetIcon(DependencyObject obj, ControlTemplate value)
+        public static void SetIcon(DependencyObject obj, MaterialIconType value)
         {
             obj.SetValue(IconProperty, value);
         }
@@ -234,9 +234,9 @@ namespace Panacea.Controls
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.RegisterAttached(
                 "Icon",
-                typeof(ControlTemplate),
+                typeof(MaterialIconType),
                 typeof(Material),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+                new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.Inherits));
         #endregion
 
     }

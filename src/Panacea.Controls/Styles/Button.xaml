@@ -1,19 +1,21 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:Panacea.Controls">
+    xmlns:controls="clr-namespace:Panacea.Controls"
+    xmlns:converters="clr-namespace:Panacea.Controls.Converters">
 
-
+    <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter"/>
     <Style TargetType="Button">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Padding" Value="15,6,15,10" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
+        <Setter Property="controls:Material.Icon" Value="ic_none" />
         <Setter Property="Foreground" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Margin" Value="2" />
         <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
@@ -29,10 +31,28 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="2">
                         <controls:RippleEffectDecorator Background="Transparent">
-                            <ContentPresenter
-                                Margin="{TemplateBinding Padding}"
-                                VerticalAlignment="Center"
-                                TextBlock.TextAlignment="Center" />
+                            <Grid Margin="{TemplateBinding Padding}" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MaterialIcon
+                                    Height="{Binding ElementName=PART_Content, Path=ActualHeight}"
+                                    Visibility="{Binding  RelativeSource={RelativeSource TemplatedParent},Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}"
+                                    Margin="-1,5,6,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}" />
+
+                                <ContentPresenter
+                                    Name="PART_Content"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    TextBlock.TextAlignment="Center" />
+                            </Grid>
+
                         </controls:RippleEffectDecorator>
                     </Border>
                 </ControlTemplate>

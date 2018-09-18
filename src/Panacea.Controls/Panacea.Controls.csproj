@@ -54,6 +54,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MaterialIconResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SplashScreenWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,6 +117,7 @@
     <Compile Include="AudioManager.cs" />
     <Compile Include="ComboboxPopup.cs" />
     <Compile Include="Converters\HintVisibilityConverter.cs" />
+    <Compile Include="Converters\MaterialIconToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageConverter.cs" />
     <Compile Include="Converters\SliderPinLeftCalculator.cs" />
     <Compile Include="Converters\StringToRangeConverter.cs" />
@@ -121,6 +126,8 @@
     <Compile Include="Converters\ZeroToOneRangeConverter.cs" />
     <Compile Include="DialogService.cs" />
     <Compile Include="IDialogService.cs" />
+    <Compile Include="MaterialIcon.cs" />
+    <Compile Include="MaterialIconType.cs" />
     <Compile Include="ResizablePanel.cs" />
     <Compile Include="DialogBox.xaml.cs">
       <DependentUpon>DialogBox.xaml</DependentUpon>
