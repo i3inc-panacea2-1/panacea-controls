@@ -4,7 +4,7 @@
     xmlns:controls="clr-namespace:Panacea.Controls"
     xmlns:converters="clr-namespace:Panacea.Controls.Converters">
 
-    <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter"/>
+    <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter" />
     <Style TargetType="Button">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -39,17 +39,18 @@
 
                                 <controls:MaterialIcon
                                     Height="{Binding ElementName=PART_Content, Path=ActualHeight}"
-                                    Visibility="{Binding  RelativeSource={RelativeSource TemplatedParent},Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}"
-                                    Margin="-1,5,6,0"
+                                    Margin="-1,2,6,-2"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
-                                    Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}" />
+                                    Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
+                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
 
                                 <ContentPresenter
                                     Name="PART_Content"
                                     Grid.Column="1"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
+                                    TextBlock.LineStackingStrategy="MaxHeight"
                                     TextBlock.TextAlignment="Center" />
                             </Grid>
 
@@ -82,6 +83,8 @@
         TargetType="Button">
         <Setter Property="Background" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Foreground" Value="{DynamicResource ColorPrimaryForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorPrimary}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="#77FFFFFF" />
 
     </Style>
