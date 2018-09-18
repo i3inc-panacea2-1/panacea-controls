@@ -24,14 +24,15 @@
                 <ControlTemplate TargetType="Button">
                     <Border
                         Name="Border"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="2">
                         <controls:RippleEffectDecorator Background="Transparent">
-                            <Grid Margin="{TemplateBinding Padding}" VerticalAlignment="Center">
+                            <Grid Margin="{TemplateBinding Padding}"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
