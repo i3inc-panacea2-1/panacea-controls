@@ -111,6 +111,18 @@ namespace Panacea.Controls
 
     public static class ViewLocator
     {
+        public static FrameworkElement GetView(ViewModelBase viewModel)
+        {
+            var viewType = FindView(viewModel.GetType());
+            var instance = Activator.CreateInstance(viewType) as FrameworkElement;
+            var property = viewType.GetProperties().FirstOrDefault(p => typeof(ViewModelBase).IsAssignableFrom(p.PropertyType));
+            if (property != null)
+            {
+                property.SetValue(instance, viewModel);
+            }
+            return instance;
+        }
+
         public static Type FindView(Type viewModelType)
         {
 
@@ -119,7 +131,7 @@ namespace Panacea.Controls
                        let attr = t.GetCustomAttributes(typeof(ViewModelAttribute), true)
                        where attr.Length == 1 && (attr.First() as ViewModelAttribute).ViewModelType == viewModelType
                        select t;
-
+            if (type.Count() != 1) throw new Exception($"No view found for '{viewModelType.FullName}'.");
             return type.FirstOrDefault();
         }
 

@@ -57,11 +57,11 @@
         </TabItem>
         <TabItem Header="Buttons">
             <WrapPanel Margin="0,20,0,0">
-                <Button Style="{StaticResource PrimaryButton}" controls:Material.Icon="ic_access_alarm">Primary Button</Button>
+                <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
                 <Button>Text Button</Button>
                 <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
                 <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
- 
+
                 <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
                 <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
                 <ToggleButton>Toggle Button</ToggleButton>
