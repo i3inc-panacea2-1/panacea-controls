@@ -111,10 +111,16 @@ namespace Panacea.Controls
         }
     }
 
-    public static class ViewLocator
+    public class ViewLocator
     {
-        static Hashtable _cache = new Hashtable();
-        public static FrameworkElement GetView(ViewModelBase viewModel)
+        Func<Type, object> _factory;
+        public ViewLocator(Func<Type, object> factory)
+        {
+            _factory = factory;
+        }
+
+        Hashtable _cache = new Hashtable();
+        public FrameworkElement GetView(ViewModelBase viewModel)
         {
             var viewType = FindView(viewModel.GetType());
             var instance = Activator.CreateInstance(viewType) as FrameworkElement;
@@ -126,7 +132,20 @@ namespace Panacea.Controls
             return instance;
         }
 
-        public static Type FindView(Type viewModelType)
+        public FrameworkElement GetView<T>()where T:ViewModelBase
+        {
+            var viewType = FindView(typeof(T));
+            var instance = Activator.CreateInstance(viewType) as FrameworkElement;
+            var property = viewType.GetProperties().FirstOrDefault(p => typeof(ViewModelBase).IsAssignableFrom(p.PropertyType));
+            if (property != null)
+            {
+                var viewModel = _factory(typeof(T));
+                property.SetValue(instance, viewModel);
+            }
+            return instance;
+        }
+
+        public Type FindView(Type viewModelType)
         {
             if (_cache.Contains(viewModelType)) return _cache[viewModelType] as Type;
             var type = from a in AppDomain.CurrentDomain.GetAssemblies()
@@ -139,13 +158,12 @@ namespace Panacea.Controls
             return type.First();
         }
 
-        public static Type FindView<T>()
+        public Type FindView<T>()
         {
-
             return FindView(typeof(T));
         }
 
-        private static IEnumerable<Type> GetTypesSafely(Assembly assembly)
+        private IEnumerable<Type> GetTypesSafely(Assembly assembly)
         {
             try
             {
