@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,7 +128,7 @@ namespace Panacea.Controls
         {
 
             var type = from a in AppDomain.CurrentDomain.GetAssemblies()
-                       from t in a.GetTypes()
+                       from t in GetTypesSafely(a)
                        let attr = t.GetCustomAttributes(typeof(ViewModelAttribute), true)
                        where attr.Length == 1 && (attr.First() as ViewModelAttribute).ViewModelType == viewModelType
                        select t;
@@ -139,6 +140,18 @@ namespace Panacea.Controls
         {
 
             return FindView(typeof(T));
+        }
+
+        private static IEnumerable<Type> GetTypesSafely(Assembly assembly)
+        {
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                return ex.Types.Where(x => x != null);
+            }
         }
     }
 }
