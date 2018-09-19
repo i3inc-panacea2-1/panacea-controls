@@ -98,4 +98,18 @@ namespace Panacea.Controls
             
         }
     }
+
+    public static class ViewLocator
+    {
+        public static Type FindView<T>()
+        {
+            var name = typeof(T).Name.TrimEnd("ViewModel".ToCharArray());
+            var type = from a in AppDomain.CurrentDomain.GetAssemblies()
+                       from t in a.GetTypes()
+                       where t.Name == name
+                       select t;
+            if (type.Count() != 1) throw new Exception($"Multiple Views found for '{name}ViewModel'");
+            return type.First();
+        }
+    }
 }
