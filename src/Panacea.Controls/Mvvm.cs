@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -112,6 +113,7 @@ namespace Panacea.Controls
 
     public static class ViewLocator
     {
+        static Hashtable _cache = new Hashtable();
         public static FrameworkElement GetView(ViewModelBase viewModel)
         {
             var viewType = FindView(viewModel.GetType());
@@ -126,14 +128,15 @@ namespace Panacea.Controls
 
         public static Type FindView(Type viewModelType)
         {
-
+            if (_cache.Contains(viewModelType)) return _cache[viewModelType] as Type;
             var type = from a in AppDomain.CurrentDomain.GetAssemblies()
                        from t in GetTypesSafely(a)
                        let attr = t.GetCustomAttributes(typeof(ViewModelAttribute), true)
                        where attr.Length == 1 && (attr.First() as ViewModelAttribute).ViewModelType == viewModelType
                        select t;
             if (type.Count() != 1) throw new Exception($"No view found for '{viewModelType.FullName}'.");
-            return type.FirstOrDefault();
+            _cache.Add(viewModelType, type.First());
+            return type.First();
         }
 
         public static Type FindView<T>()
