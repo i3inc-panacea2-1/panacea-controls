@@ -35,7 +35,10 @@
                         <sys:Double x:Key="TranslateMin">15</sys:Double>
                         <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888" />
                     </ControlTemplate.Resources>
-                    <Grid Name="Border" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid
+                        Name="Border"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
@@ -90,10 +93,10 @@
                             </TextBlock.Opacity>
                         </TextBlock>
                         <ToggleButton
-                            Padding="0"
                             x:Name="ToggleButton"
                             Grid.Row="1"
                             Grid.Column="2"
+                            Padding="0"
                             ClickMode="Press"
                             Focusable="false"
                             IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -157,11 +160,11 @@
                             Content="{TemplateBinding SelectionBoxItem}"
                             ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                            IsHitTestVisible="False" >
+                            IsHitTestVisible="False">
                             <ContentPresenter.Resources>
                                 <Style TargetType="TextBlock">
-                                    <Setter Property="Padding" Value="0"/>
-                                    <Setter Property="Height" Value="20"/>
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Height" Value="20" />
                                 </Style>
                             </ContentPresenter.Resources>
                         </ContentPresenter>

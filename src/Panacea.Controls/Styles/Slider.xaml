@@ -741,7 +741,7 @@
         <Setter Property="IsSnapToTickEnabled" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignDiscreteSliderHorizontal}" />
-        <Setter Property="controls:Material.Label" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}"/>
+        <Setter Property="controls:Material.Label" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />

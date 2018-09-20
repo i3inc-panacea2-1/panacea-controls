@@ -56,16 +56,29 @@
             </controls:ResizablePanel>
         </TabItem>
         <TabItem Header="Buttons">
-            <WrapPanel Margin="0,20,0,0">
-                <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
-                <Button>Text Button</Button>
-                <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
-                <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
+            <StackPanel>
+                <WrapPanel Margin="0,20,0,0">
+                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
+                    <Button>Text Button</Button>
+                    <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
+                    <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
 
-                <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
-                <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
-                <ToggleButton>Toggle Button</ToggleButton>
-            </WrapPanel>
+                    <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
+                    <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
+                    <ToggleButton>Toggle Button</ToggleButton>
+
+
+                </WrapPanel>
+                <WrapPanel>
+                    <controls:ImageButton
+                        x:Name="imgKeyboard"
+                        Width="60"
+                        Focusable="False"
+                        Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
+                        Text="Test"
+                        TextVisibility="Visible" />
+                </WrapPanel>
+            </StackPanel>
         </TabItem>
         <TabItem Header="Textbox">
             <Grid>
@@ -164,9 +177,7 @@
                         <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                         <PasswordBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                     </WrapPanel>
-                    <WrapPanel Margin="5">
-                        
-                    </WrapPanel>
+                    <WrapPanel Margin="5" />
                 </StackPanel>
 
             </Grid>
@@ -182,13 +193,10 @@
                     <Slider
                         Margin="10"
                         VerticalAlignment="Center"
-                        
+                        controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource Converter}}"
                         LargeChange="10000"
                         Maximum="1000000"
-                        SmallChange="1000" 
-                        controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value ,Converter={StaticResource Converter}}">
-                        
-                    </Slider>
+                        SmallChange="1000" />
                     <WrapPanel Width="10000" Height="1000">
                         <Slider
                             Width="200"

@@ -143,4 +143,61 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <Style TargetType="{x:Type local:ImageButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="local:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ImageButton}">
+                    <!--<Border BorderBrush="White" Name="HighlightBorder">-->
+                    <Border
+                        Name="BackgroundBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <local:RippleEffectDecorator>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Height="auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="4*" />
+                                        <RowDefinition Height="17*" />
+                                        <RowDefinition Height="2.5*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="17*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        RenderOptions.BitmapScalingMode="HighQuality">
+                                        <Image.Source>
+                                            <BitmapImage UriCachePolicy="Revalidate" UriSource="{Binding Path=Image, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    FontSize="{DynamicResource FontSize-X-Small}"
+                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}}"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Visibility="{Binding Path=TextVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Grid>
+                        </local:RippleEffectDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

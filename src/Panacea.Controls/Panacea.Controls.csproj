@@ -126,6 +126,7 @@
     <Compile Include="Converters\ZeroToOneRangeConverter.cs" />
     <Compile Include="DialogService.cs" />
     <Compile Include="IDialogService.cs" />
+    <Compile Include="ImageButton.cs" />
     <Compile Include="MaterialIcon.cs" />
     <Compile Include="MaterialIconType.cs" />
     <Compile Include="Mvvm.cs" />
