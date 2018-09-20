@@ -201,25 +201,6 @@ namespace Panacea.Controls
         }
         #endregion
 
-        #region SliderLabelConverter
-        public static Brush GetSliderLabelConverter(DependencyObject obj)
-        {
-            return (Brush)obj.GetValue(SliderLabelConverterProperty);
-        }
-
-        public static void SetSliderLabelConverter(DependencyObject obj, Brush value)
-        {
-            obj.SetValue(SliderLabelConverterProperty, value);
-        }
-
-        public static readonly DependencyProperty SliderLabelConverterProperty =
-            DependencyProperty.RegisterAttached(
-                "SliderLabel",
-                typeof(IValueConverter),
-                typeof(Material),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
-        #endregion
-
         #region Icon
         public static MaterialIconType GetIcon(DependencyObject obj)
         {

@@ -174,15 +174,22 @@
         </TabItem>
 
         <TabItem Header="Sliders">
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <ScrollViewer.Resources>
+                    <local:ExampleLabelConverter x:Key="Converter" />
+                </ScrollViewer.Resources>
                 <StackPanel>
                     <Slider
                         Margin="10"
                         VerticalAlignment="Center"
+                        
                         LargeChange="10000"
                         Maximum="1000000"
-                        SmallChange="1000" />
-                    <WrapPanel Height="1000">
+                        SmallChange="1000" 
+                        controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value ,Converter={StaticResource Converter}}">
+                        
+                    </Slider>
+                    <WrapPanel Width="10000" Height="1000">
                         <Slider
                             Width="200"
                             Margin="10"

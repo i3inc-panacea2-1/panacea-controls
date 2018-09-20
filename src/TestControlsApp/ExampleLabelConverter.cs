@@ -4,17 +4,15 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 
-namespace Panacea.Controls.Converters
+namespace TestControlsApp
 {
-    internal class MaterialIconToVisibilityConverter : IValueConverter
+    class ExampleLabelConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) return Visibility.Collapsed;
-            return (MaterialIconType)value == MaterialIconType.ic_none ? Visibility.Collapsed : Visibility.Visible;
+            return $"{value.ToString()} %";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
