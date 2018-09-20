@@ -196,6 +196,11 @@
                             </Grid>
                         </local:RippleEffectDecorator>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="BackgroundBorder" Property="Opacity" Value=".2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
