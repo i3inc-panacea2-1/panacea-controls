@@ -6,6 +6,7 @@
 
     <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter" />
     <Style TargetType="Button">
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -23,42 +24,46 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border
-                        Name="Border"
-                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="2">
                         <controls:RippleEffectDecorator Background="Transparent">
-                            <Grid
-                                Margin="{TemplateBinding Padding}"
+                            <Border
+                                Name="Border"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                                VerticalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                <Grid
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
 
-                                <controls:MaterialIcon
-                                    Height="{Binding ElementName=PART_Content, Path=ActualHeight}"
-                                    Margin="-1,2,6,-2"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
-                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
+                                    <controls:MaterialIcon
+                                        Height="{Binding ElementName=PART_Content, Path=ActualHeight}"
+                                        Margin="-1,2,6,-2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
+                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
 
-                                <ContentPresenter
-                                    Name="PART_Content"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    TextBlock.LineStackingStrategy="MaxHeight"
-                                    TextBlock.TextAlignment="Center" />
-                            </Grid>
+                                    <ContentPresenter
+                                        Name="PART_Content"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        TextBlock.LineStackingStrategy="MaxHeight"
+                                        TextBlock.TextAlignment="Center" />
+                                </Grid>
 
+
+                            </Border>
                         </controls:RippleEffectDecorator>
                     </Border>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

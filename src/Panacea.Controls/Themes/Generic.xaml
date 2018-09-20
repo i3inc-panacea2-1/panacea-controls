@@ -60,12 +60,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RippleEffectDecorator}">
-                    <Grid>
-                        <Grid
+                    <Grid Background="{TemplateBinding Background}">
+                        <Canvas
                             x:Name="PART_grid"
-                            Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
-                            Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
-                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
                             ClipToBounds="True"
                             Stylus.IsPressAndHoldEnabled="False">
                             <Ellipse
@@ -75,10 +74,7 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
-
-
-
-                            <Grid.Resources>
+                            <Canvas.Resources>
                                 <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
                                     <DoubleAnimation
                                         Storyboard.TargetProperty="Width"
@@ -102,13 +98,16 @@
                                         To="0"
                                         Duration="0:0:0.55" />
                                 </Storyboard>
-                            </Grid.Resources>
-                        </Grid>
+                            </Canvas.Resources>
+                        </Canvas>
+
                         <ContentPresenter
                             x:Name="PART_contentpresenter"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
                     </Grid>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

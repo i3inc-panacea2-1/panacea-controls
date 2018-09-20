@@ -154,7 +154,7 @@ namespace Panacea.Controls
             var item = panel.Children.Cast<TabItem>().FirstOrDefault(t => t.IsSelected);
             if (item == null) return;
             var point = item.TranslatePoint(new Point(0, 0), element);
-            if (animate)
+            if (animate && item.ActualWidth > 0)
             {
                 var animation = new ThicknessAnimation
                 {

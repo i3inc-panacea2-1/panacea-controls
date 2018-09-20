@@ -12,6 +12,7 @@
     <converters:PercentageConverter x:Key="PercentageConverter" />
 
     <Style x:Key="{x:Type TextBox}" TargetType="TextBoxBase">
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />

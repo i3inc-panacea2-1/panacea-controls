@@ -43,7 +43,7 @@ namespace Panacea.Controls
                 new FrameworkPropertyMetadata(Brushes.Blue, FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         Ellipse ellipse;
-        Grid grid;
+        FrameworkElement grid;
         Storyboard animation;
 
         public override void OnApplyTemplate()
@@ -51,7 +51,7 @@ namespace Panacea.Controls
             base.OnApplyTemplate();
 
             ellipse = GetTemplateChild("PART_ellipse") as Ellipse;
-            grid = GetTemplateChild("PART_grid") as Grid;
+            grid = GetTemplateChild("PART_grid") as FrameworkElement;
             grid.IsHitTestVisible = true;
             PreviewMouseDown += Grid_MouseDown;
             TouchDown += Grid_PreviewTouchDown;
