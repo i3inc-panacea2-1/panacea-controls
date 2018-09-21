@@ -100,8 +100,8 @@
                                 x:Name="ToggleButton"
                                 Grid.Row="1"
                                 Grid.Column="2"
-                                Margin="0,1,0,2"
-                                Padding="0"
+                                Margin="0,1,0,-1"
+                                Padding="0 0 0 -1"
                                 ClickMode="Press"
                                 Focusable="false"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -179,6 +179,7 @@
                             <Border
                                 Name="NormalBorder"
                                 Grid.Row="2"
+                                Margin="0 -1 0 0"
                                 VerticalAlignment="Top"
                                 BorderBrush="{StaticResource NormalBorderColor}"
                                 BorderThickness="0,0,0,2" />
