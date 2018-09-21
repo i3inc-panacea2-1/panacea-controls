@@ -18,7 +18,6 @@
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
         <Setter Property="Foreground" Value="{StaticResource ColorPrimary}" />
         <Setter Property="Margin" Value="2" />
-        <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">

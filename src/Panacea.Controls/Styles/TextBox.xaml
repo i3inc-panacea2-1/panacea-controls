@@ -12,7 +12,6 @@
     <converters:PercentageConverter x:Key="PercentageConverter" />
 
     <Style x:Key="{x:Type TextBox}" TargetType="TextBoxBase">
-        <Setter Property="FontSize" Value="16" />
         <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -33,7 +32,7 @@
                     <ControlTemplate.Resources>
                         <sys:Double x:Key="ScaleMin">.7</sys:Double>
                         <sys:Double x:Key="ScaleMax">.93</sys:Double>
-                        <sys:Double x:Key="TranslateMin">15</sys:Double>
+                        <sys:Double x:Key="TranslateMin">13</sys:Double>
                         <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888" />
                     </ControlTemplate.Resources>
                     <Border
@@ -52,7 +51,7 @@
                             <ScrollViewer
                                 x:Name="PART_ContentHost"
                                 Grid.Row="1"
-                                Margin="-1,0,0,0"
+                                Margin="0,0,0,0"
                                 Padding="0" />
                             <TextBlock
                                 Grid.Row="1"
@@ -116,13 +115,10 @@
                                     </MultiBinding>
                                 </TextBlock.Opacity>
                             </TextBlock>
-
                             <Border
                                 Name="HiddenBorder"
                                 Width="0"
                                 Visibility="Collapsed" />
-
-
                             <Border
                                 Name="NormalBorder"
                                 Grid.Row="2"

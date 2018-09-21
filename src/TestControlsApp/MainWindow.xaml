@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Main"
     Title="MainWindow"
+    FontSize="16"
     mc:Ignorable="d">
     <TabControl controls:Material.HighlightEnabled="True">
         <TabItem Header="Resizable">

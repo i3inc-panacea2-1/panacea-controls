@@ -19,233 +19,240 @@
     </ControlTemplate>
 
     <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
-        <Setter Property="FontSize" Value="16" />
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
                     <ControlTemplate.Resources>
                         <sys:Double x:Key="ScaleMin">.7</sys:Double>
                         <sys:Double x:Key="ScaleMax">.93</sys:Double>
-                        <sys:Double x:Key="TranslateMin">15</sys:Double>
+                        <sys:Double x:Key="TranslateMin">13</sys:Double>
                         <SolidColorBrush x:Key="NormalBorderColor" Color="#55888888" />
                     </ControlTemplate.Resources>
-                    <Grid
+                    <Border
                         Name="Border"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Name="Label"
-                            Grid.Row="0"
-                            Margin="1,0,0,0"
-                            VerticalAlignment="Bottom"
-                            Text="{Binding Path=(controls:Material.Label), RelativeSource={RelativeSource TemplatedParent}}">
-                            <TextBlock.RenderTransform>
-                                <TransformGroup>
-                                    <TranslateTransform x:Name="TranslateTransform">
-                                        <TranslateTransform.Y>
-                                            <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
-                                                <Binding ElementName="HiddenBorder" Path="Width" />
-                                                <Binding Source="{StaticResource TranslateMin}" />
-                                                <Binding ElementName="ContentSite" Path="ActualHeight" />
-                                            </MultiBinding>
-                                        </TranslateTransform.Y>
-                                    </TranslateTransform>
-                                    <ScaleTransform x:Name="ScaleTransform">
-                                        <ScaleTransform.ScaleX>
-                                            <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
-                                                <Binding ElementName="HiddenBorder" Path="Width" />
-                                                <Binding Source="{StaticResource ScaleMin}" />
-                                                <Binding Source="{StaticResource ScaleMax}" />
-                                            </MultiBinding>
-                                        </ScaleTransform.ScaleX>
-                                        <ScaleTransform.ScaleY>
-                                            <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
-                                                <Binding ElementName="HiddenBorder" Path="Width" />
-                                                <Binding Source="{StaticResource ScaleMin}" />
-                                                <Binding Source="{StaticResource ScaleMax}" />
-                                            </MultiBinding>
-                                        </ScaleTransform.ScaleY>
-                                    </ScaleTransform>
-                                </TransformGroup>
-                            </TextBlock.RenderTransform>
-                            <TextBlock.Opacity>
-                                <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
-                                    <Binding ElementName="HiddenBorder" Path="Width" />
-                                    <Binding Source="{StaticResource ScaleMin}" />
-                                    <Binding Source="{StaticResource ScaleMax}" />
-                                </MultiBinding>
-                            </TextBlock.Opacity>
-                        </TextBlock>
-                        <ToggleButton
-                            x:Name="ToggleButton"
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Padding="0"
-                            ClickMode="Press"
-                            Focusable="false"
-                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <Border Grid.Row="1">
-                            <Popup
-                                x:Name="Popup"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        CornerRadius="0">
+                        <Grid
+                            
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Name="Label"
+                                Grid.Row="0"
+                                Margin="0,0,0,0"
+                                VerticalAlignment="Bottom"
+                                Text="{Binding Path=(controls:Material.Label), RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform x:Name="TranslateTransform">
+                                            <TranslateTransform.Y>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource TranslateMin}" />
+                                                    <Binding ElementName="ContentSite" Path="ActualHeight" />
+                                                </MultiBinding>
+                                            </TranslateTransform.Y>
+                                        </TranslateTransform>
+                                        <ScaleTransform x:Name="ScaleTransform">
+                                            <ScaleTransform.ScaleX>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource ScaleMin}" />
+                                                    <Binding Source="{StaticResource ScaleMax}" />
+                                                </MultiBinding>
+                                            </ScaleTransform.ScaleX>
+                                            <ScaleTransform.ScaleY>
+                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding ElementName="HiddenBorder" Path="Width" />
+                                                    <Binding Source="{StaticResource ScaleMin}" />
+                                                    <Binding Source="{StaticResource ScaleMax}" />
+                                                </MultiBinding>
+                                            </ScaleTransform.ScaleY>
+                                        </ScaleTransform>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                                <TextBlock.Opacity>
+                                    <MultiBinding Converter="{StaticResource TransformationConverter}">
+                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding ElementName="HiddenBorder" Path="Width" />
+                                        <Binding Source="{StaticResource ScaleMin}" />
+                                        <Binding Source="{StaticResource ScaleMax}" />
+                                    </MultiBinding>
+                                </TextBlock.Opacity>
+                            </TextBlock>
+                            <ToggleButton
+                                x:Name="ToggleButton"
                                 Grid.Row="1"
-                                AllowsTransparency="True"
-                                Focusable="False"
-                                IsOpen="{Binding IsDropDownOpen, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                Placement="Bottom"
-                                PopupAnimation="Fade"
-                                StaysOpen="False">
-                                <Popup.Style>
-                                    <Style TargetType="{x:Type Popup}">
-                                        <Setter Property="StaysOpen" Value="False" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=DropDown}" Value="True">
-                                                <Setter Property="StaysOpen" Value="True" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
+                                Grid.Column="2"
+                                Margin="0 1 0 2"
+                                Padding="0"
+                                ClickMode="Press"
+                                Focusable="false"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Border Grid.Row="1">
+                                <Popup
+                                    x:Name="Popup"
+                                    Grid.Row="1"
+                                    AllowsTransparency="True"
+                                    Focusable="False"
+                                    IsOpen="{Binding IsDropDownOpen, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Placement="Bottom"
+                                    PopupAnimation="Fade"
+                                    StaysOpen="False">
+                                    <Popup.Style>
+                                        <Style TargetType="{x:Type Popup}">
+                                            <Setter Property="StaysOpen" Value="False" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=DropDown}" Value="True">
+                                                    <Setter Property="StaysOpen" Value="True" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Popup.Style>
+                                    <Grid
+                                        x:Name="DropDown"
+                                        MinWidth="{TemplateBinding ActualWidth}"
+                                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                        SnapsToDevicePixels="True">
+                                        <Border
+                                            Margin="5"
+                                            Background="White"
+                                            CornerRadius="2">
+                                            <Border.Effect>
+                                                <DropShadowEffect
+                                                    BlurRadius="5"
+                                                    Opacity=".1"
+                                                    ShadowDepth="0"
+                                                    Color="#000000" />
+                                            </Border.Effect>
+
+                                        </Border>
+                                        <Border
+                                            x:Name="DropDownBorder"
+                                            Margin="10"
+                                            BorderThickness="1" />
+                                        <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Grid>
+
+                                </Popup>
+
+                            </Border>
+
+                            <ContentPresenter
+                                x:Name="ContentSite"
+                                Grid.Row="1"
+                                Margin="0,0,23,0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                IsHitTestVisible="False">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="Height" Value="20" />
                                     </Style>
-                                </Popup.Style>
-                                <Grid
-                                    x:Name="DropDown"
-                                    MinWidth="{TemplateBinding ActualWidth}"
-                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                    SnapsToDevicePixels="True">
-                                    <Border
-                                        Margin="5"
-                                        Background="White"
-                                        CornerRadius="2">
-                                        <Border.Effect>
-                                            <DropShadowEffect
-                                                BlurRadius="5"
-                                                Opacity=".1"
-                                                ShadowDepth="0"
-                                                Color="#000000" />
-                                        </Border.Effect>
-
-                                    </Border>
-                                    <Border
-                                        x:Name="DropDownBorder"
-                                        Margin="10"
-                                        BorderThickness="1" />
-                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
-                                    </ScrollViewer>
-                                </Grid>
-
-                            </Popup>
-
-                        </Border>
-
-                        <ContentPresenter
-                            x:Name="ContentSite"
-                            Grid.Row="1"
-                            Margin="3,0,23,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Stretch"
-                            Content="{TemplateBinding SelectionBoxItem}"
-                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                            IsHitTestVisible="False">
-                            <ContentPresenter.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Padding" Value="0" />
-                                    <Setter Property="Height" Value="20" />
-                                </Style>
-                            </ContentPresenter.Resources>
-                        </ContentPresenter>
-                        <Border
-                            Name="HiddenBorder"
-                            Width="0"
-                            Visibility="Collapsed" />
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                            <Border
+                                Name="HiddenBorder"
+                                Width="0"
+                                Visibility="Collapsed" />
 
 
-                        <Border
-                            Name="NormalBorder"
-                            Grid.Row="2"
-                            VerticalAlignment="Top"
-                            BorderBrush="{StaticResource NormalBorderColor}"
-                            BorderThickness="0,0,0,2" />
-                        <Border
-                            Name="HighlightBorder"
-                            Grid.Row="2"
-                            Margin="50,0"
-                            VerticalAlignment="Top"
-                            BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
-                            BorderThickness="0,0,0,2"
-                            Opacity="0" />
-                        <TextBox
-                            x:Name="PART_EditableTextBox"
-                            Grid.Row="1"
-                            Margin="3,3,23,3"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Bottom"
-                            Background="Transparent"
-                            Focusable="True"
-                            IsReadOnly="{TemplateBinding IsReadOnly}"
-                            Style="{x:Null}"
-                            Template="{StaticResource ComboBoxTextBox}"
-                            Visibility="Hidden" />
-                        <TextBlock
-                            Name="ErrorText"
-                            Grid.Row="3"
-                            Margin="2,0,0,0"
-                            Foreground="Red"
-                            TextTrimming="CharacterEllipsis"
-                            TextWrapping="NoWrap">
-                            <TextBlock.Resources>
-                                <sys:Double x:Key="Percentage">.7</sys:Double>
-                            </TextBlock.Resources>
-                            <TextBlock.FontSize>
-                                <MultiBinding Converter="{StaticResource PercentageConverter}">
-                                    <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
-                                    <Binding Source="{StaticResource Percentage}" />
-                                </MultiBinding>
-                            </TextBlock.FontSize>
+                            <Border
+                                Name="NormalBorder"
+                                Grid.Row="2"
+                                VerticalAlignment="Top"
+                                BorderBrush="{StaticResource NormalBorderColor}"
+                                BorderThickness="0,0,0,2" />
+                            <Border
+                                Name="HighlightBorder"
+                                Grid.Row="2"
+                                Margin="50,0"
+                                VerticalAlignment="Top"
+                                BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
+                                BorderThickness="0,0,0,2"
+                                Opacity="0" />
+                            <TextBox
+                                x:Name="PART_EditableTextBox"
+                                Grid.Row="1"
+                                Margin="0"
+                                Padding="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Focusable="True"
+                                IsReadOnly="{TemplateBinding IsReadOnly}"
+                                Style="{x:Null}"
+                                Visibility="Collapsed" />
+                            <TextBlock
+                                Name="ErrorText"
+                                Grid.Row="3"
+                                Margin="2,0,0,0"
+                                Foreground="Red"
+                                TextTrimming="CharacterEllipsis"
+                                TextWrapping="NoWrap">
+                                <TextBlock.Resources>
+                                    <sys:Double x:Key="Percentage">.7</sys:Double>
+                                </TextBlock.Resources>
+                                <TextBlock.FontSize>
+                                    <MultiBinding Converter="{StaticResource PercentageConverter}">
+                                        <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Source="{StaticResource Percentage}" />
+                                    </MultiBinding>
+                                </TextBlock.FontSize>
 
-                        </TextBlock>
+                            </TextBlock>
 
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver" />
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(TextElement.Foreground).                       (SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource DisabledForegroundColor}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="EditStates">
-                                <VisualState x:Name="Editable">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Uneditable" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(TextElement.Foreground).                       (SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource DisabledForegroundColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="EditStates">
+                                    <VisualState x:Name="Editable">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Uneditable" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="HasItems" Value="false">
