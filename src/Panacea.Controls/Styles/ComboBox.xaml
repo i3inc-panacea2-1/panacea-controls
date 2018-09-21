@@ -107,6 +107,7 @@
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Border Grid.Row="1">
                                 <Popup
+                                   
                                     x:Name="Popup"
                                     Grid.Row="1"
                                     AllowsTransparency="True"
@@ -147,7 +148,7 @@
                                             x:Name="DropDownBorder"
                                             Margin="10"
                                             BorderThickness="1" />
-                                        <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True" Foreground="{DynamicResource ColorForeground}">
                                             <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                                         </ScrollViewer>
                                     </Grid>
@@ -174,8 +175,6 @@
                                 Name="HiddenBorder"
                                 Width="0"
                                 Visibility="Collapsed" />
-
-
                             <Border
                                 Name="NormalBorder"
                                 Grid.Row="2"
