@@ -114,7 +114,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="AudioManager.cs" />
     <Compile Include="ComboboxPopup.cs" />
     <Compile Include="Converters\HintVisibilityConverter.cs" />
     <Compile Include="Converters\MaterialIconToVisibilityConverter.cs" />
@@ -134,7 +133,6 @@
     <Compile Include="DialogBox.xaml.cs">
       <DependentUpon>DialogBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IAudioManager.cs" />
     <Compile Include="DialogBaseWindow.cs" />
     <Compile Include="PanaceaWindow.cs" />
     <Compile Include="RelayCommand.cs" />
