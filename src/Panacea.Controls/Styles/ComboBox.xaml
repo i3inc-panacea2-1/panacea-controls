@@ -101,13 +101,12 @@
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Margin="0,1,0,-1"
-                                Padding="0 0 0 -1"
+                                Padding="0,0,0,-1"
                                 ClickMode="Press"
                                 Focusable="false"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Border Grid.Row="1">
                                 <Popup
-                                   
                                     x:Name="Popup"
                                     Grid.Row="1"
                                     AllowsTransparency="True"
@@ -148,7 +147,10 @@
                                             x:Name="DropDownBorder"
                                             Margin="10"
                                             BorderThickness="1" />
-                                        <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True" Foreground="{DynamicResource ColorForeground}">
+                                        <ScrollViewer
+                                            Margin="4,6,4,6"
+                                            Foreground="{DynamicResource ColorForeground}"
+                                            SnapsToDevicePixels="True">
                                             <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
                                         </ScrollViewer>
                                     </Grid>
@@ -178,7 +180,7 @@
                             <Border
                                 Name="NormalBorder"
                                 Grid.Row="2"
-                                Margin="0 -1 0 0"
+                                Margin="0,-1,0,0"
                                 VerticalAlignment="Top"
                                 BorderBrush="{StaticResource NormalBorderColor}"
                                 BorderThickness="0,0,0,2" />
@@ -357,7 +359,7 @@
                 RenderTransformOrigin="0.5,0.5" />
             <controls:RippleEffectDecorator>
                 <Border Margin="{TemplateBinding Padding}">
-                    <ContentPresenter Content="{TemplateBinding Content}" />
+                    <ContentPresenter />
                 </Border>
             </controls:RippleEffectDecorator>
             <VisualStateManager.VisualStateGroups>
