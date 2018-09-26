@@ -125,10 +125,10 @@
                             Background="{TemplateBinding Background}">
                             <FrameworkElement.Resources>
                                 <Style TargetType="{x:Type Path}">
-                                    <Setter Property="Shape.Fill" Value="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                    <Setter Property="Shape.Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}" />
                                 </Style>
                                 <Style TargetType="{x:Type Ellipse}">
-                                    <Setter Property="Shape.Fill" Value="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                    <Setter Property="Shape.Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}" />
                                 </Style>
                             </FrameworkElement.Resources>
                             <ContentControl

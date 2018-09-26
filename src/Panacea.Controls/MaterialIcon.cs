@@ -22,6 +22,7 @@ namespace Panacea.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MaterialIcon), new FrameworkPropertyMetadata(typeof(MaterialIcon)));
         }
 
+        
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register(nameof(Icon), typeof(MaterialIconType), typeof(MaterialIcon), new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(MaterialIcon.OnIconChanged)));
         public static readonly DependencyProperty IconResourceProperty = DependencyProperty.Register(nameof(IconResource), typeof(object), typeof(MaterialIcon), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
