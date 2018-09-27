@@ -42,8 +42,8 @@
                                     </Grid.ColumnDefinitions>
 
                                     <controls:MaterialIcon
-                                        Height="{Binding ElementName=PART_Content, Path=ActualHeight}"
-                                        Margin="-1,2,6,-2"
+                                        
+                                        Margin="0,2,0,-2"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
@@ -55,7 +55,13 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         TextBlock.LineStackingStrategy="MaxHeight"
-                                        TextBlock.TextAlignment="Center" />
+                                        TextBlock.TextAlignment="Center" >
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                <Setter Property="Padding" Value="6 0 0 0"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
                                 </Grid>
 
 

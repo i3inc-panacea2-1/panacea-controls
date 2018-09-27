@@ -60,6 +60,7 @@
             <StackPanel>
                 <WrapPanel Margin="0,20,0,0">
                     <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
+                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}"></Button>
                     <Button>Text Button</Button>
                     <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
                     <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
