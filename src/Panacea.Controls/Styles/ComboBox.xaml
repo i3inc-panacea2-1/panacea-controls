@@ -166,6 +166,7 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
                                 Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                 IsHitTestVisible="False">
                                 <ContentPresenter.Resources>
                                     <Style TargetType="TextBlock">

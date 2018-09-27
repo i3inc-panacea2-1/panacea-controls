@@ -58,7 +58,7 @@
                                         TextBlock.TextAlignment="Center" >
                                         <ContentPresenter.Resources>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                <Setter Property="Padding" Value="6 0 0 0"/>
+                                                <Setter Property="Padding" Value="6 0 0 1"/>
                                             </Style>
                                         </ContentPresenter.Resources>
                                     </ContentPresenter>
