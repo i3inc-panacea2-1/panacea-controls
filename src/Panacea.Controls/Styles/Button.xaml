@@ -43,7 +43,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <controls:MaterialIcon
-                                        
+                                        Foreground="{TemplateBinding Foreground}"
                                         Margin="0,2,0,-2"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
