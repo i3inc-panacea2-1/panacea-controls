@@ -23,13 +23,14 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border
+                        Name="Border"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="2">
                         <controls:RippleEffectDecorator Background="Transparent">
                             <Border
-                                Name="Border"
+                                
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                 <Grid
@@ -68,7 +69,11 @@
                             </Border>
                         </controls:RippleEffectDecorator>
                     </Border>
-
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Opacity" Value=".3"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
