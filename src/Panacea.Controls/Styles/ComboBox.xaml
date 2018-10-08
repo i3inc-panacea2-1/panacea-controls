@@ -151,7 +151,7 @@
                                             Margin="4,6,4,6"
                                             Foreground="{DynamicResource ColorForeground}"
                                             SnapsToDevicePixels="True">
-                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            <StackPanel IsItemsHost="True" HorizontalAlignment="Left" TextBlock.TextAlignment="Left" KeyboardNavigation.DirectionalNavigation="Contained" />
                                         </ScrollViewer>
                                     </Grid>
 
@@ -313,10 +313,14 @@
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="IsDropDownOpen" Value="true" />
+                        </Trigger>
                         <Trigger Property="IsFocused" Value="False">
                             <Setter TargetName="HiddenBorder" Property="Width" Value="1" />
                             <Setter TargetName="HighlightBorder" Property="Opacity" Value="0" />
                             <Setter TargetName="HighlightBorder" Property="Margin" Value="50,0" />
+
                         </Trigger>
 
                         <Trigger Property="Validation.HasError" Value="True">
@@ -358,11 +362,11 @@
                 Background="{TemplateBinding Foreground}"
                 Opacity="0"
                 RenderTransformOrigin="0.5,0.5" />
-            <controls:RippleEffectDecorator>
+           
                 <Border Margin="{TemplateBinding Padding}">
-                    <ContentPresenter />
+                    <ContentPresenter TextBlock.TextAlignment="Left"/>
                 </Border>
-            </controls:RippleEffectDecorator>
+            
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CommonStates">
                     <VisualStateGroup.Transitions>

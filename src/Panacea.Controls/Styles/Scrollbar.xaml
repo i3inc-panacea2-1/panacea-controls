@@ -40,7 +40,7 @@
     <!--  ScrollBars  -->
     <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
-        <Setter Property="Foreground" Value="LightGray" />
+        <Setter Property="Foreground" Value="#f5f5f5" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Width" Value="{StaticResource ScrollbarSize}" />
         <Setter Property="Template">
