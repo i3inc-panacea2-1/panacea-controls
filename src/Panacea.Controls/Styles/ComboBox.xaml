@@ -127,7 +127,7 @@
                                     </Popup.Style>
                                     <Grid
                                         x:Name="DropDown"
-                                        MinWidth="{TemplateBinding ActualWidth}"
+                                       
                                         MaxHeight="{TemplateBinding MaxDropDownHeight}"
                                         SnapsToDevicePixels="True">
                                         <Border
