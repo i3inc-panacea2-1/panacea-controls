@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Panacea.Controls.Converters
@@ -11,7 +12,21 @@ namespace Panacea.Controls.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!string.IsNullOrEmpty(values[0]?.ToString()))
+            string text = null;
+            if(values[0] is TextBox)
+            {
+                text = (values[0] as TextBox).Text;
+            }
+            else if (values[0] is PasswordBox)
+            {
+                text = (values[0] as PasswordBox).Password;
+            }
+            else if(values[0] is ComboBox)
+            {
+                text = (values[0] as ComboBox).SelectedItem?.ToString();
+            }
+            
+            if (!string.IsNullOrEmpty(text))
             {
                 return 0.0;
             }

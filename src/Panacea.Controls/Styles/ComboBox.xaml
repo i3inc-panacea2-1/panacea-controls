@@ -60,7 +60,7 @@
                                         <TranslateTransform x:Name="TranslateTransform">
                                             <TranslateTransform.Y>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource TranslateMin}" />
                                                     <Binding ElementName="ContentSite" Path="ActualHeight" />
@@ -70,7 +70,7 @@
                                         <ScaleTransform x:Name="ScaleTransform">
                                             <ScaleTransform.ScaleX>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -78,7 +78,7 @@
                                             </ScaleTransform.ScaleX>
                                             <ScaleTransform.ScaleY>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -89,7 +89,7 @@
                                 </TextBlock.RenderTransform>
                                 <TextBlock.Opacity>
                                     <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding ElementName="HiddenBorder" Path="Width" />
                                         <Binding Source="{StaticResource ScaleMin}" />
                                         <Binding Source="{StaticResource ScaleMax}" />
@@ -105,7 +105,7 @@
                                 ClickMode="Press"
                                 Focusable="false"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                            <Border Grid.Row="1">
+                            <Border Name="PopupContainer" Grid.Row="1">
                                 <Popup
                                     x:Name="Popup"
                                     Grid.Row="1"
@@ -113,6 +113,7 @@
                                     Focusable="False"
                                     IsOpen="{Binding IsDropDownOpen, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                     Placement="Bottom"
+                                    PlacementTarget="{Binding PopupContainer}"
                                     PopupAnimation="Fade"
                                     StaysOpen="False">
                                     <Popup.Style>
@@ -127,8 +128,8 @@
                                     </Popup.Style>
                                     <Grid
                                         x:Name="DropDown"
-                                       
-                                        MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                        MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                        MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}"
                                         SnapsToDevicePixels="True">
                                         <Border
                                             Margin="5"
@@ -151,7 +152,10 @@
                                             Margin="4,6,4,6"
                                             Foreground="{DynamicResource ColorForeground}"
                                             SnapsToDevicePixels="True">
-                                            <StackPanel IsItemsHost="True" HorizontalAlignment="Left" TextBlock.TextAlignment="Left" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                            <StackPanel
+                                                IsItemsHost="True"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                                TextBlock.TextAlignment="Left" />
                                         </ScrollViewer>
                                     </Grid>
 
@@ -165,8 +169,9 @@
                                 Margin="0,0,23,0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"
-                                Content="{TemplateBinding SelectionBoxItem}"
-                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                Content="{TemplateBinding ComboBox.SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                 IsHitTestVisible="False">
                                 <ContentPresenter.Resources>
                                     <Style TargetType="TextBlock">
@@ -326,11 +331,11 @@
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
                             <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
-                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter TargetName="ErrorText" Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                         <Trigger Property="Validation.HasError" Value="False">
                             <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{StaticResource NormalBorderColor}" />
-                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=(controls:Material.HighlightColor)}" />
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=(controls:Material.HighlightColor)}" />
                             <Setter TargetName="ErrorText" Property="Text" Value="" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -362,11 +367,11 @@
                 Background="{TemplateBinding Foreground}"
                 Opacity="0"
                 RenderTransformOrigin="0.5,0.5" />
-           
-                <Border Margin="{TemplateBinding Padding}">
-                    <ContentPresenter TextBlock.TextAlignment="Left"/>
-                </Border>
-            
+
+            <Border Margin="{TemplateBinding Padding}">
+                <ContentPresenter TextBlock.TextAlignment="Left" />
+            </Border>
+
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CommonStates">
                     <VisualStateGroup.Transitions>
@@ -436,7 +441,7 @@
     <Style TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="16,8" />
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />

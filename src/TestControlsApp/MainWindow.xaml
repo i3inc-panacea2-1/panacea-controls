@@ -60,7 +60,7 @@
             <StackPanel>
                 <WrapPanel Margin="0,20,0,0">
                     <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
-                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}"></Button>
+                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" />
                     <Button>Text Button</Button>
                     <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
                     <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
@@ -150,25 +150,11 @@
                             </TextBox.Text>
                         </TextBox>
                         <ComboBox
-                            Width="200"
+                            Name="Combo"
+                            Width="400"
                             controls:Material.Hint="This is a small hint"
-                            controls:Material.Label="Test">
-                            <ComboBoxItem>Test</ComboBoxItem>
-                            <ComboBoxItem>Test 2</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3 fdg dfg dfg dfg dfgdfg dfgfd gfdg df ggdggd</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                            <ComboBoxItem>Test 3</ComboBoxItem>
-                        </ComboBox>
+                            controls:Material.Label="Test"
+                            DisplayMemberPath="NativeName" />
 
                     </WrapPanel>
                     <WrapPanel Margin="5" TextElement.FontSize="25">

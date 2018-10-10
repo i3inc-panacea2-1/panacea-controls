@@ -1,6 +1,7 @@
 ﻿using Panacea.Controls;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,11 @@ namespace TestControlsApp
         {
             InitializeComponent();
             dialog = new DialogService(this);
+            foreach (var info in CultureInfo.GetCultures(CultureTypes.AllCultures).Take(10))
+            {
+                Combo.Items.Add(info);
+            }
+
 
         }
         IDialogService dialog;

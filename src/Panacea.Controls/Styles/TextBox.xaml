@@ -79,7 +79,7 @@
                                         <TranslateTransform x:Name="TranslateTransform">
                                             <TranslateTransform.Y>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource TranslateMin}" />
                                                     <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
@@ -89,7 +89,7 @@
                                         <ScaleTransform x:Name="ScaleTransform">
                                             <ScaleTransform.ScaleX>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -97,7 +97,7 @@
                                             </ScaleTransform.ScaleX>
                                             <ScaleTransform.ScaleY>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -108,7 +108,7 @@
                                 </TextBlock.RenderTransform>
                                 <TextBlock.Opacity>
                                     <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                        <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding ElementName="HiddenBorder" Path="Width" />
                                         <Binding Source="{StaticResource ScaleMin}" />
                                         <Binding Source="{StaticResource ScaleMax}" />
@@ -343,7 +343,7 @@
                                         <TranslateTransform x:Name="TranslateTransform">
                                             <TranslateTransform.Y>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource TranslateMin}" />
                                                     <Binding ElementName="PART_ContentHost" Path="ActualHeight" />
@@ -353,7 +353,7 @@
                                         <ScaleTransform x:Name="ScaleTransform">
                                             <ScaleTransform.ScaleX>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -361,7 +361,7 @@
                                             </ScaleTransform.ScaleX>
                                             <ScaleTransform.ScaleY>
                                                 <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
@@ -372,7 +372,7 @@
                                 </TextBlock.RenderTransform>
                                 <TextBlock.Opacity>
                                     <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                        <Binding Path="Password" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding ElementName="HiddenBorder" Path="Width" />
                                         <Binding Source="{StaticResource ScaleMin}" />
                                         <Binding Source="{StaticResource ScaleMax}" />
