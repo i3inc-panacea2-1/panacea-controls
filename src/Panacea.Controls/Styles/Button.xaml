@@ -47,6 +47,7 @@
                                         Margin="0,2,0,-2"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
+                                        FontSize="{TemplateBinding FontSize}"
                                         Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
                                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
 
