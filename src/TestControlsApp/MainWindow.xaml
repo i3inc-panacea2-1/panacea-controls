@@ -6,17 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TestControlsApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="Main"
     Title="MainWindow"
-    mc:Ignorable="d"
-    >
+    FontSize="16"
+    mc:Ignorable="d">
     <TabControl controls:Material.HighlightEnabled="True">
         <TabItem Header="Resizable">
             <controls:ResizablePanel>
                 <Button
                     Margin="20"
                     Click="Toast_Click"
-                    Content="Toast"
-                    Style="{StaticResource TextButton}" />
+                    Content="Toast" />
                 <Button
                     Margin="20"
                     Click="Dialog_Click"
@@ -57,13 +57,30 @@
             </controls:ResizablePanel>
         </TabItem>
         <TabItem Header="Buttons">
-            <WrapPanel Margin="0,20,0,0" >
-                <Button Style="{StaticResource TextButton}">Text Button</Button>
-                <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
-                <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
-                <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
-                <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
-            </WrapPanel>
+            <StackPanel>
+                <WrapPanel Margin="0,20,0,0">
+                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
+                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" />
+                    <Button>Text Button</Button>
+                    <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
+                    <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
+
+                    <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
+                    <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
+                    <ToggleButton>Toggle Button</ToggleButton>
+
+
+                </WrapPanel>
+                <WrapPanel>
+                    <controls:ImageButton
+                        x:Name="imgKeyboard"
+                        Width="60"
+                        Focusable="False"
+                        Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
+                        Text="Test"
+                        TextVisibility="Visible" />
+                </WrapPanel>
+            </StackPanel>
         </TabItem>
         <TabItem Header="Textbox">
             <Grid>
@@ -77,23 +94,26 @@
                     Background="CornflowerBlue">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBox
                             HorizontalAlignment="Stretch"
                             controls:Material.Label="This is a very long label aaa ooo"
                             Style="{StaticResource BarTextBox}" />
 
-                        <Button HorizontalAlignment="Center" Grid.Column="1" Style="{StaticResource TextButton}" VerticalContentAlignment="Center">
-                            <Viewbox >
-                                <Canvas Width="24" Height="24" >
+                        <Button
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalContentAlignment="Center">
+                            <Viewbox>
+                                <Canvas Width="24" Height="24">
                                     <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="White" />
                                 </Canvas>
                             </Viewbox>
                         </Button>
                     </Grid>
-                    
+
                 </Border>
                 <StackPanel Grid.Row="1">
                     <WrapPanel Margin="5" TextElement.FontSize="12">
@@ -107,10 +127,35 @@
                     <WrapPanel Margin="5">
                         <TextBox
                             Width="200"
-                            controls:Material.Hint="This is a small hint"
+                            controls:Material.Hint="hint here"
                             controls:Material.Label="Test" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
+                        <TextBox
+                            xmlns:system="clr-namespace:System;assembly=mscorlib"
+                            Width="200"
+                            controls:Material.Label="Validation">
+                            <TextBox.Text>
+                                <Binding
+                                    ConverterParameter="Int32"
+                                    ElementName="Main"
+                                    Mode="TwoWay"
+                                    NotifyOnValidationError="True"
+                                    Path="ValidatedText"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True"
+                                    ValidatesOnNotifyDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <local:NumericValidationRule ValidatesOnTargetUpdated="False" ValidationType="{x:Type system:Int32}" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <ComboBox
+                            Name="Combo"
+                            Width="400"
+                            controls:Material.Hint="This is a small hint"
+                            controls:Material.Label="Test"
+                            DisplayMemberPath="NativeName" />
+
                     </WrapPanel>
                     <WrapPanel Margin="5" TextElement.FontSize="25">
                         <TextBox
@@ -118,30 +163,39 @@
                             controls:Material.Hint="This is a small hint"
                             controls:Material.Label="Test" />
                         <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
+                        <PasswordBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
                     </WrapPanel>
+                    <WrapPanel Margin="5" />
                 </StackPanel>
 
             </Grid>
 
         </TabItem>
-        <TabItem Header="ComboBox">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel >
-                    <WrapPanel Margin="5" TextElement.FontSize="12">
-                        <ComboBox>
-                            <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-                            <ComboBoxItem >ComboBox Item #2</ComboBoxItem>
-                            <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
-                        </ComboBox>
+
+        <TabItem Header="Sliders">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <ScrollViewer.Resources>
+                    <local:ExampleLabelConverter x:Key="Converter" />
+                </ScrollViewer.Resources>
+                <StackPanel>
+                    <Slider
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource Converter}}"
+                        LargeChange="10000"
+                        Maximum="1000000"
+                        SmallChange="1000" />
+                    <WrapPanel Width="10000" Height="1000">
+                        <Slider
+                            Width="200"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            LargeChange="10000"
+                            Maximum="1000000"
+                            SmallChange="1000" />
                     </WrapPanel>
                 </StackPanel>
-
-            </Grid>
-
+            </ScrollViewer>
         </TabItem>
     </TabControl>
 </controls:PanaceaWindow>

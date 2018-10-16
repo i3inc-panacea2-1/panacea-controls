@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Panacea.Controls">
     <Style TargetType="{x:Type TabControl}">
-        <Setter Property="FontSize" Value="18" />
         <Setter Property="local:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
         <Setter Property="local:Material.HighlightColor" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Template">
@@ -35,7 +34,7 @@
                             </Setter>
                         </Style>
                     </ControlTemplate.Resources>
-                    <Grid KeyboardNavigation.TabNavigation="Local" Name="Root">
+                    <Grid Name="Root" KeyboardNavigation.TabNavigation="Local">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
@@ -80,18 +79,22 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity"
-                                                         From="1" To=".2">
-
-                                        </DoubleAnimation>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="Root"
+                                            Storyboard.TargetProperty="Opacity"
+                                            From="1"
+                                            To=".2"
+                                            Duration="0:0:0.1" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity"
-                                                         From=".2" To="1">
-
-                                        </DoubleAnimation>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="Root"
+                                            Storyboard.TargetProperty="Opacity"
+                                            From=".2"
+                                            To="1"
+                                            Duration="0:0:0.1" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>

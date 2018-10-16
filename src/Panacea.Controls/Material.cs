@@ -16,6 +16,7 @@ namespace Panacea.Controls
 {
     public class Material
     {
+        #region Label
         public static string GetLabel(DependencyObject obj)
         {
             return (string)obj.GetValue(LabelProperty);
@@ -33,7 +34,9 @@ namespace Panacea.Controls
                 typeof(Material),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
+        #endregion
 
+        #region Hint
         public static string GetHint(DependencyObject obj)
         {
             return (string)obj.GetValue(HintProperty);
@@ -50,8 +53,9 @@ namespace Panacea.Controls
                 typeof(string),
                 typeof(Material),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
 
-
+        #region HighlightColor
         public static Brush GetHighlightColor(DependencyObject obj)
         {
             return (Brush)obj.GetValue(HighlightColorProperty);
@@ -68,7 +72,9 @@ namespace Panacea.Controls
                 typeof(Brush),
                 typeof(Material),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
 
+        #region HightlightEnabled
         public static bool GetHighlightEnabled(DependencyObject obj)
         {
             return (bool)obj.GetValue(HighlightEnabledProperty);
@@ -92,74 +98,6 @@ namespace Panacea.Controls
                     tc.Loaded -= Tc_Initialized;
                 }
             }
-
-        }
-
-        private static void Tc_Initialized(object sender, EventArgs e)
-        {
-            UpdateLine(sender as Control);
-        }
-
-        private static void Tc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateLine(sender as Control);
-        }
-
-
-
-        private static void UpdateLine(Control element)
-        {
-            var border = element.Template.FindName("PART_border", element) as Border;
-            var panel = element.Template.FindName("HeaderPanel", element) as TabPanel;
-            if (border == null || panel == null) return;
-            var item = panel.Children.Cast<TabItem>().First(t => t.IsSelected);
-            var point = item.TranslatePoint(new Point(0, 0), panel);
-            var animation = new ThicknessAnimation
-            {
-                From = border.Margin,
-                To = new Thickness(point.X, 0, 0, 0),
-                Duration = TimeSpan.FromMilliseconds(200),
-                EasingFunction = new SineEase()
-                {
-                    EasingMode = EasingMode.EaseInOut
-                }
-            };
-            Storyboard.SetTarget(animation, border);
-            Storyboard.SetTargetProperty(animation, new PropertyPath(FrameworkElement.MarginProperty));
-
-
-            var animation3 = new DoubleAnimation
-            {
-                From = border.ActualWidth,
-                To = item.ActualWidth,
-                Duration = TimeSpan.FromMilliseconds(200),
-                EasingFunction = new SineEase()
-                {
-                    EasingMode = EasingMode.EaseInOut
-                }
-            };
-            Storyboard.SetTarget(animation3, border);
-            Storyboard.SetTargetProperty(animation3, new PropertyPath(FrameworkElement.WidthProperty));
-
-            var presenter = element.Template.FindName("PART_SelectedContentHost", element) as FrameworkElement;
-            presenter.Opacity = 0;
-            var animation2 = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromMilliseconds(200)
-            };
-            Storyboard.SetTarget(animation2, presenter);
-            Storyboard.SetTargetProperty(animation2, new PropertyPath(FrameworkElement.OpacityProperty));
-
-            // Create a storyboard to contain the animation.
-            Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
-
-            myColorAnimatedButtonStoryboard.Children.Add(animation);
-            myColorAnimatedButtonStoryboard.Children.Add(animation2);
-            myColorAnimatedButtonStoryboard.Children.Add(animation3);
-            myColorAnimatedButtonStoryboard.Begin();
-
         }
 
         public static readonly DependencyProperty HighlightEnabledProperty =
@@ -172,5 +110,115 @@ namespace Panacea.Controls
         {
             SetHighlightEnabled(sender, (bool)args.NewValue);
         }
+
+        private static void Tc_Initialized(object sender, EventArgs e)
+        {
+            UpdateLine(sender as Control, false);
+        }
+
+        private static void Tc_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            if (e.AddedItems != null && !e.AddedItems.Cast<object>().Any(c => c is TabItem)) return;
+            UpdateLine(sender as Control);
+            
+            var element = sender as Control;
+            if (element == null) return;
+            if (element.Template == null) return;
+            var presenter = element.Template.FindName("PART_SelectedContentHost", element) as FrameworkElement;
+            if (presenter == null) return;
+            presenter.Opacity = 0;
+            var animation2 = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromMilliseconds(200)
+            };
+            
+            Storyboard.SetTarget(animation2, presenter);
+            Storyboard.SetTargetProperty(animation2, new PropertyPath(FrameworkElement.OpacityProperty));
+            Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
+            myColorAnimatedButtonStoryboard.Children.Add(animation2);
+            myColorAnimatedButtonStoryboard.Begin();
+        }
+
+
+
+        private static void UpdateLine(Control element, bool animate = true)
+        {
+            if (element == null) return;
+            if (element.Template == null) return;
+            var border = element.Template.FindName("PART_border", element) as Border;
+            var panel = element.Template.FindName("HeaderPanel", element) as TabPanel;
+            if (border == null || panel == null) return;
+            var item = panel.Children.Cast<TabItem>().FirstOrDefault(t => t.IsSelected);
+            if (item == null) return;
+            var point = item.TranslatePoint(new Point(0, 0), element);
+            if (animate && item.ActualWidth > 0)
+            {
+                var animation = new ThicknessAnimation
+                {
+                    From = border.Margin,
+                    To = new Thickness(point.X, 0, 0, 0),
+                    Duration = TimeSpan.FromMilliseconds(200),
+                    EasingFunction = new SineEase()
+                    {
+                        EasingMode = EasingMode.EaseInOut
+                    }
+                };
+                Storyboard.SetTarget(animation, border);
+                Storyboard.SetTargetProperty(animation, new PropertyPath(FrameworkElement.MarginProperty));
+
+
+                var animation3 = new DoubleAnimation
+                {
+                    From = border.ActualWidth,
+                    To = item.ActualWidth,
+                    Duration = TimeSpan.FromMilliseconds(200),
+                    EasingFunction = new SineEase()
+                    {
+                        EasingMode = EasingMode.EaseInOut
+                    }
+                };
+                Storyboard.SetTarget(animation3, border);
+                Storyboard.SetTargetProperty(animation3, new PropertyPath(FrameworkElement.WidthProperty));
+
+
+
+                // Create a storyboard to contain the animation.
+                Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
+
+                myColorAnimatedButtonStoryboard.Children.Add(animation);
+
+                myColorAnimatedButtonStoryboard.Children.Add(animation3);
+                myColorAnimatedButtonStoryboard.Begin();
+            }
+            else
+            {
+                border.Margin = new Thickness(point.X, 0, 0, 0);
+                border.Width = item.ActualWidth;
+            }
+        }
+        #endregion
+
+        #region Icon
+        public static MaterialIconType GetIcon(DependencyObject obj)
+        {
+            return (MaterialIconType)obj.GetValue(IconProperty);
+        }
+
+        public static void SetIcon(DependencyObject obj, MaterialIconType value)
+        {
+            obj.SetValue(IconProperty, value);
+        }
+
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.RegisterAttached(
+                "Icon",
+                typeof(MaterialIconType),
+                typeof(Material),
+                new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
+
     }
 }

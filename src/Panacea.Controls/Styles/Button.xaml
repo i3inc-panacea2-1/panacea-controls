@@ -2,40 +2,77 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Panacea.Controls"
-    xmlns:local="clr-namespace:Panacea.Controls.Styles">
-    <Style
-        x:Key="SimpleWithBackground"
-        BasedOn="{x:Null}"
-        TargetType="ButtonBase">
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="2" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="UseLayoutRounding" Value="True" />
+    xmlns:converters="clr-namespace:Panacea.Controls.Converters">
+
+    <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter" />
+    <Style TargetType="Button">
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="Padding" Value="15,6,15,10" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
+        <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
+        <Setter Property="controls:Material.Icon" Value="ic_none" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorPrimary}" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                <ControlTemplate TargetType="Button">
                     <Border
-                        Name="ButtonBackground"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        Background="{TemplateBinding Background}">
-                        <ContentPresenter
-                            x:Name="GelButtonContent"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}"
-                            TextBlock.Foreground="{TemplateBinding Foreground}"
-                            TextBlock.TextAlignment="Center"/>
+                        Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="2">
+                        <controls:RippleEffectDecorator Background="Transparent">
+                            <Border
+                                
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                <Grid
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <controls:MaterialIcon
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Margin="0,2,0,-2"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
+                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
+
+                                    <ContentPresenter
+                                        Name="PART_Content"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        TextBlock.LineStackingStrategy="MaxHeight"
+                                        TextBlock.TextAlignment="Center" >
+                                        <ContentPresenter.Resources>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                <Setter Property="Padding" Value="6 0 0 1"/>
+                                            </Style>
+                                        </ContentPresenter.Resources>
+                                    </ContentPresenter>
+                                </Grid>
+
+
+                            </Border>
+                        </controls:RippleEffectDecorator>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" Value="Cyan" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ButtonBackground" Property="Background" Value="#33ffffff" />
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Opacity" Value=".3"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -43,146 +80,38 @@
         </Setter>
     </Style>
 
-
-    <Style
-        x:Key="Simple"
-        BasedOn="{x:Null}"
-        TargetType="Button">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid Background="{TemplateBinding Background}">
-                        <ContentPresenter
-                            x:Name="GelButtonContent"
-                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                            Content="{TemplateBinding Content}" />
-                    </Grid>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="black " />
-            </Trigger>
-            <Trigger Property="IsPressed" Value="true">
-                <Setter Property="Foreground" Value="black " />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="TextButton" TargetType="Button">
-        <Setter Property="FontWeight" Value="Medium" />
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Padding" Value="15,5,15,10" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
-        <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
-        <Setter Property="Foreground" Value="{StaticResource ColorPrimary}" />
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <controls:RippleEffectDecorator>
-
-                        <Border
-                            Name="Border"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            BorderThickness="0">
-
-                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
-                                              TextBlock.TextAlignment="Center"/>
-                        </Border>
-                    </controls:RippleEffectDecorator>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style
         x:Key="OutlinedButton"
-        BasedOn="{StaticResource TextButton}"
+        BasedOn="{StaticResource {x:Type Button}}"
         TargetType="Button">
-        <Setter Property="BorderBrush" Value="{StaticResource ColorBackgroundHover}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorBackgroundHover}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <controls:RippleEffectDecorator>
-                        <Border
-                            Name="Border"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="4">
-
-                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
-                                              TextBlock.TextAlignment="Center"/>
-                        </Border>
-                    </controls:RippleEffectDecorator>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style
         x:Key="OutlinedSecondaryButton"
         BasedOn="{StaticResource OutlinedButton}"
         TargetType="Button">
-        <Setter Property="Foreground" Value="{StaticResource ColorSecondary}" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorSecondary}" />
     </Style>
 
 
     <Style
         x:Key="PrimaryButton"
-        BasedOn="{StaticResource TextButton}"
+        BasedOn="{StaticResource {x:Type Button}}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource ColorPrimary}" />
-        <Setter Property="Foreground" Value="{StaticResource ColorPrimaryForeground}" />
+        <Setter Property="Background" Value="{DynamicResource ColorPrimary}" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorPrimaryForeground}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="#77FFFFFF" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <Grid.OpacityMask>
-                            <VisualBrush Visual="{Binding ElementName=Border}" />
-                        </Grid.OpacityMask>
-                        <Border
-                            Name="Border"
-                            MinWidth="{Binding ElementName=Ripple, Path=ActualWidth}"
-                            MinHeight="{Binding ElementName=Ripple, Path=ActualHeight}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Background="White"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="4" />
-                        <controls:RippleEffectDecorator x:Name="Ripple" Background="{TemplateBinding Background}">
-                            <ContentPresenter Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
-                                              TextBlock.TextAlignment="Center"/>
-                        </controls:RippleEffectDecorator>
-                    </Grid>
 
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
     <Style
         x:Key="SecondaryButton"
         BasedOn="{StaticResource PrimaryButton}"
         TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource ColorSecondary}" />
-        <Setter Property="Foreground" Value="{StaticResource ColorSecondaryForeground}" />
+        <Setter Property="Background" Value="{DynamicResource ColorSecondary}" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorSecondaryForeground}" />
     </Style>
 </ResourceDictionary>

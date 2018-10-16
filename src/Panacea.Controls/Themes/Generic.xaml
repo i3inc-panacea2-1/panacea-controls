@@ -55,52 +55,153 @@
     <Style TargetType="{x:Type local:RippleEffectDecorator}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RippleEffectDecorator}">
-                    <Grid
-                        x:Name="PART_grid"
-                        Width="{Binding ElementName=PART_contentpresenter, Path=ActualWidth}"
-                        Height="{Binding ElementName=PART_contentpresenter, Path=ActualHeight}"
-                        Background="{TemplateBinding Background}"
-                        ClipToBounds="True"
-                        Stylus.IsPressAndHoldEnabled="False">
-                        <Ellipse
-                            x:Name="PART_ellipse"
-                            Width="0"
-                            Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <Grid Background="{TemplateBinding Background}">
+                        <Canvas
+                            x:Name="PART_grid"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            ClipToBounds="True"
+                            Stylus.IsPressAndHoldEnabled="False">
+                            <Ellipse
+                                x:Name="PART_ellipse"
+                                Width="0"
+                                Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Fill="{Binding Path=HighlightBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Canvas.Resources>
+                                <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Width"
+                                        From="0"
+                                        Duration="0:0:0.55" />
+                                    <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.55" />
 
-                        <ContentPresenter x:Name="PART_contentpresenter" />
+                                    <DoubleAnimation
+                                        BeginTime="0:0:2.25"
+                                        Storyboard.TargetProperty="Width"
+                                        To="0"
+                                        Duration="0:0:0" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="1"
+                                        Duration="0:0:0" />
+                                    <DoubleAnimation
+                                        BeginTime="0:0:0.3"
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="1"
+                                        To="0"
+                                        Duration="0:0:0.55" />
+                                </Storyboard>
+                            </Canvas.Resources>
+                        </Canvas>
 
-                        <Grid.Resources>
-                            <Storyboard x:Key="PART_animation" Storyboard.TargetName="PART_ellipse">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="Width"
-                                    From="0"
-                                    Duration="0:0:0.55" />
-                                <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.55" />
+                        <ContentPresenter
+                            x:Name="PART_contentpresenter"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 
-                                <DoubleAnimation
-                                    BeginTime="0:0:2.25"
-                                    Storyboard.TargetProperty="Width"
-                                    To="0"
-                                    Duration="0:0:0" />
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="Opacity"
-                                    To="1"
-                                    Duration="0:0:0" />
-                                <DoubleAnimation
-                                    BeginTime="0:0:0.3"
-                                    Storyboard.TargetProperty="Opacity"
-                                    From="1"
-                                    To="0"
-                                    Duration="0:0:0.55" />
-                            </Storyboard>
-                        </Grid.Resources>
                     </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:MaterialIcon}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MaterialIcon}">
+
+                    <Viewbox>
+                        <Canvas
+                            Width="24"
+                            Height="24"
+                            Background="{TemplateBinding Background}">
+                            <FrameworkElement.Resources>
+                                <Style TargetType="{x:Type Path}">
+                                    <Setter Property="Shape.Fill" Value="{Binding RelativeSource={RelativeSource AncestorType=local:MaterialIcon}, Path=Foreground}" />
+                                </Style>
+                                <Style TargetType="{x:Type Ellipse}">
+                                    <Setter Property="Shape.Fill" Value="{Binding RelativeSource={RelativeSource AncestorType=local:MaterialIcon}, Path=Foreground}" />
+                                </Style>
+                            </FrameworkElement.Resources>
+                            <ContentControl
+                                x:Name="PART_ContentControl"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding IconResource}" />
+                        </Canvas>
+                    </Viewbox>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:ImageButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource ColorForeground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="local:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ImageButton}">
+                    <!--<Border BorderBrush="White" Name="HighlightBorder">-->
+                    <Border
+                        Name="BackgroundBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <local:RippleEffectDecorator>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Height="auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="4*" />
+                                        <RowDefinition Height="17*" />
+                                        <RowDefinition Height="2.5*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="17*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        RenderOptions.BitmapScalingMode="HighQuality">
+                                        <Image.Source>
+                                            <BitmapImage UriCachePolicy="Revalidate" UriSource="{Binding Path=Image, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    FontSize="{DynamicResource FontSize-X-Small}"
+                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}}"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Visibility="{Binding Path=TextVisibility, RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Grid>
+                        </local:RippleEffectDecorator>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="BackgroundBorder" Property="Opacity" Value=".2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

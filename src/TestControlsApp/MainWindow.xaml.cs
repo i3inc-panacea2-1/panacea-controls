@@ -1,6 +1,7 @@
 ﻿using Panacea.Controls;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,28 @@ namespace TestControlsApp
     /// </summary>
     public partial class MainWindow : PanaceaWindow
     {
+
+
+        public string ValidatedText
+        {
+            get { return (string)GetValue(ValidatedTextProperty); }
+            set { SetValue(ValidatedTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ValidatedText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ValidatedTextProperty =
+            DependencyProperty.Register("ValidatedText", typeof(string), typeof(MainWindow), new PropertyMetadata(null));
+
+
         public MainWindow()
         {
             InitializeComponent();
             dialog = new DialogService(this);
+            foreach (var info in CultureInfo.GetCultures(CultureTypes.AllCultures).Take(10))
+            {
+                Combo.Items.Add(info);
+            }
+
 
         }
         IDialogService dialog;
