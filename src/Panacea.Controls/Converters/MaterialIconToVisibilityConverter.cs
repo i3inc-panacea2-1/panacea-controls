@@ -22,4 +22,23 @@ namespace Panacea.Controls.Converters
             throw new NotImplementedException();
         }
     }
+
+    internal class ButtonSpaceVisibilityConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            var text = values[0];
+            var icon = (MaterialIconType)values[1];
+            if(icon != MaterialIconType.ic_none && text != null)
+            {
+                return Visibility.Visible;
+            }
+            return Visibility.Collapsed;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
