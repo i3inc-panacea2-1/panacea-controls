@@ -102,8 +102,7 @@
                                 Grid.Column="2"
                                 Margin="0,1,0,-1"
                                 Padding="0,0,0,-1"
-                                ClickMode="Press"
-                                Focusable="false"
+                                Focusable="False"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             <Border Name="PopupContainer" Grid.Row="1">
                                 <Popup
@@ -193,7 +192,7 @@
                             <Border
                                 Name="HighlightBorder"
                                 Grid.Row="2"
-                                Margin="50,0"
+                                Margin="50, -1, 50, 0"
                                 VerticalAlignment="Top"
                                 BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
@@ -278,7 +277,7 @@
                                     <ThicknessAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
-                                        To="0 0 0 0"
+                                        To="0 -1 0 0"
                                         Duration="0:0:0.2" />
                                     <DoubleAnimation
                                         Storyboard.TargetName="HighlightBorder"
@@ -301,7 +300,7 @@
                                     <ThicknessAnimation
                                         Storyboard.TargetName="HighlightBorder"
                                         Storyboard.TargetProperty="Margin"
-                                        To="50 0"
+                                        To="50,-1,50,0"
                                         Duration="0:0:0.2" />
                                     <DoubleAnimation
                                         Storyboard.TargetName="HighlightBorder"
@@ -318,15 +317,10 @@
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="IsDropDownOpen" Value="true" />
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="IsDropDownOpen" Value="True" />
                         </Trigger>
-                        <Trigger Property="IsFocused" Value="False">
-                            <Setter TargetName="HiddenBorder" Property="Width" Value="1" />
-                            <Setter TargetName="HighlightBorder" Property="Opacity" Value="0" />
-                            <Setter TargetName="HighlightBorder" Property="Margin" Value="50,0" />
-
-                        </Trigger>
+                        
 
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />
@@ -446,7 +440,6 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
         <Setter Property="Template" Value="{StaticResource MaterialDesignComboBoxItemTemplate}" />
     </Style>
 </ResourceDictionary>
