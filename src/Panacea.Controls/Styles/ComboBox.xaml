@@ -100,7 +100,7 @@
                                 x:Name="ToggleButton"
                                 Grid.Row="1"
                                 Grid.Column="2"
-                                Margin="0,1,0,-1"
+                                Margin="0,1,0,0"
                                 Padding="0,0,0,-1"
                                 Focusable="False"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
