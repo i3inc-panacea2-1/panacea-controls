@@ -94,7 +94,8 @@
         x:Key="OutlinedButton"
         BasedOn="{StaticResource {x:Type Button}}"
         TargetType="Button">
-        <Setter Property="BorderBrush" Value="{DynamicResource ColorPrimary}" />
+
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
         <Setter Property="BorderThickness" Value="1.5" />
     </Style>
 
@@ -103,7 +104,7 @@
         BasedOn="{StaticResource OutlinedButton}"
         TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource ColorSecondary}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ColorSecondary}" />
+        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
     </Style>
 
 
