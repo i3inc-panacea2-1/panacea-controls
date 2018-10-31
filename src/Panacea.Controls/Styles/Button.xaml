@@ -31,7 +31,7 @@
                         CornerRadius="2">
                         <controls:RippleEffectDecorator Background="Transparent">
                             <Border
-                                
+                                Background="Transparent"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                 <Grid

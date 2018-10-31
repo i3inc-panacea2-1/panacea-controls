@@ -76,6 +76,7 @@
                         x:Name="imgKeyboard"
                         Width="60"
                         Focusable="False"
+                        FontSize="10"
                         Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
                         Text="Test"
                         TextVisibility="Visible" />
@@ -196,6 +197,11 @@
                     </WrapPanel>
                 </StackPanel>
             </ScrollViewer>
+        </TabItem>
+        <TabItem Header="Random">
+            <StackPanel>
+                <controls:PagerControl CurrentPage="1" MaxPages="10" />
+            </StackPanel>
         </TabItem>
     </TabControl>
 </controls:PanaceaWindow>
