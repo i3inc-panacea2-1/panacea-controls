@@ -273,7 +273,7 @@
                     </BeginStoryboard>
                 </Trigger.ExitActions>
             </Trigger>
-            
+
             <Trigger Property="IsEnabled" Value="false">
                 <Setter TargetName="grip" Property="Fill" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />
                 <Setter TargetName="grip" Property="Stroke" Value="{DynamicResource MaterialDesignCheckBoxDisabled}" />

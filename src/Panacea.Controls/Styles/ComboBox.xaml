@@ -192,7 +192,7 @@
                             <Border
                                 Name="HighlightBorder"
                                 Grid.Row="2"
-                                Margin="50, -1, 50, 0"
+                                Margin="50,-1,50,0"
                                 VerticalAlignment="Top"
                                 BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
@@ -320,7 +320,7 @@
                         <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter Property="IsDropDownOpen" Value="True" />
                         </Trigger>
-                        
+
 
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter TargetName="NormalBorder" Property="BorderBrush" Value="{DynamicResource ColorError}" />

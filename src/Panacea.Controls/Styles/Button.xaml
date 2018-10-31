@@ -5,7 +5,7 @@
     xmlns:converters="clr-namespace:Panacea.Controls.Converters">
 
     <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter" />
-    <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter"/>
+    <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter" />
     <Style TargetType="Button">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -31,9 +31,9 @@
                         CornerRadius="2">
                         <controls:RippleEffectDecorator Background="Transparent">
                             <Border
-                                Background="Transparent"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Background="Transparent">
                                 <Grid
                                     Margin="{TemplateBinding Padding}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -45,19 +45,18 @@
                                     </Grid.ColumnDefinitions>
 
                                     <controls:MaterialIcon
-                                        Foreground="{TemplateBinding Foreground}"
                                         Margin="0,2,0,-2"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         FontSize="{TemplateBinding FontSize}"
+                                        Foreground="{TemplateBinding Foreground}"
                                         Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
                                         Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
-                                    <Border Margin="6 0 0 0" Grid.Column="1"
-                                             >
+                                    <Border Grid.Column="1" Margin="6,0,0,0">
                                         <Border.Visibility>
                                             <MultiBinding Converter="{StaticResource ButtonSpaceVisibilityConverter}">
-                                                <Binding RelativeSource="{RelativeSource AncestorType=Button}" Path="Content"/>
-                                                <Binding RelativeSource="{RelativeSource AncestorType=Button}" Path="(controls:Material.Icon)"/>
+                                                <Binding Path="Content" RelativeSource="{RelativeSource AncestorType=Button}" />
+                                                <Binding Path="(controls:Material.Icon)" RelativeSource="{RelativeSource AncestorType=Button}" />
                                             </MultiBinding>
                                         </Border.Visibility>
                                     </Border>
@@ -67,10 +66,10 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         TextBlock.LineStackingStrategy="MaxHeight"
-                                        TextBlock.TextAlignment="Center" >
+                                        TextBlock.TextAlignment="Center">
                                         <ContentPresenter.Resources>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                <Setter Property="Padding" Value="1 0 0 1"/>
+                                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                                                <Setter Property="Padding" Value="1,0,0,1" />
                                             </Style>
                                         </ContentPresenter.Resources>
                                     </ContentPresenter>
@@ -82,7 +81,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Border" Property="Opacity" Value=".3"/>
+                            <Setter TargetName="Border" Property="Opacity" Value=".3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
