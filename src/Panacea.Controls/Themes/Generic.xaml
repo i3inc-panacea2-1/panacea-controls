@@ -175,7 +175,7 @@
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="4*" />
-                                        <ColumnDefinition Width="12*" />
+                                        <ColumnDefinition Width="8*" />
                                         <ColumnDefinition Width="4*" />
                                     </Grid.ColumnDefinitions>
                                     <Image
