@@ -100,7 +100,7 @@ namespace Panacea.Controls
 
         // Using a DependencyProperty as the backing store for MaxPages.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MaxPagesProperty =
-            DependencyProperty.Register("MaxPages", typeof(int), typeof(PagerControl), new PropertyMetadata(-1));
+            DependencyProperty.Register("MaxPages", typeof(int), typeof(PagerControl), new PropertyMetadata(-1, OnCurrentPageChanged));
 
 
 
