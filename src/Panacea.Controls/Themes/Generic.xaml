@@ -208,11 +208,12 @@
     </Style>
 
     <Style TargetType="{x:Type local:PagerControl}">
+        <Setter Property="Background" Value="{DynamicResource ColorPrimary}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PagerControl}">
                     <Border
-                        Background="{TemplateBinding Background}"
+                        Background="Transparent"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
@@ -244,6 +245,7 @@
                             </ItemsControl>
 
                             <Button
+                                Background="{TemplateBinding Background}"
                                 Grid.Column="2"
                                 Content="{TemplateBinding CurrentPage}"
                                 Style="{DynamicResource PrimaryButton}" />
@@ -253,6 +255,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
                                             Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=ChangePageCommand}"
                                             CommandParameter="{Binding}"
                                             Content="{Binding}"
@@ -266,6 +269,7 @@
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
                             <Button
+                                
                                 Grid.Column="4"
                                 Margin="1"
                                 mi:Material.Icon="ic_skip_next"
