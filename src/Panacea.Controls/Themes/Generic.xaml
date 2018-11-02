@@ -208,7 +208,7 @@
     </Style>
 
     <Style TargetType="{x:Type local:PagerControl}">
-        <Setter Property="Background" Value="{DynamicResource ColorPrimary}"/>
+        <Setter Property="Background" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:PagerControl}">
@@ -224,7 +224,10 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Button mi:Material.Icon="ic_skip_previous" Command="{TemplateBinding PreviousCommand}">
+                            <Button
+                                mi:Material.Icon="ic_skip_previous"
+                                Command="{TemplateBinding PreviousCommand}"
+                                Foreground="{TemplateBinding Background}">
                                 Previous
                             </Button>
                             <ItemsControl Grid.Column="1" ItemsSource="{TemplateBinding LeftPart}">
@@ -245,8 +248,8 @@
                             </ItemsControl>
 
                             <Button
-                                Background="{TemplateBinding Background}"
                                 Grid.Column="2"
+                                Background="{TemplateBinding Background}"
                                 Content="{TemplateBinding CurrentPage}"
                                 Style="{DynamicResource PrimaryButton}" />
 
@@ -255,10 +258,10 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button
-                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
                                             Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=ChangePageCommand}"
                                             CommandParameter="{Binding}"
                                             Content="{Binding}"
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
                                             Style="{DynamicResource OutlinedButton}" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -269,11 +272,11 @@
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
                             <Button
-                                
                                 Grid.Column="4"
                                 Margin="1"
                                 mi:Material.Icon="ic_skip_next"
-                                Command="{TemplateBinding NextCommand}">
+                                Command="{TemplateBinding NextCommand}"
+                                Foreground="{TemplateBinding Background}">
                                 Next
                             </Button>
                         </Grid>
