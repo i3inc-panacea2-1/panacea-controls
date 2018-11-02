@@ -57,6 +57,17 @@ namespace Panacea.Controls
             {
                 CurrentPage = (int)args;
             });
+            NextCommand = new RelayCommand((args) =>
+            {
+                CurrentPage++;
+            },
+            (args) => CurrentPage < MaxPages);
+
+            PreviousCommand = new RelayCommand((args) =>
+            {
+                CurrentPage--;
+            },
+            (args) => CurrentPage > 1);
         }
 
         public ICommand ChangePageCommand { get; protected set; }

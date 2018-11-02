@@ -57,7 +57,7 @@ namespace TestControlsApp
         private void Dialog_Click(object sender, RoutedEventArgs e)
         {
             dialog.Show("Test Title",new TextBlock() { Text = "Test Messsage" }, null, null, "Yes",
-                 new RelayCommand(() => {
+                 new RelayCommand((args) => {
                     ToastNotification not = new ToastNotification("YES");
                     not.Show();
                 }));
@@ -65,12 +65,12 @@ namespace TestControlsApp
 
         private void Dialog_Click2(object sender, RoutedEventArgs e)
         {
-            dialog.Show("Test Title", new TextBlock() { Text = "Test Messsage" }, "No", new RelayCommand(()=>
+            dialog.Show("Test Title", new TextBlock() { Text = "Test Messsage" }, "No", new RelayCommand((args)=>
             {
                 ToastNotification not = new ToastNotification("NO");
                 not.Show();
             }), "Yes",
-                   new RelayCommand(() => {
+                   new RelayCommand((args) => {
                        ToastNotification not = new ToastNotification("YES");
                        not.Show();
                    }));

@@ -35,20 +35,20 @@ namespace Panacea.Controls
             {
                 NegativeButtonVisibility = Visibility.Visible;
                 NegativeText = negativeText;
-                NegativeCommand = new RelayCommand(() => {
+                NegativeCommand = new RelayCommand((args) => {
                     negativeCommand.Execute(null);
                     AnimatedClose();
-                }, () => negativeCommand.CanExecute(null));
+                }, (args) => negativeCommand.CanExecute(null));
             }
             
             if (positiveCommand != null)
             {
                 PositiveButtonVisibility = Visibility.Visible;
                 PositiveText = positiveText;
-                PositiveCommand = new RelayCommand(() => {
+                PositiveCommand = new RelayCommand((args) => {
                     positiveCommand.Execute(null);
                     AnimatedClose();
-                }, () => positiveCommand.CanExecute(null));
+                }, (args) => positiveCommand.CanExecute(null));
             }
             
             ResizeToOwner();
