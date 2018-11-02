@@ -237,6 +237,7 @@
                                             Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=ChangePageCommand}"
                                             CommandParameter="{Binding}"
                                             Content="{Binding}"
+                                            Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
                                             Style="{DynamicResource OutlinedButton}" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
