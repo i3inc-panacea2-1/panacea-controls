@@ -156,6 +156,13 @@
                             controls:Material.Hint="This is a small hint"
                             controls:Material.Label="Test"
                             DisplayMemberPath="NativeName" />
+                        <ComboBox
+                            Name="Combo2"
+                            Width="400"
+                            IsEditable="True"
+                            controls:Material.Hint="This is a small hint"
+                            controls:Material.Label="Test"
+                            DisplayMemberPath="NativeName" />
 
                     </WrapPanel>
                     <WrapPanel Margin="5" TextElement.FontSize="25">

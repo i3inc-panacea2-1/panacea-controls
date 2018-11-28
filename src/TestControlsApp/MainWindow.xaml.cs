@@ -42,6 +42,7 @@ namespace TestControlsApp
             foreach (var info in CultureInfo.GetCultures(CultureTypes.AllCultures).Take(10))
             {
                 Combo.Items.Add(info);
+                Combo2.Items.Add(info);
             }
 
 

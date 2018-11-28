@@ -23,7 +23,15 @@ namespace Panacea.Controls.Converters
             }
             else if(values[0] is ComboBox)
             {
-                text = (values[0] as ComboBox).SelectedItem?.ToString();
+                if ((values[0] as ComboBox).IsFocused || (values[0] as ComboBox).IsDropDownOpen) text = " ";
+                else if((values[0] as ComboBox).SelectedItem != null)
+                {
+                    text = (values[0] as ComboBox).SelectedItem?.ToString();
+                }
+                else
+                {
+                    text = (values[0] as ComboBox).SelectedValue?.ToString();
+                }
             }
             
             if (!string.IsNullOrEmpty(text))

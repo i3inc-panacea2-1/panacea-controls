@@ -180,7 +180,7 @@
                             </ContentPresenter>
                             <Border
                                 Name="HiddenBorder"
-                                Width="0"
+                                Width="1"
                                 Visibility="Collapsed" />
                             <Border
                                 Name="NormalBorder"
@@ -205,10 +205,11 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 Background="Transparent"
+                                BorderThickness="0"
                                 Focusable="True"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
                                 Style="{x:Null}"
-                                Visibility="Collapsed" />
+                                Visibility="Hidden" />
                             <TextBlock
                                 Name="ErrorText"
                                 Grid.Row="3"
@@ -228,33 +229,35 @@
 
                             </TextBlock>
 
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal" />
-                                    <VisualState x:Name="MouseOver" />
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(TextElement.Foreground).                       (SolidColorBrush.Color)">
-                                                <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource DisabledForegroundColor}" />
-                                            </ColorAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                                <VisualStateGroup x:Name="EditStates">
-                                    <VisualState x:Name="Editable">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Uneditable" />
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
                         </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(TextElement.Foreground).                       (SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource DisabledForegroundColor}" />
+                                        </ColorAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="EditStates">
+                                <VisualState x:Name="Editable">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_EditableTextBox" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentSite" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Uneditable" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Border>
                     <ControlTemplate.Triggers>
 
@@ -269,54 +272,57 @@
                             <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
                         </Trigger>
 
+                        <Trigger Property="IsFocused" Value="False">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation
+                                            Storyboard.TargetName="HighlightBorder"
+                                            Storyboard.TargetProperty="Margin"
+                                            To="50,-1,50,0"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="HighlightBorder"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="HiddenBorder"
+                                            Storyboard.TargetProperty="Width"
+                                            To="1"
+                                            Duration="0:0:0.2" />
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation
+                                            Storyboard.TargetName="HighlightBorder"
+                                            Storyboard.TargetProperty="Margin"
+                                            To="0 -1 0 0"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="HighlightBorder"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="HiddenBorder"
+                                            Storyboard.TargetProperty="Width"
+                                            To="0"
+                                            Duration="0:0:0.2" />
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
 
 
-                        <EventTrigger RoutedEvent="GotFocus">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ThicknessAnimation
-                                        Storyboard.TargetName="HighlightBorder"
-                                        Storyboard.TargetProperty="Margin"
-                                        To="0 -1 0 0"
-                                        Duration="0:0:0.2" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="HighlightBorder"
-                                        Storyboard.TargetProperty="Opacity"
-                                        To="1"
-                                        Duration="0:0:0.2" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="HiddenBorder"
-                                        Storyboard.TargetProperty="Width"
-                                        From="1"
-                                        To="0"
-                                        Duration="0:0:0.2" />
-
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="LostFocus">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ThicknessAnimation
-                                        Storyboard.TargetName="HighlightBorder"
-                                        Storyboard.TargetProperty="Margin"
-                                        To="50,-1,50,0"
-                                        Duration="0:0:0.2" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="HighlightBorder"
-                                        Storyboard.TargetProperty="Opacity"
-                                        To="0"
-                                        Duration="0:0:0.2" />
-                                    <DoubleAnimation
-                                        Storyboard.TargetName="HiddenBorder"
-                                        Storyboard.TargetProperty="Width"
-                                        From="0"
-                                        To="1"
-                                        Duration="0:0:0.2" />
-
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
                         <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter Property="IsDropDownOpen" Value="True" />
                         </Trigger>
