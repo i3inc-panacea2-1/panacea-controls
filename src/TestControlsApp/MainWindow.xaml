@@ -210,5 +210,21 @@
                 <controls:PagerControl CurrentPage="1" MaxPages="10" />
             </StackPanel>
         </TabItem>
+        <TabItem Header="Color Pickers">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Margin="20" Width="50" Height="50" Background="{Binding ElementName=whitePicker, Path=SelectedColorBrush}"></Border>
+                <controls:WhitePicker Margin="20" Grid.Column="1" Name="whitePicker"></controls:WhitePicker>
+                <Border Margin="20" Width="50" Height="50" Grid.Row="1" Background="{Binding ElementName=colorPicker, Path=SelectedColorBrush}"></Border>
+                <controls:ColorPicker Margin="20" Grid.Column="1" Grid.Row="1" Name="colorPicker"></controls:ColorPicker>
+            </Grid>
+        </TabItem>
     </TabControl>
 </controls:PanaceaWindow>
