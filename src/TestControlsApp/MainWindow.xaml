@@ -187,6 +187,7 @@
                 </ScrollViewer.Resources>
                 <StackPanel>
                     <Slider
+                        
                         Margin="10"
                         VerticalAlignment="Center"
                         controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource Converter}}"

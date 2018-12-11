@@ -226,7 +226,7 @@ namespace Panacea.Controls
             return (bool)obj.GetValue(ShowValuePopupProperty);
         }
 
-        public static void SetShowValuePopup(DependencyObject obj, MaterialIconType value)
+        public static void SetShowValuePopup(DependencyObject obj, bool value)
         {
             obj.SetValue(ShowValuePopupProperty, value);
         }
