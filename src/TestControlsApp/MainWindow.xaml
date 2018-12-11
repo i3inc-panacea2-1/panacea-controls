@@ -215,6 +215,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -224,6 +225,8 @@
                 <controls:WhitePicker Margin="20" Grid.Column="1" Name="whitePicker"></controls:WhitePicker>
                 <Border Margin="20" Width="50" Height="50" Grid.Row="1" Background="{Binding ElementName=colorPicker, Path=SelectedColorBrush}"></Border>
                 <controls:ColorPicker Margin="20" Grid.Column="1" Grid.Row="1" Name="colorPicker"></controls:ColorPicker>
+                <Border Margin="20" Width="50" Height="50" Grid.Row="2" Background="{Binding ElementName=colorSliderPicker, Path=SelectedColorBrush}"></Border>
+                <controls:ColorSliderPicker Margin="20" Grid.Column="1" Grid.Row="2" Name="colorSliderPicker"></controls:ColorSliderPicker>
             </Grid>
         </TabItem>
     </TabControl>
