@@ -24,6 +24,7 @@
                 Name="rgbSlider"
                 Margin="10, 10, 0, 0"
                 IsEnabled="true" Maximum="100" Minimum="1" 
+                ShowValuePopup ="False"
                 LostMouseCapture="RgbSlider_LostMouseCapture">
             <Slider.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
