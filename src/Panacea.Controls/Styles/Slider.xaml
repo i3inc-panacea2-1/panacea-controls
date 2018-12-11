@@ -570,7 +570,8 @@
         <ControlTemplate.Triggers>
             <Trigger SourceName="Thumb" Property="IsDragging" Value="True">
                 <Trigger.Setters>
-                    <Setter TargetName="Popup" Property="IsOpen" Value="True" />
+                    <Setter TargetName="Popup" Property="IsOpen" Value="{Binding Path=ShowValuePopup, RelativeSource={RelativeSource FindAncestor, AncestorType=Slider}}" />
+
                 </Trigger.Setters>
                 <Trigger.EnterActions>
                     <BeginStoryboard>

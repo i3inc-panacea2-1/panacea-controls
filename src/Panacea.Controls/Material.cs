@@ -220,5 +220,24 @@ namespace Panacea.Controls
                 new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.Inherits));
         #endregion
 
+        #region Slider
+        public static bool GetShowValuePopup(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(ShowValuePopupProperty);
+        }
+
+        public static void SetShowValuePopup(DependencyObject obj, MaterialIconType value)
+        {
+            obj.SetValue(ShowValuePopupProperty, value);
+        }
+
+        public static readonly DependencyProperty ShowValuePopupProperty =
+            DependencyProperty.RegisterAttached(
+                "ShowValuePopup",
+                typeof(bool),
+                typeof(Material),
+                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+        #endregion
+
     }
 }
