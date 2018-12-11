@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-            <TextBlock  Margin="10" Text="Temperature (1500-15000): "/>
+            <TextBlock  Margin="10" Text="Temperature (1500-15000 K): "/>
             <TextBlock Margin="10" Text="{Binding ElementName=temperatureSlider, Path=Value}"/>
         </StackPanel>
         <Slider Grid.Row="1"
