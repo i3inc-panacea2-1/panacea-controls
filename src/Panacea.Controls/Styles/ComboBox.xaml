@@ -323,9 +323,7 @@
                         </Trigger>
 
 
-                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                            <Setter Property="IsDropDownOpen" Value="True" />
-                        </Trigger>
+                        
 
 
                         <Trigger Property="Validation.HasError" Value="True">
