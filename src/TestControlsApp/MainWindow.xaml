@@ -1,4 +1,4 @@
-﻿<controls:PanaceaWindow
+﻿<Window
     x:Class="TestControlsApp.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -57,31 +57,33 @@
             </controls:ResizablePanel>
         </TabItem>
         <TabItem Header="Buttons">
-            <StackPanel>
-                <WrapPanel Margin="0,20,0,0">
-                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
-                    <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" />
-                    <Button>Text Button</Button>
-                    <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
-                    <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
+            <controls:Card Margin="10" Padding="10">
+                <StackPanel>
+                    <WrapPanel Margin="0,0,0,0">
+                        <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
+                        <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" />
+                        <Button>Text Button</Button>
+                        <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
+                        <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
 
-                    <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
-                    <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
-                    <ToggleButton>Toggle Button</ToggleButton>
+                        <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
+                        <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
+                        <ToggleButton>Toggle Button</ToggleButton>
 
 
-                </WrapPanel>
-                <WrapPanel>
-                    <controls:ImageButton
-                        x:Name="imgKeyboard"
-                        Width="60"
-                        Focusable="False"
-                        FontSize="10"
-                        Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
-                        Text="Test"
-                        TextVisibility="Visible" />
-                </WrapPanel>
-            </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <controls:ImageButton
+                            x:Name="imgKeyboard"
+                            Width="60"
+                            Focusable="False"
+                            FontSize="10"
+                            Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
+                            Text="Test"
+                            TextVisibility="Visible" />
+                    </WrapPanel>
+                </StackPanel>
+            </controls:Card>
         </TabItem>
         <TabItem Header="Textbox">
             <Grid>
@@ -159,10 +161,10 @@
                         <ComboBox
                             Name="Combo2"
                             Width="400"
-                            IsEditable="True"
                             controls:Material.Hint="This is a small hint"
                             controls:Material.Label="Test"
-                            DisplayMemberPath="NativeName" />
+                            DisplayMemberPath="NativeName"
+                            IsEditable="True" />
 
                     </WrapPanel>
                     <WrapPanel Margin="5" TextElement.FontSize="25">
@@ -187,7 +189,6 @@
                 </ScrollViewer.Resources>
                 <StackPanel>
                     <Slider
-                        
                         Margin="10"
                         VerticalAlignment="Center"
                         controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource Converter}}"
@@ -214,21 +215,46 @@
         <TabItem Header="Color Pickers">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Border Margin="20" Width="50" Height="50" Background="{Binding ElementName=whitePicker, Path=SelectedColorBrush}"></Border>
-                <controls:WhitePicker Margin="20" Grid.Column="1" Name="whitePicker"></controls:WhitePicker>
-                <Border Margin="20" Width="50" Height="50" Grid.Row="1" Background="{Binding ElementName=colorPicker, Path=SelectedColorBrush}"></Border>
-                <controls:ColorPicker Margin="20" Grid.Column="1" Grid.Row="1" Name="colorPicker"></controls:ColorPicker>
-                <Border Margin="20" Width="50" Height="50" Grid.Row="2" Background="{Binding ElementName=colorSliderPicker, Path=SelectedColorBrush}"></Border>
-                <controls:ColorSliderPicker Margin="20" Grid.Column="1" Grid.Row="2" Name="colorSliderPicker"></controls:ColorSliderPicker>
+                <Border
+                    Width="50"
+                    Height="50"
+                    Margin="20"
+                    Background="{Binding ElementName=whitePicker, Path=SelectedColorBrush}" />
+                <controls:WhitePicker
+                    Name="whitePicker"
+                    Grid.Column="1"
+                    Margin="20" />
+                <Border
+                    Grid.Row="1"
+                    Width="50"
+                    Height="50"
+                    Margin="20"
+                    Background="{Binding ElementName=colorPicker, Path=SelectedColorBrush}" />
+                <controls:ColorPicker
+                    Name="colorPicker"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20" />
+                <Border
+                    Grid.Row="2"
+                    Width="50"
+                    Height="50"
+                    Margin="20"
+                    Background="{Binding ElementName=colorSliderPicker, Path=SelectedColorBrush}" />
+                <controls:ColorSliderPicker
+                    Name="colorSliderPicker"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="20" />
             </Grid>
         </TabItem>
     </TabControl>
-</controls:PanaceaWindow>
+</Window>
