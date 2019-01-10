@@ -12,5 +12,6 @@
         <ResourceDictionary Source="Slider.xaml" />
         <ResourceDictionary Source="ComboBox.xaml" />
         <ResourceDictionary Source="Scrollbar.xaml" />
+        <ResourceDictionary Source="ListView.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

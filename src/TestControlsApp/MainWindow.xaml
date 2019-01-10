@@ -256,5 +256,25 @@
                     Margin="20" />
             </Grid>
         </TabItem>
+        <TabItem Header="List">
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding Key}"
+                                    Header="Name" />
+                        <GridViewColumn
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding Value}"
+                                    Header="Value" />
+                    </GridView>
+                    
+                </ListView.View>
+                <ListView.Items>
+                    <local:SampleListViewItem Key="Test" Value="Value"/>
+                </ListView.Items>
+            </ListView>
+        </TabItem>
     </TabControl>
 </Window>
