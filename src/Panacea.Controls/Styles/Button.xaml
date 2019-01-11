@@ -51,7 +51,8 @@
                                         FontSize="{TemplateBinding FontSize}"
                                         Foreground="{TemplateBinding Foreground}"
                                         Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
-                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
+                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" 
+                                        Height="{Binding ElementName=HeightControl, Path=ActualHeight}"/>
                                     <Border Grid.Column="1" Margin="6,0,0,0">
                                         <Border.Visibility>
                                             <MultiBinding Converter="{StaticResource ButtonSpaceVisibilityConverter}">
@@ -60,6 +61,12 @@
                                             </MultiBinding>
                                         </Border.Visibility>
                                     </Border>
+                                    <TextBlock Text="&#8203;" 
+                                               Grid.Column="2" 
+                                               Name="HeightControl"
+                                               VerticalAlignment="Center">
+                                        
+                                    </TextBlock>
                                     <ContentPresenter
                                         Name="PART_Content"
                                         Grid.Column="2"

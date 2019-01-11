@@ -55,6 +55,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\ButtonsExample.xaml.cs">
+      <DependentUpon>ButtonsExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ColorPickerExample.xaml.cs">
+      <DependentUpon>ColorPickerExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListExample.xaml.cs">
+      <DependentUpon>ListExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResizableExample.xaml.cs">
+      <DependentUpon>ResizableExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderExample.xaml.cs">
+      <DependentUpon>SliderExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TextboxExample.xaml.cs">
+      <DependentUpon>TextboxExample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleListViewItem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -69,6 +87,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ButtonsExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ColorPickerExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ResizableExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SliderExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TextboxExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NumericValidationRule.cs" />

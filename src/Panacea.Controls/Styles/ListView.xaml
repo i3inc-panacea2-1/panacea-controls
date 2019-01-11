@@ -20,6 +20,7 @@
     </Style>
     <Style TargetType="ListView">
         <Setter Property="Background" Value="White" />
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="ListViewItem">

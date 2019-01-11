@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="TestControlsApp.Pages.SliderExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestControlsApp.Pages"
+             xmlns:controls="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
+             xmlns:local1="clr-namespace:TestControlsApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer.Resources>
+            <local1:ExampleLabelConverter x:Key="Converter" />
+        </ScrollViewer.Resources>
+        <StackPanel>
+            <Slider
+                        Margin="10"
+                        VerticalAlignment="Center"
+                        controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource Converter}}"
+                        LargeChange="10000"
+                        Maximum="1000000"
+                        SmallChange="1000" />
+            <WrapPanel Width="10000" Height="1000">
+                <Slider
+                            Width="200"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            LargeChange="10000"
+                            Maximum="1000000"
+                            SmallChange="1000" />
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

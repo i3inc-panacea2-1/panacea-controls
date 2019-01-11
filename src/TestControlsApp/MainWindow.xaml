@@ -6,275 +6,57 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TestControlsApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:TestControlsApp.Pages"
     Name="Main"
     Title="MainWindow"
     FontSize="16"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="#f6f6f6">
+    <Window.Resources>
+        <Style TargetType="controls:Card">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </Window.Resources>
     <TabControl controls:Material.HighlightEnabled="True">
+       
         <TabItem Header="Resizable">
-            <controls:ResizablePanel>
-                <Button
-                    Margin="20"
-                    Click="Toast_Click"
-                    Content="Toast" />
-                <Button
-                    Margin="20"
-                    Click="Dialog_Click"
-                    Content="Dialog" />
-                <Button
-                    Margin="20"
-                    Click="Toast_Click"
-                    Content="Toast" />
-                <Button
-                    Margin="20"
-                    Click="Dialog_Click2"
-                    Content="Dialog" />
-                <Button
-                    Margin="20"
-                    Click="Toast_Click"
-                    Content="Toast" />
-                <Button
-                    Margin="20"
-                    Click="Dialog_Click"
-                    Content="Dialog" />
-                <Button
-                    Margin="20"
-                    Click="Toast_Click"
-                    Content="Toast" />
-                <Button
-                    Margin="20"
-                    Click="Dialog_Click"
-                    Content="Dialog" />
-                <Button
-                    Margin="20"
-                    Click="Toast_Click"
-                    Content="Toast" />
-                <Button
-                    Margin="20"
-                    Click="Dialog_Click"
-                    Content="Dialog" />
-
-            </controls:ResizablePanel>
+            <controls:Card>
+                <pages:ResizableExample/>
+            </controls:Card>
         </TabItem>
         <TabItem Header="Buttons">
-            <controls:Card Margin="10" Padding="10">
-                <StackPanel>
-                    <WrapPanel Margin="0,0,0,0">
-                        <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}">Primary Button</Button>
-                        <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" />
-                        <Button>Text Button</Button>
-                        <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
-                        <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
-
-                        <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
-                        <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
-                        <ToggleButton>Toggle Button</ToggleButton>
-
-
-                    </WrapPanel>
-                    <WrapPanel>
-                        <controls:ImageButton
-                            x:Name="imgKeyboard"
-                            Width="60"
-                            Focusable="False"
-                            FontSize="10"
-                            Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
-                            Text="Test"
-                            TextVisibility="Visible" />
-                    </WrapPanel>
-                </StackPanel>
+            <controls:Card>
+                <pages:ButtonsExample/>
             </controls:Card>
         </TabItem>
         <TabItem Header="Textbox">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Border
-                    Grid.Row="0"
-                    Padding="10"
-                    Background="CornflowerBlue">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox
-                            HorizontalAlignment="Stretch"
-                            controls:Material.Label="This is a very long label aaa ooo"
-                            Style="{StaticResource BarTextBox}" />
-
-                        <Button
-                            Grid.Column="1"
-                            HorizontalAlignment="Center"
-                            VerticalContentAlignment="Center">
-                            <Viewbox>
-                                <Canvas Width="24" Height="24">
-                                    <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="White" />
-                                </Canvas>
-                            </Viewbox>
-                        </Button>
-                    </Grid>
-
-                </Border>
-                <StackPanel Grid.Row="1">
-                    <WrapPanel Margin="5" TextElement.FontSize="12">
-                        <TextBox
-                            Width="200"
-                            controls:Material.Hint="This is a small hint"
-                            controls:Material.Label="Test" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                    </WrapPanel>
-                    <WrapPanel Margin="5">
-                        <TextBox
-                            Width="200"
-                            controls:Material.Hint="hint here"
-                            controls:Material.Label="Test" />
-                        <TextBox
-                            xmlns:system="clr-namespace:System;assembly=mscorlib"
-                            Width="200"
-                            controls:Material.Label="Validation">
-                            <TextBox.Text>
-                                <Binding
-                                    ConverterParameter="Int32"
-                                    ElementName="Main"
-                                    Mode="TwoWay"
-                                    NotifyOnValidationError="True"
-                                    Path="ValidatedText"
-                                    UpdateSourceTrigger="PropertyChanged"
-                                    ValidatesOnDataErrors="True"
-                                    ValidatesOnNotifyDataErrors="True">
-                                    <Binding.ValidationRules>
-                                        <local:NumericValidationRule ValidatesOnTargetUpdated="False" ValidationType="{x:Type system:Int32}" />
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <ComboBox
-                            Name="Combo"
-                            Width="400"
-                            controls:Material.Hint="This is a small hint"
-                            controls:Material.Label="Test"
-                            DisplayMemberPath="NativeName" />
-                        <ComboBox
-                            Name="Combo2"
-                            Width="400"
-                            controls:Material.Hint="This is a small hint"
-                            controls:Material.Label="Test"
-                            DisplayMemberPath="NativeName"
-                            IsEditable="True" />
-
-                    </WrapPanel>
-                    <WrapPanel Margin="5" TextElement.FontSize="25">
-                        <TextBox
-                            Width="200"
-                            controls:Material.Hint="This is a small hint"
-                            controls:Material.Label="Test" />
-                        <TextBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                        <PasswordBox Width="200" controls:Material.Label="This is a very long label aaa ooo" />
-                    </WrapPanel>
-                    <WrapPanel Margin="5" />
-                </StackPanel>
-
-            </Grid>
-
+            <controls:Card>
+            <pages:TextboxExample/>
+            </controls:Card>
         </TabItem>
 
         <TabItem Header="Sliders">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                <ScrollViewer.Resources>
-                    <local:ExampleLabelConverter x:Key="Converter" />
-                </ScrollViewer.Resources>
-                <StackPanel>
-                    <Slider
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        controls:Material.Label="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource Converter}}"
-                        LargeChange="10000"
-                        Maximum="1000000"
-                        SmallChange="1000" />
-                    <WrapPanel Width="10000" Height="1000">
-                        <Slider
-                            Width="200"
-                            Margin="10"
-                            VerticalAlignment="Center"
-                            LargeChange="10000"
-                            Maximum="1000000"
-                            SmallChange="1000" />
-                    </WrapPanel>
-                </StackPanel>
-            </ScrollViewer>
+            <controls:Card>
+                <pages:SliderExample/>
+            </controls:Card>
         </TabItem>
-        <TabItem Header="Random">
-            <StackPanel>
-                <controls:PagerControl CurrentPage="1" MaxPages="10" />
-            </StackPanel>
+        <TabItem Header="Pager">
+            <controls:Card>
+                <Grid  VerticalAlignment="Top">
+                    <controls:PagerControl CurrentPage="1" MaxPages="10"  VerticalAlignment="Top"/>
+                </Grid>
+            </controls:Card>
         </TabItem>
         <TabItem Header="Color Pickers">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Border
-                    Width="50"
-                    Height="50"
-                    Margin="20"
-                    Background="{Binding ElementName=whitePicker, Path=SelectedColorBrush}" />
-                <controls:WhitePicker
-                    Name="whitePicker"
-                    Grid.Column="1"
-                    Margin="20" />
-                <Border
-                    Grid.Row="1"
-                    Width="50"
-                    Height="50"
-                    Margin="20"
-                    Background="{Binding ElementName=colorPicker, Path=SelectedColorBrush}" />
-                <controls:ColorPicker
-                    Name="colorPicker"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="20" />
-                <Border
-                    Grid.Row="2"
-                    Width="50"
-                    Height="50"
-                    Margin="20"
-                    Background="{Binding ElementName=colorSliderPicker, Path=SelectedColorBrush}" />
-                <controls:ColorSliderPicker
-                    Name="colorSliderPicker"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="20" />
-            </Grid>
+            <controls:Card>
+                <pages:ColorPickerExample/>
+            </controls:Card>
         </TabItem>
         <TabItem Header="List">
-            <ListView>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn
-                                    Width="auto"
-                                    DisplayMemberBinding="{Binding Key}"
-                                    Header="Name" />
-                        <GridViewColumn
-                                    Width="auto"
-                                    DisplayMemberBinding="{Binding Value}"
-                                    Header="Value" />
-                    </GridView>
-                    
-                </ListView.View>
-                <ListView.Items>
-                    <local:SampleListViewItem Key="Test" Value="Value"/>
-                </ListView.Items>
-            </ListView>
+            <controls:Card>
+                <pages:ListExample/>
+            </controls:Card>
         </TabItem>
     </TabControl>
 </Window>

@@ -38,43 +38,11 @@ namespace TestControlsApp
         public MainWindow()
         {
             InitializeComponent();
-            dialog = new DialogService(this);
-            foreach (var info in CultureInfo.GetCultures(CultureTypes.AllCultures).Take(10))
-            {
-                Combo.Items.Add(info);
-                Combo2.Items.Add(info);
-            }
+            
+           
 
 
         }
-        IDialogService dialog;
-        private void Toast_Click(object sender, RoutedEventArgs e)
-        {
-            ToastNotification not = new ToastNotification("test message");
-            //not.Opacity = 0;
-            not.Show();
-        }
-
-        private void Dialog_Click(object sender, RoutedEventArgs e)
-        {
-            dialog.Show("Test Title",new TextBlock() { Text = "Test Messsage" }, null, null, "Yes",
-                 new RelayCommand((args) => {
-                    ToastNotification not = new ToastNotification("YES");
-                    not.Show();
-                }));
-        }
-
-        private void Dialog_Click2(object sender, RoutedEventArgs e)
-        {
-            dialog.Show("Test Title", new TextBlock() { Text = "Test Messsage" }, "No", new RelayCommand((args)=>
-            {
-                ToastNotification not = new ToastNotification("NO");
-                not.Show();
-            }), "Yes",
-                   new RelayCommand((args) => {
-                       ToastNotification not = new ToastNotification("YES");
-                       not.Show();
-                   }));
-        }
+        
     }
 }

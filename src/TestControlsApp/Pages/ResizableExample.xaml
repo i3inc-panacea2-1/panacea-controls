@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="TestControlsApp.Pages.ResizableExample"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestControlsApp.Pages"
+             xmlns:controls="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <controls:ResizablePanel>
+            <Button
+                    Margin="20"
+                    Click="Toast_Click"
+                    Content="Toast" />
+            <Button
+                    Margin="20"
+                    Click="Dialog_Click"
+                    Content="Dialog" />
+            <Button
+                    Margin="20"
+                    Click="Toast_Click"
+                    Content="Toast" />
+            <Button
+                    Margin="20"
+                    Click="Dialog_Click2"
+                    Content="Dialog" />
+            <Button
+                    Margin="20"
+                    Click="Toast_Click"
+                    Content="Toast" />
+            <Button
+                    Margin="20"
+                    Click="Dialog_Click"
+                    Content="Dialog" />
+            <Button
+                    Margin="20"
+                    Click="Toast_Click"
+                    Content="Toast" />
+            <Button
+                    Margin="20"
+                    Click="Dialog_Click"
+                    Content="Dialog" />
+            <Button
+                    Margin="20"
+                    Click="Toast_Click"
+                    Content="Toast" />
+            <Button
+                    Margin="20"
+                    Click="Dialog_Click"
+                    Content="Dialog" />
+
+        </controls:ResizablePanel>
+    </Grid>
+</UserControl>

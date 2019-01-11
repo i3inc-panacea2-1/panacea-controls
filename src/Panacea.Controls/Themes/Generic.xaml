@@ -215,7 +215,9 @@
                     <Border
                         Background="Transparent"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -227,7 +229,8 @@
                             <Button
                                 mi:Material.Icon="ic_skip_previous"
                                 Command="{TemplateBinding PreviousCommand}"
-                                Foreground="{TemplateBinding Background}">
+                                Foreground="{TemplateBinding Background}"
+                                VerticalAlignment="Center">
                                 Previous
                             </Button>
                             <ItemsControl Grid.Column="1" ItemsSource="{TemplateBinding LeftPart}">
@@ -238,7 +241,8 @@
                                             CommandParameter="{Binding}"
                                             Content="{Binding}"
                                             Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
-                                            Style="{DynamicResource OutlinedButton}" />
+                                            Style="{DynamicResource OutlinedButton}"
+                                            VerticalAlignment="Center"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
@@ -252,7 +256,8 @@
                                 Grid.Column="2"
                                 Background="{TemplateBinding Background}"
                                 Content="{TemplateBinding CurrentPage}"
-                                Style="{DynamicResource PrimaryButton}" />
+                                Style="{DynamicResource PrimaryButton}"
+                                VerticalAlignment="Center"/>
 
 
                             <ItemsControl Grid.Column="3" ItemsSource="{TemplateBinding RightPart}">
@@ -263,7 +268,8 @@
                                             CommandParameter="{Binding}"
                                             Content="{Binding}"
                                             Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
-                                            Style="{DynamicResource OutlinedButton}" />
+                                            Style="{DynamicResource OutlinedButton}"
+                                            VerticalAlignment="Center"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
@@ -277,7 +283,8 @@
                                 Margin="1"
                                 mi:Material.Icon="ic_skip_next"
                                 Command="{TemplateBinding NextCommand}"
-                                Foreground="{TemplateBinding Background}">
+                                Foreground="{TemplateBinding Background}"
+                                VerticalAlignment="Center">
                                 Next
                             </Button>
                         </Grid>

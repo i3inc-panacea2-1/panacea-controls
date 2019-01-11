@@ -122,24 +122,7 @@ namespace Panacea.Controls
             if (e.AddedItems != null && !e.AddedItems.Cast<object>().Any(c => c is TabItem)) return;
             UpdateLine(sender as Control);
             
-            var element = sender as Control;
-            if (element == null) return;
-            if (element.Template == null) return;
-            var presenter = element.Template.FindName("PART_SelectedContentHost", element) as FrameworkElement;
-            if (presenter == null) return;
-            presenter.Opacity = 0;
-            var animation2 = new DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = TimeSpan.FromMilliseconds(200)
-            };
-            
-            Storyboard.SetTarget(animation2, presenter);
-            Storyboard.SetTargetProperty(animation2, new PropertyPath(FrameworkElement.OpacityProperty));
-            Storyboard myColorAnimatedButtonStoryboard = new Storyboard();
-            myColorAnimatedButtonStoryboard.Children.Add(animation2);
-            myColorAnimatedButtonStoryboard.Begin();
+           
         }
 
 
