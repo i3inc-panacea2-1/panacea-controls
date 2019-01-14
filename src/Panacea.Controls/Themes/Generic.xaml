@@ -58,10 +58,12 @@
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="None"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RippleEffectDecorator}">
-                    <Grid Background="{TemplateBinding Background}">
+                    <Grid Background="{TemplateBinding Background}" >
                         <Canvas
                             x:Name="PART_grid"
                             HorizontalAlignment="Stretch"

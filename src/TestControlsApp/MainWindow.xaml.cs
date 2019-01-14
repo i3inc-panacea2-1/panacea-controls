@@ -1,6 +1,7 @@
 ﻿using Panacea.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,18 @@ namespace TestControlsApp
         public MainWindow()
         {
             InitializeComponent();
-            
-           
+
+            EventManager.RegisterClassHandler(
+                typeof(UIElement),
+                Keyboard.PreviewGotKeyboardFocusEvent,
+                (KeyboardFocusChangedEventHandler)OnPreviewGotKeyboardFocus);
 
 
+        }
+
+        void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            //Debug.WriteLine(e.NewFocus.GetType().Name);
         }
         
     }

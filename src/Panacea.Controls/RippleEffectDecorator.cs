@@ -52,7 +52,6 @@ namespace Panacea.Controls
 
             ellipse = GetTemplateChild("PART_ellipse") as Ellipse;
             grid = GetTemplateChild("PART_grid") as FrameworkElement;
-            grid.IsHitTestVisible = true;
             PreviewMouseDown += Grid_MouseDown;
             TouchDown += Grid_PreviewTouchDown;
             animation = grid.FindResource("PART_animation") as Storyboard;

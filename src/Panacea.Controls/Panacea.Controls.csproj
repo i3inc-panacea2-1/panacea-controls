@@ -54,6 +54,7 @@
     <Compile Include="ColorSliderPicker.xaml.cs">
       <DependentUpon>ColorSliderPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ComboboxLabelTransformationConverter.cs" />
     <Compile Include="WhitePicker.xaml.cs">
       <DependentUpon>WhitePicker.xaml</DependentUpon>
     </Compile>

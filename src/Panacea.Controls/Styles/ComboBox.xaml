@@ -9,7 +9,7 @@
     <converters:HintVisibilityConverter x:Key="hintVisibilityConverter" />
     <converters:TransformationConverter x:Key="TransformationConverter" />
     <converters:PercentageConverter x:Key="PercentageConverter" />
-
+    <converters:ComboboxLabelTransformationConverter x:Key="ComboboxLabelTransformationConverter" />
 
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
         <Border
@@ -26,6 +26,8 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="controls:Material.HighlightColor" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
@@ -59,40 +61,52 @@
                                     <TransformGroup>
                                         <TranslateTransform x:Name="TranslateTransform">
                                             <TranslateTransform.Y>
-                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                                                <MultiBinding Converter="{StaticResource ComboboxLabelTransformationConverter}">
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource TranslateMin}" />
                                                     <Binding ElementName="ContentSite" Path="ActualHeight" />
+                                                    <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="SelectedValue" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
                                                 </MultiBinding>
                                             </TranslateTransform.Y>
                                         </TranslateTransform>
                                         <ScaleTransform x:Name="ScaleTransform">
                                             <ScaleTransform.ScaleX>
-                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                                                <MultiBinding Converter="{StaticResource ComboboxLabelTransformationConverter}">
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
+                                                    <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="SelectedValue" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
                                                 </MultiBinding>
                                             </ScaleTransform.ScaleX>
                                             <ScaleTransform.ScaleY>
-                                                <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                                                <MultiBinding Converter="{StaticResource ComboboxLabelTransformationConverter}">
                                                     <Binding ElementName="HiddenBorder" Path="Width" />
                                                     <Binding Source="{StaticResource ScaleMin}" />
                                                     <Binding Source="{StaticResource ScaleMax}" />
+                                                    <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="SelectedValue" RelativeSource="{RelativeSource TemplatedParent}" />
+                                                    <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
                                                 </MultiBinding>
                                             </ScaleTransform.ScaleY>
                                         </ScaleTransform>
                                     </TransformGroup>
                                 </TextBlock.RenderTransform>
                                 <TextBlock.Opacity>
-                                    <MultiBinding Converter="{StaticResource TransformationConverter}">
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <MultiBinding Converter="{StaticResource ComboboxLabelTransformationConverter}">
                                         <Binding ElementName="HiddenBorder" Path="Width" />
                                         <Binding Source="{StaticResource ScaleMin}" />
                                         <Binding Source="{StaticResource ScaleMax}" />
+                                        <Binding Path="IsFocused" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="IsKeyboardFocusWithin" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="SelectedValue" RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Path="SelectedItem" RelativeSource="{RelativeSource TemplatedParent}" />
                                     </MultiBinding>
                                 </TextBlock.Opacity>
                             </TextBlock>
@@ -103,13 +117,13 @@
                                 Margin="0,1,0,0"
                                 Padding="0,0,0,-1"
                                 Focusable="False"
-                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                KeyboardNavigation.DirectionalNavigation="None" />
                             <Border Name="PopupContainer" Grid.Row="1">
                                 <Popup
                                     x:Name="Popup"
                                     Grid.Row="1"
                                     AllowsTransparency="True"
-                                    Focusable="False"
                                     IsOpen="{Binding IsDropDownOpen, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                     Placement="Bottom"
                                     PlacementTarget="{Binding PopupContainer}"
@@ -181,7 +195,8 @@
                             <Border
                                 Name="HiddenBorder"
                                 Width="1"
-                                Visibility="Collapsed" />
+                                Background="Black"
+                                Visibility="Collapsed"/>
                             <Border
                                 Name="NormalBorder"
                                 Grid.Row="2"
@@ -196,6 +211,7 @@
                                 VerticalAlignment="Top"
                                 BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
+                                
                                 Opacity="0" />
                             <TextBox
                                 x:Name="PART_EditableTextBox"
@@ -206,7 +222,6 @@
                                 VerticalAlignment="Center"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Focusable="True"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
                                 Style="{x:Null}"
                                 Visibility="Hidden" />
@@ -260,70 +275,51 @@
                         </VisualStateManager.VisualStateGroups>
                     </Border>
                     <ControlTemplate.Triggers>
-
-                        <Trigger Property="HasItems" Value="false">
-                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
-                        </Trigger>
-                        <Trigger Property="IsGrouping" Value="true">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
-                        </Trigger>
-                        <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
-                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
-                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
-                        </Trigger>
-
-                        <Trigger Property="IsFocused" Value="False">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ThicknessAnimation
-                                            Storyboard.TargetName="HighlightBorder"
-                                            Storyboard.TargetProperty="Margin"
-                                            To="50,-1,50,0"
-                                            Duration="0:0:0.2" />
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="HighlightBorder"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="0"
-                                            Duration="0:0:0.2" />
-                                        <DoubleAnimation
-                                            Storyboard.TargetName="HiddenBorder"
-                                            Storyboard.TargetProperty="Width"
-                                            To="1"
-                                            Duration="0:0:0.2" />
-
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                        </Trigger>
-
-                        <Trigger Property="IsFocused" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ThicknessAnimation
+                        <EventTrigger RoutedEvent="GotFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ThicknessAnimation
                                             Storyboard.TargetName="HighlightBorder"
                                             Storyboard.TargetProperty="Margin"
                                             To="0 -1 0 0"
                                             Duration="0:0:0.2" />
-                                        <DoubleAnimation
+                                    <DoubleAnimation
                                             Storyboard.TargetName="HighlightBorder"
                                             Storyboard.TargetProperty="Opacity"
                                             To="1"
                                             Duration="0:0:0.2" />
-                                        <DoubleAnimation
+                                    <DoubleAnimation
                                             Storyboard.TargetName="HiddenBorder"
                                             Storyboard.TargetProperty="Width"
                                             To="0"
                                             Duration="0:0:0.2" />
-
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                        </Trigger>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
 
 
-                        
+                        <EventTrigger RoutedEvent="LostFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ThicknessAnimation
+                                            Storyboard.TargetName="HighlightBorder"
+                                            Storyboard.TargetProperty="Margin"
+                                            To="50,-1,50,0"
+                                            Duration="0:0:0.2" />
+                                    <DoubleAnimation
+                                            Storyboard.TargetName="HighlightBorder"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0:0:0.2" />
+                                    <DoubleAnimation
+                                            Storyboard.TargetName="HiddenBorder"
+                                            Storyboard.TargetProperty="Width"
+                                            To="1"
+                                            Duration="0:0:0.2" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
 
 
                         <Trigger Property="Validation.HasError" Value="True">
@@ -336,6 +332,20 @@
                             <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=(controls:Material.HighlightColor)}" />
                             <Setter TargetName="ErrorText" Property="Text" Value="" />
                         </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="IsDropDownOpen" Value="true" />
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                        </Trigger>
+                        <Trigger SourceName="Popup" Property="AllowsTransparency" Value="true">
+                            <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0" />
+                        </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
