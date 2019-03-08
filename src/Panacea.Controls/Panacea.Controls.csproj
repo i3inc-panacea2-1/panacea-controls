@@ -55,6 +55,8 @@
       <DependentUpon>ColorSliderPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ComboboxLabelTransformationConverter.cs" />
+    <Compile Include="Converters\NotZeroConverter.cs" />
+    <Compile Include="Converters\StartPointConverter.cs" />
     <Compile Include="WhitePicker.xaml.cs">
       <DependentUpon>WhitePicker.xaml</DependentUpon>
     </Compile>
@@ -79,6 +81,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

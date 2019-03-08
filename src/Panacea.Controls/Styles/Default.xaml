@@ -13,5 +13,6 @@
         <ResourceDictionary Source="ComboBox.xaml" />
         <ResourceDictionary Source="Scrollbar.xaml" />
         <ResourceDictionary Source="ListView.xaml" />
+        <ResourceDictionary Source="ProgressBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

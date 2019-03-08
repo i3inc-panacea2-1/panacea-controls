@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Panacea.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,13 @@ namespace TestControlsApp.Pages
     {
         public ButtonsExample()
         {
+            TestAsyncCommand = new AsyncCommand(async (args) =>
+             {
+                 await Task.Delay(2000);
+             }, (args) => true);
             InitializeComponent();
         }
+
+        public IAsyncCommand TestAsyncCommand { get; set; }
     }
 }

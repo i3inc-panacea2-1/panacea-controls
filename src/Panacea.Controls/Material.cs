@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -16,6 +17,26 @@ namespace Panacea.Controls
 {
     public class Material
     {
+        #region Busy
+        public static string GetBusy(DependencyObject obj)
+        {
+            return (string)obj.GetValue(BusyProperty);
+        }
+
+        public static void SetBusy(DependencyObject obj, bool value)
+        {
+            obj.SetValue(BusyProperty, value);
+        }
+
+        public static readonly DependencyProperty BusyProperty =
+            DependencyProperty.RegisterAttached(
+                "Busy",
+                typeof(bool),
+                typeof(Material),
+                new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.None));
+
+        #endregion
+
         #region Label
         public static string GetLabel(DependencyObject obj)
         {
@@ -32,7 +53,7 @@ namespace Panacea.Controls
                 "Label",
                 typeof(string),
                 typeof(Material),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
 
         #endregion
 
@@ -52,7 +73,7 @@ namespace Panacea.Controls
                 "Hint",
                 typeof(string),
                 typeof(Material),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
         #endregion
 
         #region HighlightColor
@@ -200,7 +221,7 @@ namespace Panacea.Controls
                 "Icon",
                 typeof(MaterialIconType),
                 typeof(Material),
-                new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.Inherits));
+                new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.None));
         #endregion
 
         #region Slider
@@ -219,8 +240,92 @@ namespace Panacea.Controls
                 "ShowValuePopup",
                 typeof(bool),
                 typeof(Material),
-                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
+                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.None));
         #endregion
 
+
+        #region AsyncCommand
+        public static bool GetAsyncCommand(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(ShowValuePopupProperty);
+        }
+
+        public static void SetAsyncCommand(DependencyObject obj, IAsyncCommand value)
+        {
+            obj.SetValue(ShowValuePopupProperty, value);
+        }
+
+        public static readonly DependencyProperty AsyncCommandProperty =
+            DependencyProperty.RegisterAttached(
+                "AsyncCommand",
+                typeof(IAsyncCommand),
+                typeof(Material),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, OnAsyncCommandChanged));
+
+        private static void OnAsyncCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            
+            var button = d as Button;
+            if (button == null) return;
+            
+            button.Click -= Button_Click;
+            if (e.NewValue != null)
+            {
+                button.Click += Button_Click;
+            }
+        }
+
+        private static async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            button.PreviewMouseDown += Button_PreviewMouseDown;
+            button.PreviewMouseUp += Button_PreviewMouseUp;
+            button.SetValue(BusyProperty, true);
+            try
+            {
+                var asyncCommand = button.GetValue(AsyncCommandProperty) as IAsyncCommand;
+                await asyncCommand.Execute(button.CommandParameter);
+            }
+            finally
+            {
+                button.SetValue(BusyProperty, false);
+                button.PreviewMouseDown -= Button_PreviewMouseDown;
+                button.PreviewMouseUp -= Button_PreviewMouseUp;
+            }
+        }
+
+        private static void Button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private static void Button_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+        #endregion
+
+    }
+
+    public interface IAsyncCommand
+    {
+        bool CanExecute(object args);
+        Task Execute(object args);
+    }
+
+    public class AsyncCommand : IAsyncCommand
+    {
+        private readonly Func<object, Task> _execute;
+        private readonly Func<object, bool> _canExecute;
+
+        public AsyncCommand(Func<object,Task> execute, Func<object, bool> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        public bool CanExecute(object args) => _canExecute(args);
+
+        public Task Execute(object args) => _execute(args);
     }
 }

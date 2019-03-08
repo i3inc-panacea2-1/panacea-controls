@@ -34,53 +34,66 @@
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Background="Transparent">
-                                <Grid
-                                    Margin="{TemplateBinding Padding}"
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
+                                <Grid>
 
-                                    <controls:MaterialIcon
-                                        Margin="0,2,0,-2"
-                                        HorizontalAlignment="Right"
+                                    <ProgressBar
                                         VerticalAlignment="Center"
-                                        FontSize="{TemplateBinding FontSize}"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
-                                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" 
-                                        Height="{Binding ElementName=HeightControl, Path=ActualHeight}"/>
-                                    <Border Grid.Column="1" Margin="6,0,0,0">
-                                        <Border.Visibility>
-                                            <MultiBinding Converter="{StaticResource ButtonSpaceVisibilityConverter}">
-                                                <Binding Path="Content" RelativeSource="{RelativeSource AncestorType=Button}" />
-                                                <Binding Path="(controls:Material.Icon)" RelativeSource="{RelativeSource AncestorType=Button}" />
-                                            </MultiBinding>
-                                        </Border.Visibility>
-                                    </Border>
-                                    <TextBlock Text="&#8203;" 
-                                               Grid.Column="2" 
-                                               Name="HeightControl"
-                                               VerticalAlignment="Center">
-                                        
-                                    </TextBlock>
-                                    <ContentPresenter
-                                        Name="PART_Content"
-                                        Grid.Column="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        TextBlock.LineStackingStrategy="MaxHeight"
-                                        TextBlock.TextAlignment="Center">
-                                        <ContentPresenter.Resources>
-                                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
-                                                <Setter Property="Padding" Value="1,0,0,1" />
-                                            </Style>
-                                        </ContentPresenter.Resources>
-                                    </ContentPresenter>
+                                        HorizontalAlignment="Center"
+                                        Name="ProgressBar"
+                                        Foreground="{DynamicResource ColorPrimaryForeground}"
+                                        IsIndeterminate="True"
+                                        Visibility="Collapsed" />
+
+                                    <Grid
+                                        Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:MaterialIcon
+                                            x:Name="LeftIcon"
+                                            Height="{Binding ElementName=HeightControl, Path=ActualHeight}"
+                                            Margin="0,2,0,-2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            FontSize="{TemplateBinding FontSize}"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
+                                            Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
+                                        <Border Grid.Column="1" Margin="6,0,0,0">
+                                            <Border.Visibility>
+                                                <MultiBinding Converter="{StaticResource ButtonSpaceVisibilityConverter}">
+                                                    <Binding Path="Content" RelativeSource="{RelativeSource AncestorType=Button}" />
+                                                    <Binding Path="(controls:Material.Icon)" RelativeSource="{RelativeSource AncestorType=Button}" />
+                                                </MultiBinding>
+                                            </Border.Visibility>
+                                        </Border>
+
+                                        <TextBlock
+                                            Name="HeightControl"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Text="&#8203;" />
+                                        <ContentPresenter
+                                            Name="PART_Content"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            TextBlock.LineStackingStrategy="MaxHeight"
+                                            TextBlock.TextAlignment="Center">
+                                            <ContentPresenter.Resources>
+                                                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                                                    <Setter Property="Padding" Value="1,0,0,1" />
+                                                </Style>
+                                            </ContentPresenter.Resources>
+                                        </ContentPresenter>
+                                    </Grid>
                                 </Grid>
+
 
 
                             </Border>
@@ -89,6 +102,13 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border" Property="Opacity" Value=".3" />
+                        </Trigger>
+                        <Trigger Property="controls:Material.Busy" Value="True">
+                            <Setter TargetName="ProgressBar" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="LeftIcon" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="PART_Content" Property="Visibility" Value="Hidden" />
+
+
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
