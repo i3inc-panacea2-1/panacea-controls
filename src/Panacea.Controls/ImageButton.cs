@@ -19,7 +19,7 @@ new FrameworkPropertyMetadata(null));
         public static readonly DependencyProperty TextVisibilityProperty =
             DependencyProperty.Register("TextVisibility", typeof(Visibility),
                 typeof(ImageButton),
-                new FrameworkPropertyMetadata(Visibility.Collapsed));
+                new FrameworkPropertyMetadata(Visibility.Visible));
 
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(String),

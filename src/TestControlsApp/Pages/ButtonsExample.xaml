@@ -29,8 +29,7 @@
                             
                             Focusable="False"
                             controls:Material.Icon="3d_rotation"
-                            Text="Test"
-                            TextVisibility="Visible" />
+                            Text="Test" />
         </WrapPanel>
     </StackPanel>
 </UserControl>
