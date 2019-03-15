@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Panacea.Controls.Styles">
+    <Style TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="FontFamily" Value="pack://application:,,,/Panacea.Controls;component/Resources/Fonts/Noto/#Noto Sans" />
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

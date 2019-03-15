@@ -118,34 +118,8 @@
 
     <Style TargetType="{x:Type local:MaterialIcon}">
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:MaterialIcon}">
+        <Setter Property="FontFamily" Value="pack://application:,,,/Panacea.Controls;component/Resources/Fonts/MaterialIcons/#Material Icons"/>
 
-                    <Viewbox>
-                        <Canvas
-                            Width="24"
-                            Height="24"
-                            Background="{TemplateBinding Background}">
-                            <FrameworkElement.Resources>
-                                <Style TargetType="{x:Type Path}">
-                                    <Setter Property="Shape.Fill" Value="{Binding RelativeSource={RelativeSource AncestorType=local:MaterialIcon}, Path=Foreground}" />
-                                </Style>
-                                <Style TargetType="{x:Type Ellipse}">
-                                    <Setter Property="Shape.Fill" Value="{Binding RelativeSource={RelativeSource AncestorType=local:MaterialIcon}, Path=Foreground}" />
-                                </Style>
-                            </FrameworkElement.Resources>
-                            <ContentControl
-                                x:Name="PART_ContentControl"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding IconResource}" />
-                        </Canvas>
-                    </Viewbox>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
 
@@ -181,9 +155,9 @@
                                         <ColumnDefinition Width="4*" />
                                     </Grid.ColumnDefinitions>
                                     <local:MaterialIcon 
-                                        Margin="5"
+                                        Margin="5 5 5 0"
                                         Foreground="{TemplateBinding Foreground}"
-                                        Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:Material.Icon)}"
+                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:Material.Icon)}"
                                         Grid.Row="1"
                                         Grid.Column="1"/>
                                     <Image

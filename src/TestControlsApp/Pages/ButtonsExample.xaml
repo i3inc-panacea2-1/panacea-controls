@@ -9,9 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <WrapPanel Margin="0,0,0,0">
-            <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" 
+            <Button controls:Material.Icon="access_alarm" Style="{StaticResource PrimaryButton}" 
                     controls:Material.AsyncCommand="{Binding RelativeSource={RelativeSource AncestorType=local:ButtonsExample}, Path=TestAsyncCommand}">Primary Button</Button>
-            <Button controls:Material.Icon="ic_access_alarm" Style="{StaticResource PrimaryButton}" />
+            <Button controls:Material.Icon="access_alarm" Style="{StaticResource PrimaryButton}" />
             <Button>Text Button</Button>
             <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
             <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
@@ -24,10 +24,11 @@
         </WrapPanel>
         <WrapPanel>
             <controls:ImageButton
+                FontSize="40"
                             x:Name="imgKeyboard"
-                            Width="60"
+                            
                             Focusable="False"
-                            controls:Material.Icon="ic_3d_rotation"
+                            controls:Material.Icon="3d_rotation"
                             Text="Test"
                             TextVisibility="Visible" />
         </WrapPanel>

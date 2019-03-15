@@ -3,9 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Panacea.Controls"
     xmlns:converters="clr-namespace:Panacea.Controls.Converters">
-
-    <converters:MaterialIconToVisibilityConverter x:Key="MaterialIconToVisibilityConverter" />
-    <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter" />
+    <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter"/>
     <Style TargetType="Button">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -16,7 +14,6 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Typography.Capitals" Value="AllSmallCaps" />
         <Setter Property="controls:RippleEffectDecorator.HighlightBackground" Value="{DynamicResource ColorBackgroundHover}" />
-        <Setter Property="controls:Material.Icon" Value="ic_none" />
         <Setter Property="Foreground" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Margin" Value="2" />
         <Setter Property="TextBlock.LineStackingStrategy" Value="BlockLineHeight" />
@@ -37,9 +34,9 @@
                                 <Grid>
 
                                     <ProgressBar
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
                                         Name="ProgressBar"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
                                         Foreground="{DynamicResource ColorPrimaryForeground}"
                                         IsIndeterminate="True"
                                         Visibility="Collapsed" />
@@ -56,14 +53,14 @@
 
                                         <controls:MaterialIcon
                                             x:Name="LeftIcon"
-                                            Height="{Binding ElementName=HeightControl, Path=ActualHeight}"
+                                           
                                             Margin="0,2,0,-2"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             FontSize="{TemplateBinding FontSize}"
                                             Foreground="{TemplateBinding Foreground}"
-                                            Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
-                                            Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon), Converter={StaticResource MaterialIconToVisibilityConverter}}" />
+                                            Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
+                                            />
                                         <Border Grid.Column="1" Margin="6,0,0,0">
                                             <Border.Visibility>
                                                 <MultiBinding Converter="{StaticResource ButtonSpaceVisibilityConverter}">

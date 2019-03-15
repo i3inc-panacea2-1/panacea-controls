@@ -57,6 +57,7 @@
       <DependentUpon>ColorSliderPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ComboboxLabelTransformationConverter.cs" />
+    <Compile Include="Converters\MaterialIconToVisibilityConverter.cs" />
     <Compile Include="Converters\NotZeroConverter.cs" />
     <Compile Include="Converters\StartPointConverter.cs" />
     <Compile Include="CustomThumb.cs" />
@@ -74,10 +75,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MaterialIconResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,7 +151,6 @@
     </Compile>
     <Compile Include="ComboboxPopup.cs" />
     <Compile Include="Converters\HintVisibilityConverter.cs" />
-    <Compile Include="Converters\MaterialIconToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentageConverter.cs" />
     <Compile Include="Converters\SliderPinLeftCalculator.cs" />
     <Compile Include="Converters\StringToRangeConverter.cs" />
@@ -161,7 +161,6 @@
     <Compile Include="IDialogService.cs" />
     <Compile Include="ImageButton.cs" />
     <Compile Include="MaterialIcon.cs" />
-    <Compile Include="MaterialIconType.cs" />
     <Compile Include="Mvvm.cs" />
     <Compile Include="PagerControl.cs" />
     <Compile Include="ResizablePanel.cs" />
@@ -207,6 +206,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Noto\NotoSans-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSans-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSans-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSans-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSansUI-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSansUI-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSansUI-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Noto\NotoSansUI-Regular.ttf" />
+    <Resource Include="Resources\Fonts\MaterialIcons\MaterialIcons-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

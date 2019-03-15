@@ -15,65 +15,37 @@ using System.Windows.Shapes;
 
 namespace Panacea.Controls
 {
-    public partial class MaterialIcon : Control
+    public partial class MaterialIcon : TextBlock
     {
         static MaterialIcon()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MaterialIcon), new FrameworkPropertyMetadata(typeof(MaterialIcon)));
+            TextProperty.OverrideMetadata(typeof(MaterialIcon), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnTextChanged)));
         }
 
-        
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register(nameof(Icon), typeof(MaterialIconType), typeof(MaterialIcon), new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(MaterialIcon.OnIconChanged)));
-        public static readonly DependencyProperty IconResourceProperty = DependencyProperty.Register(nameof(IconResource), typeof(object), typeof(MaterialIcon), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var element = d as MaterialIcon;
+            element.IconVisibility = element.Text == null ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        public Visibility IconVisibility
+        {
+            get { return (Visibility)GetValue(IconVisibilityProperty); }
+            private set { SetValue(IconVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IconVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconVisibilityProperty =
+            DependencyProperty.Register("IconVisibility", typeof(Visibility), typeof(MaterialIcon), new PropertyMetadata(Visibility.Collapsed));
+
+
 
         public MaterialIcon()
         {
 
         }
-
-        private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            MaterialIconType newValue = (MaterialIconType)e.NewValue;
-            if (newValue == MaterialIconType.ic_none)
-                return;
-            string str = newValue.ToString();
-            object resource = ResManager.Resources[str];
-            d.SetValue(IconResourceProperty, resource);
-        }
-
-        public MaterialIconType Icon
-        {
-            get
-            {
-                return (MaterialIconType)GetValue(IconProperty);
-            }
-            set
-            {
-                SetValue(IconProperty, value);
-            }
-        }
-
-        public object IconResource
-        {
-            get
-            {
-                return GetValue(IconResourceProperty);
-            }
-            set
-            {
-                SetValue(IconResourceProperty, value);
-            }
-        }
+       
     }
-
-
-    internal static class ResManager
-    {
-        public static ResourceDictionary Resources = new ResourceDictionary();
-
-        static ResManager()
-        {
-            Resources.Source = new Uri("pack://application:,,,/Panacea.Controls;component/MaterialIconResources.xaml", UriKind.Absolute);
-        }
-    }
+    
 }

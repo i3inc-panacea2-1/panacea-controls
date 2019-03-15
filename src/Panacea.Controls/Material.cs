@@ -206,12 +206,12 @@ namespace Panacea.Controls
         #endregion
 
         #region Icon
-        public static MaterialIconType GetIcon(DependencyObject obj)
+        public static string GetIcon(DependencyObject obj)
         {
-            return (MaterialIconType)obj.GetValue(IconProperty);
+            return (string)obj.GetValue(IconProperty);
         }
 
-        public static void SetIcon(DependencyObject obj, MaterialIconType value)
+        public static void SetIcon(DependencyObject obj, string value)
         {
             obj.SetValue(IconProperty, value);
         }
@@ -219,9 +219,9 @@ namespace Panacea.Controls
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.RegisterAttached(
                 "Icon",
-                typeof(MaterialIconType),
+                typeof(string),
                 typeof(Material),
-                new FrameworkPropertyMetadata(MaterialIconType.ic_none, FrameworkPropertyMetadataOptions.None));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
         #endregion
 
         #region Slider
