@@ -27,8 +27,7 @@
                             x:Name="imgKeyboard"
                             Width="60"
                             Focusable="False"
-                            FontSize="10"
-                            Image="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"
+                            controls:Material.Icon="ic_3d_rotation"
                             Text="Test"
                             TextVisibility="Visible" />
         </WrapPanel>

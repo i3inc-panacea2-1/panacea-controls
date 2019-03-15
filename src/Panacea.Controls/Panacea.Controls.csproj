@@ -8,7 +8,7 @@
     <OutputType>library</OutputType>
     <RootNamespace>Panacea.Controls</RootNamespace>
     <AssemblyName>Panacea.Controls</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -50,6 +50,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\ScrollViewerBehaviors.cs" />
+    <Compile Include="BindableScrollBar.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="ColorSliderPicker.xaml.cs">
       <DependentUpon>ColorSliderPicker.xaml</DependentUpon>
@@ -57,6 +59,9 @@
     <Compile Include="Converters\ComboboxLabelTransformationConverter.cs" />
     <Compile Include="Converters\NotZeroConverter.cs" />
     <Compile Include="Converters\StartPointConverter.cs" />
+    <Compile Include="CustomThumb.cs" />
+    <Compile Include="ExtendedSlider.cs" />
+    <Compile Include="VerticalTickBar.cs" />
     <Compile Include="WhitePicker.xaml.cs">
       <DependentUpon>WhitePicker.xaml</DependentUpon>
     </Compile>
