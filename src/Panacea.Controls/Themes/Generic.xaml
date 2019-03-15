@@ -138,7 +138,7 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <mi:RippleEffectDecorator>
-                            <Grid>
+                            <Grid Margin="{TemplateBinding Padding}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition Height="auto" />
