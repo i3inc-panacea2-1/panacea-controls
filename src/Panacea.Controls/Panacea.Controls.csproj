@@ -62,6 +62,9 @@
     <Compile Include="Converters\StartPointConverter.cs" />
     <Compile Include="CustomThumb.cs" />
     <Compile Include="ExtendedSlider.cs" />
+    <Compile Include="FixedRatioControl.cs" />
+    <Compile Include="RatingControl.cs" />
+    <Compile Include="StarControl.cs" />
     <Compile Include="VerticalTickBar.cs" />
     <Compile Include="WhitePicker.xaml.cs">
       <DependentUpon>WhitePicker.xaml</DependentUpon>
@@ -77,10 +80,6 @@
     <Page Include="DialogBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SplashScreenWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\ListView.xaml">
       <SubType>Designer</SubType>
@@ -138,9 +137,41 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ExtendedSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ImageButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MaterialIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\PagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\RatingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\RippleEffectDecorator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\StarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToastNotification.xaml">
       <SubType>Designer</SubType>
@@ -171,10 +202,6 @@
     <Compile Include="PanaceaWindow.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="RippleEffectDecorator.cs" />
-    <Compile Include="SplashScreenControl.cs" />
-    <Compile Include="SplashScreenWindow.xaml.cs">
-      <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Material.cs" />
     <Compile Include="ToastNotification.xaml.cs">
       <DependentUpon>ToastNotification.xaml</DependentUpon>
@@ -206,6 +233,18 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Resource Include="Resources\Fonts\Noto\NotoSans-Bold.ttf" />
     <Resource Include="Resources\Fonts\Noto\NotoSans-BoldItalic.ttf" />
     <Resource Include="Resources\Fonts\Noto\NotoSans-Italic.ttf" />

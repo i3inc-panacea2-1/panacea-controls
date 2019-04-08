@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Panacea.Controls">
+    <Style TargetType="{x:Type local:StarControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:StarControl">
+                    <Grid x:Name="gdStar" Background="{TemplateBinding BackgroundColor}">
+
+                        <Path
+                            Name="starForeground"
+                            Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6,9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0"
+                            Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=StarForegroundActiveColor}"
+                            Stroke="Transparent"
+                            StrokeThickness="1" />
+
+                        <Rectangle
+                            x:Name="mask"
+                            Margin="{TemplateBinding StarMargin}"
+                            Fill="{TemplateBinding BackgroundColor}" />
+
+                        <Path
+                            Name="starOutline"
+                            Data="M 5,0 L 4,4 L 0,4 L 3,7 L 2,11 L 5,9 L 6,9 L 9,11 L 8,7 L 11,4 L 7,4 L 6,0"
+                            Fill="Transparent"
+                            Stroke="{TemplateBinding StarOutlineColor}"
+                            StrokeThickness="1" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -4,7 +4,10 @@
     xmlns:local="clr-namespace:Panacea.Controls.Styles">
     <Style TargetType="{x:Type TextBlock}">
         <Style.Setters>
-            <Setter Property="FontFamily" Value="pack://application:,,,/Panacea.Controls;component/Resources/Fonts/Noto/#Noto Sans" />
+            <Setter Property="FontFamily" Value="/Panacea.Controls;component/Resources/Fonts/Roboto/#Roboto" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>

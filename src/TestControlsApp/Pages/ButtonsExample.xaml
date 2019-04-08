@@ -26,7 +26,7 @@
             <Button Style="{StaticResource OutlinedSecondaryButton}">Outlined Secondary Button</Button>
             <Button Style="{StaticResource SecondaryButton}">Secondary Button</Button>
             <ToggleButton>Toggle Button</ToggleButton>
-
+            <controls:RatingControl Value="4" StarForegroundColor="Gold" BackgroundColor="Black"></controls:RatingControl>
 
         </WrapPanel>
         <WrapPanel>
