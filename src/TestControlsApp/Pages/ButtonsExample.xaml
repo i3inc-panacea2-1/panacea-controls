@@ -36,7 +36,9 @@
                 controls:Material.Icon="3d_rotation"
                 Focusable="False"
                 FontSize="12"
-                Text="Test">
+                Text="Test"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
                 <controls:ImageButton.Resources>
                     <Style TargetType="controls:MaterialIcon">
                         <Style.Setters>

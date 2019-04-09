@@ -59,7 +59,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="{TemplateBinding FontSize}"
                                             Foreground="{TemplateBinding Foreground}"
-                                            Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
+                                            Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
                                             />
                                         <Border Grid.Column="1" Margin="6,0,0,0">
                                             <Border.Visibility>

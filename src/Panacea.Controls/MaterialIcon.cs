@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 
 namespace Panacea.Controls
 {
-    public partial class MaterialIcon : TextBlock
+    public partial class MaterialIcon : Control
     {
         static MaterialIcon()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MaterialIcon), new FrameworkPropertyMetadata(typeof(MaterialIcon)));
-            TextProperty.OverrideMetadata(typeof(MaterialIcon), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnTextChanged)));
+            //TextProperty.OverrideMetadata(typeof(MaterialIcon), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnTextChanged)));
         }
 
         private static void OnTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var element = d as MaterialIcon;
-            element.IconVisibility = element.Text == null ? Visibility.Collapsed : Visibility.Visible;
+            element.IconVisibility = element.Icon == null ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public Visibility IconVisibility
@@ -38,6 +38,19 @@ namespace Panacea.Controls
         // Using a DependencyProperty as the backing store for IconVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconVisibilityProperty =
             DependencyProperty.Register("IconVisibility", typeof(Visibility), typeof(MaterialIcon), new PropertyMetadata(Visibility.Collapsed));
+
+
+
+
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(string), typeof(MaterialIcon), new PropertyMetadata("none"));
 
 
 

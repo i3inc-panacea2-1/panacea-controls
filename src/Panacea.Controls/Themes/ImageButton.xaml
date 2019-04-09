@@ -37,7 +37,7 @@
                                         Grid.Column="1"
                                         Margin="5,5,5,0"
                                         Foreground="{TemplateBinding Foreground}"
-                                        Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:Material.Icon)}" />
+                                        Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(local:Material.Icon)}" />
                                     <Image
                                         Grid.Row="1"
                                         Grid.Column="1"

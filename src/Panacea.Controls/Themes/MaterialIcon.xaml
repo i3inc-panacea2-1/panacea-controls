@@ -5,5 +5,14 @@
     <Style TargetType="{x:Type local:MaterialIcon}">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="/Panacea.Controls;component/Resources/Fonts/MaterialIcons/#Material Icons" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MaterialIcon">
+                    <Viewbox Stretch="Uniform">
+                        <TextBlock FontFamily="{TemplateBinding FontFamily}" Text="{TemplateBinding Icon}"/>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
