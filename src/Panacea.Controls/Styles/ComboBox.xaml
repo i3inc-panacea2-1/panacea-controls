@@ -196,7 +196,7 @@
                                 Name="HiddenBorder"
                                 Width="1"
                                 Background="Black"
-                                Visibility="Collapsed"/>
+                                Visibility="Collapsed" />
                             <Border
                                 Name="NormalBorder"
                                 Grid.Row="2"
@@ -211,7 +211,6 @@
                                 VerticalAlignment="Top"
                                 BorderBrush="{TemplateBinding controls:Material.HighlightColor}"
                                 BorderThickness="0,0,0,2"
-                                
                                 Opacity="0" />
                             <TextBox
                                 x:Name="PART_EditableTextBox"
@@ -279,20 +278,20 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ThicknessAnimation
-                                            Storyboard.TargetName="HighlightBorder"
-                                            Storyboard.TargetProperty="Margin"
-                                            To="0 -1 0 0"
-                                            Duration="0:0:0.2" />
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Margin"
+                                        To="0 -1 0 0"
+                                        Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                            Storyboard.TargetName="HighlightBorder"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="1"
-                                            Duration="0:0:0.2" />
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="1"
+                                        Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                            Storyboard.TargetName="HiddenBorder"
-                                            Storyboard.TargetProperty="Width"
-                                            To="0"
-                                            Duration="0:0:0.2" />
+                                        Storyboard.TargetName="HiddenBorder"
+                                        Storyboard.TargetProperty="Width"
+                                        To="0"
+                                        Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -302,20 +301,20 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ThicknessAnimation
-                                            Storyboard.TargetName="HighlightBorder"
-                                            Storyboard.TargetProperty="Margin"
-                                            To="50,-1,50,0"
-                                            Duration="0:0:0.2" />
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Margin"
+                                        To="50,-1,50,0"
+                                        Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                            Storyboard.TargetName="HighlightBorder"
-                                            Storyboard.TargetProperty="Opacity"
-                                            To="0"
-                                            Duration="0:0:0.2" />
+                                        Storyboard.TargetName="HighlightBorder"
+                                        Storyboard.TargetProperty="Opacity"
+                                        To="0"
+                                        Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                            Storyboard.TargetName="HiddenBorder"
-                                            Storyboard.TargetProperty="Width"
-                                            To="1"
-                                            Duration="0:0:0.2" />
+                                        Storyboard.TargetName="HiddenBorder"
+                                        Storyboard.TargetProperty="Width"
+                                        To="1"
+                                        Duration="0:0:0.2" />
 
                                 </Storyboard>
                             </BeginStoryboard>
@@ -332,9 +331,9 @@
                             <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=(controls:Material.HighlightColor)}" />
                             <Setter TargetName="ErrorText" Property="Text" Value="" />
                         </Trigger>
-                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                        <!--<Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter Property="IsDropDownOpen" Value="true" />
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="HasItems" Value="false">
                             <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95" />
                         </Trigger>
