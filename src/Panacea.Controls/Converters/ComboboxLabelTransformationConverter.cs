@@ -26,7 +26,6 @@ namespace Panacea.Controls.Converters
             var newMinimum = (double)values[1];
             var newMaximum = (double)values[2];
             var res = currentZeroToOneValue * (newMaximum - newMinimum) / 1 + newMinimum;
-            Debug.WriteLine(res);
             return res;
 
         }

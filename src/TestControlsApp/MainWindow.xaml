@@ -9,7 +9,7 @@
     xmlns:pages="clr-namespace:TestControlsApp.Pages"
     Name="Main"
     Title="MainWindow"
-    FontSize="16"
+    controls:Material.RelativeFontSize="12"
     mc:Ignorable="d"
     Background="#f6f6f6">
     <Window.Resources>
@@ -18,45 +18,53 @@
             <Setter Property="Padding" Value="10"/>
         </Style>
     </Window.Resources>
-    <TabControl controls:Material.HighlightEnabled="True">
-       
-        <TabItem Header="Resizable">
-            <controls:Card>
-                <pages:ResizableExample/>
-            </controls:Card>
-        </TabItem>
-        <TabItem Header="Buttons">
-            <controls:Card>
-                <pages:ButtonsExample/>
-            </controls:Card>
-        </TabItem>
-        <TabItem Header="Textbox">
-            <controls:Card>
-            <pages:TextboxExample/>
-            </controls:Card>
-        </TabItem>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Slider Minimum="6" Maximum="30" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=(controls:Material.RelativeFontSize)}"/>
+        <TabControl Grid.Row="1" controls:Material.HighlightEnabled="True">
 
-        <TabItem Header="Sliders">
-            <controls:Card>
-                <pages:SliderExample/>
-            </controls:Card>
-        </TabItem>
-        <TabItem Header="Pager">
-            <controls:Card>
-                <Grid  VerticalAlignment="Top">
-                    <controls:PagerControl CurrentPage="1" MaxPages="10"  VerticalAlignment="Top"/>
-                </Grid>
-            </controls:Card>
-        </TabItem>
-        <TabItem Header="Color Pickers">
-            <controls:Card>
-                <pages:ColorPickerExample/>
-            </controls:Card>
-        </TabItem>
-        <TabItem Header="List">
-            <controls:Card>
-                <pages:ListExample/>
-            </controls:Card>
-        </TabItem>
-    </TabControl>
+            <TabItem Header="Resizable">
+                <controls:Card>
+                    <pages:ResizableExample/>
+                </controls:Card>
+            </TabItem>
+            <TabItem Header="Buttons">
+                <controls:Card>
+                    <pages:ButtonsExample/>
+                </controls:Card>
+            </TabItem>
+            <TabItem Header="Textbox">
+                <controls:Card>
+                    <pages:TextboxExample/>
+                </controls:Card>
+            </TabItem>
+
+            <TabItem Header="Sliders">
+                <controls:Card>
+                    <pages:SliderExample/>
+                </controls:Card>
+            </TabItem>
+            <TabItem Header="Pager">
+                <controls:Card>
+                    <Grid  VerticalAlignment="Top">
+                        <controls:PagerControl CurrentPage="1" MaxPages="10"  VerticalAlignment="Top"/>
+                    </Grid>
+                </controls:Card>
+            </TabItem>
+            <TabItem Header="Color Pickers">
+                <controls:Card>
+                    <pages:ColorPickerExample/>
+                </controls:Card>
+            </TabItem>
+            <TabItem Header="List">
+                <controls:Card>
+                    <pages:ListExample/>
+                </controls:Card>
+            </TabItem>
+        </TabControl>
+    </Grid>
+    
 </Window>
