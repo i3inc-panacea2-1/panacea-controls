@@ -60,7 +60,7 @@ namespace TestControlsApp
                 image.Loaded += Image_Loaded;
                 return;
             }
-            SetImage(image, e);
+            var task = SetImage(image, e);
            
         }
 
@@ -83,7 +83,7 @@ namespace TestControlsApp
         {
             var image = sender as CacheImage;
             image.Loaded -= Image_Loaded;
-            SetImage(image, image.ImageUrl);
+            var task = SetImage(image, image.ImageUrl);
         }
 
         void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
