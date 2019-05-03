@@ -31,5 +31,14 @@ namespace TestControlsApp.Pages
         }
 
         public IAsyncCommand TestAsyncCommand { get; set; }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new OverlayWindow(Window.GetWindow(this));
+            w.AllowsTransparency = true;
+            w.Opacity = .5;
+            w.Background = Brushes.Black;
+            w.Show();
+        }
     }
 }

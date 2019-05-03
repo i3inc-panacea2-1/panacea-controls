@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,6 +40,8 @@ namespace TestControlsApp
 
         public MainWindow()
         {
+            CacheImage.ImageUrlChanged += CacheImage_OnImageUrl;
+
             InitializeComponent();
 
             EventManager.RegisterClassHandler(
@@ -45,7 +49,41 @@ namespace TestControlsApp
                 Keyboard.PreviewGotKeyboardFocusEvent,
                 (KeyboardFocusChangedEventHandler)OnPreviewGotKeyboardFocus);
 
+            
+        }
 
+        private void CacheImage_OnImageUrl(object sender, string e)
+        {
+            var image = sender as CacheImage;
+            if (!image.IsLoaded)
+            {
+                image.Loaded += Image_Loaded;
+                return;
+            }
+            SetImage(image, e);
+           
+        }
+
+        async Task SetImage(CacheImage image, string url)
+        {
+            var uri = new Uri(new Uri("https://cdn.pixabay.com"), url);
+            var download = await new WebClient().DownloadDataTaskAsync(uri);
+            var img2 = new BitmapImage();
+            img2.BeginInit();
+            img2.CreateOptions |= BitmapCreateOptions.IgnoreColorProfile;
+            img2.CacheOption = BitmapCacheOption.OnLoad;
+            img2.StreamSource = new MemoryStream(download);
+
+            img2.EndInit();
+            img2.Freeze();
+            image.Source = img2;
+        }
+
+        private void Image_Loaded(object sender, RoutedEventArgs e)
+        {
+            var image = sender as CacheImage;
+            image.Loaded -= Image_Loaded;
+            SetImage(image, image.ImageUrl);
         }
 
         void OnPreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)

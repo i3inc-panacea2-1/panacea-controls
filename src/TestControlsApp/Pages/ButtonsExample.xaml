@@ -19,7 +19,7 @@
                 Primary Button
             </Button>
             <Button controls:Material.Icon="access_alarm" Style="{StaticResource PrimaryButton}" />
-            <Button>Text Button</Button>
+            <Button Click="Button_Click">Text Button</Button>
             <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
             <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
 

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Behaviors\ScrollViewerBehaviors.cs" />
     <Compile Include="BindableScrollBar.cs" />
+    <Compile Include="CacheImage.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="ColorSliderPicker.xaml.cs">
       <DependentUpon>ColorSliderPicker.xaml</DependentUpon>
@@ -63,6 +64,8 @@
     <Compile Include="CustomThumb.cs" />
     <Compile Include="ExtendedSlider.cs" />
     <Compile Include="FixedRatioControl.cs" />
+    <Compile Include="NonFocusableWindow.cs" />
+    <Compile Include="OverlayWindow.cs" />
     <Compile Include="RatingControl.cs" />
     <Compile Include="StarControl.cs" />
     <Compile Include="VerticalTickBar.cs" />

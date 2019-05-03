@@ -64,6 +64,9 @@
                     <pages:ListExample/>
                 </controls:Card>
             </TabItem>
+            <TabItem Header="Images">
+                <pages:ImagesExample/>
+            </TabItem>
         </TabControl>
     </Grid>
     
