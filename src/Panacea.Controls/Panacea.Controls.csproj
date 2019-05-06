@@ -68,6 +68,7 @@
     <Compile Include="OverlayWindow.cs" />
     <Compile Include="RatingControl.cs" />
     <Compile Include="StarControl.cs" />
+    <Compile Include="TransitioningContentControl.cs" />
     <Compile Include="VariableSizedWrapGrid.cs" />
     <Compile Include="VerticalTickBar.cs" />
     <Compile Include="WhitePicker.xaml.cs">
