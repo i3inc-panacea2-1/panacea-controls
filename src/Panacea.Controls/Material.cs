@@ -42,10 +42,18 @@ namespace Panacea.Controls
                 "RelativeFontSize",
                 typeof(double),
                 typeof(Material),
-                new FrameworkPropertyMetadata(12d, FrameworkPropertyMetadataOptions.Inherits, OnRelativeFontSizeChanged1));
+                new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits, OnRelativeFontSizeChanged));
 
 
+        private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var el = d as FrameworkElement;
 
+            if (el == null) return;
+            Console.WriteLine(el.GetType().FullName);
+            el.SetValue(TextElement.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
+
+        }
 
         public static double GetRelativeFontSizeRatio(DependencyObject obj)
         {
@@ -67,9 +75,11 @@ namespace Panacea.Controls
         private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var el = d as FrameworkElement;
+            
             if (el == null) return;
-  
-            el.SetValue(TextElement.FontSizeProperty, ((double)el.GetValue(RelativeFontSizeProperty) * GetRelativeFontSizeRatio(d)));
+            Console.WriteLine(el.GetType().FullName);
+            el.SetValue(TextElement.FontSizeProperty, ((double)el.GetValue(RelativeFontSizeProperty) * (double)e.NewValue));
+            el.SetValue(TextBlock.FontSizeProperty, ((double)el.GetValue(RelativeFontSizeProperty) * (double)e.NewValue));
 
         }
 

@@ -43,7 +43,6 @@ namespace TestControlsApp
             CacheImage.ImageUrlChanged += CacheImage_OnImageUrl;
 
             InitializeComponent();
-
             EventManager.RegisterClassHandler(
                 typeof(UIElement),
                 Keyboard.PreviewGotKeyboardFocusEvent,
