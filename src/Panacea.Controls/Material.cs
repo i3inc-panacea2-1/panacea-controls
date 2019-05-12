@@ -16,14 +16,21 @@ using System.Windows.Media.Animation;
 
 namespace Panacea.Controls
 {
-    public class Material
+    public class Material : DependencyObject
     {
         static Material()
         {
-           
+            TextElement.FontSizeProperty.OverrideMetadata(typeof(TextBlock), new FrameworkPropertyMetadata(OnFontSizeChanged));
         }
 
-     
+        private static void OnFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var res = GetRelativeFontSize(d) * GetRelativeFontSizeRatio(d);
+            if (res != (double)e.NewValue)
+            {
+                d.SetValue(TextElement.FontSizeProperty, res);
+            }
+        }
 
         #region Busy
 
@@ -42,16 +49,12 @@ namespace Panacea.Controls
                 "RelativeFontSize",
                 typeof(double),
                 typeof(Material),
-                new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits, OnRelativeFontSizeChanged));
+                new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged));
 
 
         private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var el = d as FrameworkElement;
-
-            if (el == null) return;
-            Console.WriteLine(el.GetType().FullName);
-            el.SetValue(TextElement.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
+            d.SetValue(TextElement.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
 
         }
 
@@ -70,16 +73,11 @@ namespace Panacea.Controls
                 "RelativeFontSizeRatio",
                 typeof(double),
                 typeof(Material),
-                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits, OnRelativeFontSizeChanged1));
+                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged1));
 
         private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var el = d as FrameworkElement;
-            
-            if (el == null) return;
-            Console.WriteLine(el.GetType().FullName);
-            el.SetValue(TextElement.FontSizeProperty, ((double)el.GetValue(RelativeFontSizeProperty) * (double)e.NewValue));
-            el.SetValue(TextBlock.FontSizeProperty, ((double)el.GetValue(RelativeFontSizeProperty) * (double)e.NewValue));
+            d.SetValue(TextElement.FontSizeProperty, GetRelativeFontSize(d) * (double)e.NewValue);
 
         }
 
@@ -208,11 +206,11 @@ namespace Panacea.Controls
 
         private static void Tc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             if (e.AddedItems != null && !e.AddedItems.Cast<object>().Any(c => c is TabItem)) return;
             UpdateLine(sender as Control);
-            
-           
+
+
         }
 
 
@@ -333,10 +331,10 @@ namespace Panacea.Controls
 
         private static void OnAsyncCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
             var button = d as Button;
             if (button == null) return;
-            
+
             button.Click -= Button_Click;
             if (e.NewValue != null)
             {
@@ -387,7 +385,7 @@ namespace Panacea.Controls
         private readonly Func<object, Task> _execute;
         private readonly Func<object, bool> _canExecute;
 
-        public AsyncCommand(Func<object,Task> execute, Func<object, bool> canExecute = null)
+        public AsyncCommand(Func<object, Task> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;

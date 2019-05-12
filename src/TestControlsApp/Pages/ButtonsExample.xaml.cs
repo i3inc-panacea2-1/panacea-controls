@@ -40,5 +40,13 @@ namespace TestControlsApp.Pages
             w.Background = Brushes.Black;
             w.Show();
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var b = new Button();
+            b.Content = "test";
+            b.SetValue(Material.RelativeFontSizeRatioProperty, 5.0);
+            Buttons.Children.Add(b);
+        }
     }
 }

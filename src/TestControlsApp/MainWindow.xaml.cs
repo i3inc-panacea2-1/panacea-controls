@@ -35,7 +35,7 @@ namespace TestControlsApp
 
         // Using a DependencyProperty as the backing store for ValidatedText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValidatedTextProperty =
-            DependencyProperty.Register("ValidatedText", typeof(string), typeof(MainWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("ValidatedText", typeof(string), typeof(MainWindow), new FrameworkPropertyMetadata(null));
 
 
         public MainWindow()

@@ -8,10 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="UserControl_Loaded">
     <UserControl.Resources />
     <StackPanel>
-        <WrapPanel Margin="0,0,0,0">
+        <WrapPanel Margin="0,0,0,0" Name="Buttons">
             <Button
                 controls:Material.AsyncCommand="{Binding RelativeSource={RelativeSource AncestorType=local:ButtonsExample}, Path=TestAsyncCommand}"
                 controls:Material.Icon="access_alarm"
