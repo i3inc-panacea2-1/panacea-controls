@@ -20,27 +20,10 @@ namespace Panacea.Controls
     {
         static Material()
         {
-            TextElement.FontSizeProperty.OverrideMetadata(typeof(TextElement), new FrameworkPropertyMetadata(OnFontSizeChanged));
-            TextBlock.FontSizeProperty.OverrideMetadata(typeof(TextBlock), new FrameworkPropertyMetadata(OnFontSizeChanged2));
+         
+          
         }
 
-        private static void OnFontSizeChanged2(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var res = GetRelativeFontSize(d) * GetRelativeFontSizeRatio(d);
-            if (res != (double)e.NewValue)
-            {
-                d.SetValue(TextBlock.FontSizeProperty, res);
-            }
-        }
-
-        private static void OnFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var res = GetRelativeFontSize(d) * GetRelativeFontSizeRatio(d);
-            if (res != (double)e.NewValue)
-            {
-                d.SetValue(TextElement.FontSizeProperty, res);
-            }
-        }
 
         #region Busy
 
@@ -64,7 +47,7 @@ namespace Panacea.Controls
 
         private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            d.SetValue(TextElement.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
+           // d.SetValue(TextBlock.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
 
         }
 
