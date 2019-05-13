@@ -9,7 +9,7 @@
     xmlns:pages="clr-namespace:TestControlsApp.Pages"
     Name="Main"
     Title="MainWindow"
-    controls:Material.RelativeFontSize="12"
+
     mc:Ignorable="d"
     Background="#f6f6f6">
     <Window.Resources>
@@ -18,7 +18,7 @@
             <Setter Property="Padding" Value="10"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid controls:Material.RelativeFontSize="24.0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>

@@ -16,14 +16,14 @@ using System.Windows.Media.Animation;
 
 namespace Panacea.Controls
 {
-    public class Material
+    public class Material : DependencyObject
     {
         static Material()
         {
-           
+         
+          
         }
 
-     
 
         #region Busy
 
@@ -42,10 +42,14 @@ namespace Panacea.Controls
                 "RelativeFontSize",
                 typeof(double),
                 typeof(Material),
-                new FrameworkPropertyMetadata(12d, FrameworkPropertyMetadataOptions.Inherits, OnRelativeFontSizeChanged1));
+                new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged));
 
 
+        private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+           // d.SetValue(TextBlock.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
 
+        }
 
         public static double GetRelativeFontSizeRatio(DependencyObject obj)
         {
@@ -62,14 +66,11 @@ namespace Panacea.Controls
                 "RelativeFontSizeRatio",
                 typeof(double),
                 typeof(Material),
-                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits, OnRelativeFontSizeChanged1));
+                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged1));
 
         private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var el = d as FrameworkElement;
-            if (el == null) return;
-  
-            el.SetValue(TextElement.FontSizeProperty, ((double)el.GetValue(RelativeFontSizeProperty) * GetRelativeFontSizeRatio(d)));
+            d.SetValue(TextElement.FontSizeProperty, GetRelativeFontSize(d) * (double)e.NewValue);
 
         }
 
@@ -198,11 +199,11 @@ namespace Panacea.Controls
 
         private static void Tc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             if (e.AddedItems != null && !e.AddedItems.Cast<object>().Any(c => c is TabItem)) return;
             UpdateLine(sender as Control);
-            
-           
+
+
         }
 
 
@@ -323,10 +324,10 @@ namespace Panacea.Controls
 
         private static void OnAsyncCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
             var button = d as Button;
             if (button == null) return;
-            
+
             button.Click -= Button_Click;
             if (e.NewValue != null)
             {
@@ -377,7 +378,7 @@ namespace Panacea.Controls
         private readonly Func<object, Task> _execute;
         private readonly Func<object, bool> _canExecute;
 
-        public AsyncCommand(Func<object,Task> execute, Func<object, bool> canExecute = null)
+        public AsyncCommand(Func<object, Task> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
