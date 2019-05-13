@@ -20,7 +20,7 @@ namespace Panacea.Controls
     {
         static Material()
         {
-            TextElement.FontSizeProperty.OverrideMetadata(typeof(TextElement), new FrameworkPropertyMetadata(OnFontSizeChanged));
+            TextBlock.FontSizeProperty.OverrideMetadata(typeof(TextBlock), new FrameworkPropertyMetadata(OnFontSizeChanged));
         }
 
         private static void OnFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
