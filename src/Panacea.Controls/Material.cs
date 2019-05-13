@@ -20,7 +20,17 @@ namespace Panacea.Controls
     {
         static Material()
         {
-            TextBlock.FontSizeProperty.OverrideMetadata(typeof(TextBlock), new FrameworkPropertyMetadata(OnFontSizeChanged));
+            TextElement.FontSizeProperty.OverrideMetadata(typeof(TextElement), new FrameworkPropertyMetadata(OnFontSizeChanged));
+            TextBlock.FontSizeProperty.OverrideMetadata(typeof(TextBlock), new FrameworkPropertyMetadata(OnFontSizeChanged2));
+        }
+
+        private static void OnFontSizeChanged2(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var res = GetRelativeFontSize(d) * GetRelativeFontSizeRatio(d);
+            if (res != (double)e.NewValue)
+            {
+                d.SetValue(TextBlock.FontSizeProperty, res);
+            }
         }
 
         private static void OnFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
