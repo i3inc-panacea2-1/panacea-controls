@@ -66,7 +66,7 @@ namespace Panacea.Controls
                 "RelativeFontSizeRatio",
                 typeof(double),
                 typeof(Material),
-                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged1));
+                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged1));
 
         private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
