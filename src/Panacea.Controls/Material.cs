@@ -20,8 +20,8 @@ namespace Panacea.Controls
     {
         static Material()
         {
-         
-          
+
+
         }
 
 
@@ -47,7 +47,7 @@ namespace Panacea.Controls
 
         private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-           // d.SetValue(TextBlock.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
+            // d.SetValue(TextBlock.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
 
         }
 
@@ -70,6 +70,7 @@ namespace Panacea.Controls
 
         private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if ((double)e.NewValue <= 0.0) return;
             d.SetValue(TextElement.FontSizeProperty, GetRelativeFontSize(d) * (double)e.NewValue);
 
         }
