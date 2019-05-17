@@ -4,7 +4,7 @@
     xmlns:controls="clr-namespace:Panacea.Controls"
     xmlns:converters="clr-namespace:Panacea.Controls.Converters">
     <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter"/>
-    <Style TargetType="Button">
+    <Style TargetType="Button" x:Key="SimpleButton">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -112,10 +112,12 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style TargetType="Button" BasedOn="{StaticResource SimpleButton}">
+        
+    </Style>
     <Style
         x:Key="OutlinedButton"
-        BasedOn="{StaticResource {x:Type Button}}"
+        BasedOn="{StaticResource SimpleButton}"
         TargetType="Button">
 
         <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
@@ -133,7 +135,7 @@
 
     <Style
         x:Key="PrimaryButton"
-        BasedOn="{StaticResource {x:Type Button}}"
+        BasedOn="{StaticResource SimpleButton}"
         TargetType="Button">
         <Setter Property="Background" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Foreground" Value="{DynamicResource ColorPrimaryForeground}" />
@@ -144,7 +146,7 @@
     </Style>
     <Style
         x:Key="SecondaryButton"
-        BasedOn="{StaticResource PrimaryButton}"
+        BasedOn="{StaticResource SimpleButton}"
         TargetType="Button">
         <Setter Property="Background" Value="{DynamicResource ColorSecondary}" />
         <Setter Property="Foreground" Value="{DynamicResource ColorSecondaryForeground}" />

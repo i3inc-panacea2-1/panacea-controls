@@ -67,16 +67,6 @@ namespace Panacea.Controls
             this.execute(parameter);
         }
 
-        public void OnCanExecuteChanged()
-        {
-            EventHandler handler = this.CanExecuteChangedInternal;
-            if (handler != null)
-            {
-                //DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
-                handler.Invoke(this, EventArgs.Empty);
-            }
-        }
-
         public void Destroy()
         {
             this.canExecute = _ => false;
