@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Input;
 
 namespace Panacea.Controls
@@ -22,18 +18,8 @@ namespace Panacea.Controls
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            if (execute == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
-
-            if (canExecute == null)
-            {
-                throw new ArgumentNullException("canExecute");
-            }
-
-            this.execute = execute;
-            this.canExecute = canExecute;
+            this.execute = execute ?? throw new ArgumentNullException("execute");
+            this.canExecute = canExecute ?? throw new ArgumentNullException("canExecute");
         }
 
         public void RaiseCanExecuteChanged()
@@ -65,6 +51,16 @@ namespace Panacea.Controls
         public void Execute(object parameter)
         {
             this.execute(parameter);
+        }
+
+        public void OnCanExecuteChanged()
+        {
+            EventHandler handler = this.CanExecuteChangedInternal;
+            if (handler != null)
+            {
+                //DispatcherHelper.BeginInvokeOnUIThread(() => handler.Invoke(this, EventArgs.Empty));
+                handler.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public void Destroy()

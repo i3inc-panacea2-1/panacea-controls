@@ -197,7 +197,6 @@
     <Compile Include="IDialogService.cs" />
     <Compile Include="ImageButton.cs" />
     <Compile Include="MaterialIcon.cs" />
-    <Compile Include="Mvvm.cs" />
     <Compile Include="PagerControl.cs" />
     <Compile Include="ResizablePanel.cs" />
     <Compile Include="DialogBox.xaml.cs">

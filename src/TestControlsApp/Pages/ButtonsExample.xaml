@@ -32,6 +32,7 @@
         </WrapPanel>
         <WrapPanel>
             <controls:ImageButton
+                IsEnabled="False"
                 x:Name="imgKeyboard"
                 Padding="20"
                 controls:Material.Icon="3d_rotation"
