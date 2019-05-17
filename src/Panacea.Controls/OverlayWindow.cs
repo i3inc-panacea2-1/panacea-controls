@@ -75,8 +75,8 @@ namespace Panacea.Controls
                 _rootWindow.Loaded += rootWindow_Loaded;
                 return;
             }
-            Width = ((Panel)_rootWindow.Content).RenderSize.Width;
-            Height = ((Panel)_rootWindow.Content).RenderSize.Height;
+            Width = ((UIElement)_rootWindow.Content).RenderSize.Width;
+            Height = ((UIElement)_rootWindow.Content).RenderSize.Height;
             Top = _rootWindow.PointToScreen(new Point(0d, 0d)).Y / _dpiY;
             Left = _rootWindow.PointToScreen(new Point(0d, 0d)).X / _dpiX;
 
