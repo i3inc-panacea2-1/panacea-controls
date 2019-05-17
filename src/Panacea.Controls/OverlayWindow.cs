@@ -88,16 +88,16 @@ namespace Panacea.Controls
                 return;
             Top = _rootWindow.PointToScreen(new Point(0d, 0d)).Y / _dpiY;
             Left = _rootWindow.PointToScreen(new Point(0d, 0d)).X / _dpiX;
-            Width = ((Panel)_rootWindow.Content).RenderSize.Width;
-            Height = ((Panel)_rootWindow.Content).RenderSize.Height;
+            Width = ((UIElement)_rootWindow.Content).RenderSize.Width;
+            Height = ((UIElement)_rootWindow.Content).RenderSize.Height;
         }
 
         private void RootWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (!_rootWindow.IsLoaded)
                 return;
-            Width = ((Panel)_rootWindow.Content).RenderSize.Width;
-            Height = ((Panel)_rootWindow.Content).RenderSize.Height;
+            Width = ((UIElement)_rootWindow.Content).RenderSize.Width;
+            Height = ((UIElement)_rootWindow.Content).RenderSize.Height;
         }
 
         private void RootWindow_LocationChanged(object sender, EventArgs e)
@@ -111,8 +111,8 @@ namespace Panacea.Controls
         void rootWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Owner = _rootWindow;
-            Width = ((Panel)_rootWindow.Content).RenderSize.Width;
-            Height = ((Panel)_rootWindow.Content).RenderSize.Height;
+            Width = ((UIElement)_rootWindow.Content).RenderSize.Width;
+            Height = ((UIElement)_rootWindow.Content).RenderSize.Height;
             Top = _rootWindow.PointToScreen(new Point(0d, 0d)).Y / _dpiY;
             Left = _rootWindow.PointToScreen(new Point(0d, 0d)).X / _dpiX;
             _rootWindow.Loaded -= rootWindow_Loaded;
