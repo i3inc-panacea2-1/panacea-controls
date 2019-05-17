@@ -8,5 +8,6 @@
         <ResourceDictionary Source="/Panacea.Controls;component/Themes/ExtendedSlider.xaml" />
         <ResourceDictionary Source="/Panacea.Controls;component/Themes/StarControl.xaml" />
         <ResourceDictionary Source="/Panacea.Controls;component/Themes/RatingControl.xaml" />
+        <ResourceDictionary Source="/Panacea.Controls;component/Themes/TransitioningContentControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
