@@ -73,7 +73,6 @@ namespace Panacea.Controls
         {
            
             if ((double)e.NewValue <= 0.0) return;
-            Console.WriteLine("r: " + GetRelativeFontSize(d));
             d.SetValue(TextElement.FontSizeProperty, GetRelativeFontSize(d) * (double)e.NewValue);
 
         }
