@@ -47,7 +47,6 @@ namespace Panacea.Controls
 
         private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Console.WriteLine("s: " + e.NewValue);
             if (GetRelativeFontSizeRatio(d) <= 0.0) return;
             d.SetValue(TextBlock.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
         }
@@ -71,7 +70,6 @@ namespace Panacea.Controls
 
         private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-           
             if ((double)e.NewValue <= 0.0) return;
             d.SetValue(TextElement.FontSizeProperty, GetRelativeFontSize(d) * (double)e.NewValue);
 
