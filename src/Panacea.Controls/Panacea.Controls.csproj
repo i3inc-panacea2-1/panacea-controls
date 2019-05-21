@@ -63,6 +63,7 @@
     <Compile Include="Converters\StartPointConverter.cs" />
     <Compile Include="CustomThumb.cs" />
     <Compile Include="ExtendedSlider.cs" />
+    <Compile Include="FastShadow.cs" />
     <Compile Include="FixedRatioControl.cs" />
     <Compile Include="NonFocusableWindow.cs" />
     <Compile Include="OverlayWindow.cs" />
