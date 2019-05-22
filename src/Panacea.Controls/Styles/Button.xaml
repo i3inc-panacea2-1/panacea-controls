@@ -53,7 +53,7 @@
 
                                         <controls:MaterialIcon
                                             x:Name="LeftIcon"
-                                           
+                                            MaxHeight="{Binding ElementName=HeightControl, Path=ActualHeight}"
                                             Margin="0,2,0,-2"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Center"

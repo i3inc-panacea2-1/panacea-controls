@@ -8,9 +8,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:MaterialIcon">
-                   
+                    <Viewbox Stretch="Uniform">
                         <TextBlock FontFamily="{TemplateBinding FontFamily}" Text="{TemplateBinding Icon}"/>
-               
+                    </Viewbox>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
