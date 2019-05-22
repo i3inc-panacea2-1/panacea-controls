@@ -102,7 +102,7 @@
                         </Trigger>
                         <Trigger Property="controls:Material.Busy" Value="True">
                             <Setter TargetName="ProgressBar" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="LeftIcon" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="LeftIcon" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="PART_Content" Property="Visibility" Value="Hidden" />
 
 
