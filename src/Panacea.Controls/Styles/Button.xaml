@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Panacea.Controls"
     xmlns:converters="clr-namespace:Panacea.Controls.Converters">
-    <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter"/>
-    <Style TargetType="Button" x:Key="SimpleButton">
+    <converters:ButtonSpaceVisibilityConverter x:Key="ButtonSpaceVisibilityConverter" />
+    <Style x:Key="SimpleButton" TargetType="Button">
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -26,11 +26,11 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="2">
-                        <controls:RippleEffectDecorator Background="Transparent">
-                            <Border
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                Background="Transparent">
+                        <controls:RippleEffectDecorator
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Background="Transparent">
+                            <Border Background="Transparent">
                                 <Grid>
 
                                     <ProgressBar
@@ -59,8 +59,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="{TemplateBinding FontSize}"
                                             Foreground="{TemplateBinding Foreground}"
-                                            Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}"
-                                            />
+                                            Icon="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(controls:Material.Icon)}" />
                                         <Border Grid.Column="1" Margin="6,0,0,0">
                                             <Border.Visibility>
                                                 <MultiBinding Converter="{StaticResource ButtonSpaceVisibilityConverter}">
@@ -80,8 +79,7 @@
                                             Grid.Column="2"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
-                                            TextBlock.LineStackingStrategy="MaxHeight"
-                                            TextBlock.TextAlignment="Center">
+                                            TextBlock.LineStackingStrategy="MaxHeight">
                                             <ContentPresenter.Resources>
                                                 <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
                                                     <Setter Property="Padding" Value="1,0,0,1" />
@@ -112,9 +110,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="Button" BasedOn="{StaticResource SimpleButton}">
-        
-    </Style>
+    <Style BasedOn="{StaticResource SimpleButton}" TargetType="Button" />
     <Style
         x:Key="OutlinedButton"
         BasedOn="{StaticResource SimpleButton}"
