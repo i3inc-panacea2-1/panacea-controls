@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Panacea.Controls">
     <Style TargetType="{x:Type local:MaterialIcon}">
-        <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="/Panacea.Controls;component/Resources/Fonts/MaterialIcons/#Material Icons" />
         <Setter Property="Template">
             <Setter.Value>

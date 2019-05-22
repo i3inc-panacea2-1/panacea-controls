@@ -23,7 +23,9 @@
                 Style="{StaticResource PrimaryButton}">
                 Primary Button
             </Button>
-            <Button controls:Material.Icon="access_alarm" Style="{StaticResource PrimaryButton}" />
+            <Button Foreground="Black" Style="{StaticResource PrimaryButton}">
+                <controls:MaterialIcon Icon="access_alarm" />
+            </Button>
             <Button Click="Button_Click">Text Button</Button>
             <Button Style="{StaticResource OutlinedButton}">Outlined Button</Button>
             <Button Style="{StaticResource PrimaryButton}">Primary Button</Button>
