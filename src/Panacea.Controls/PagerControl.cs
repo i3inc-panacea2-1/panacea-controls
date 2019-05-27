@@ -70,8 +70,7 @@ namespace Panacea.Controls
             (args) => CurrentPage > 1);
         }
 
-        public ICommand ChangePageCommand { get; protected set; }
-
+        public ICommand ChangePageCommand { get;  }
 
 
         public int CurrentPage
@@ -115,9 +114,6 @@ namespace Panacea.Controls
 
 
 
-
-
-
         public List<int> LeftPart
         {
             get { return (List<int>)GetValue(LeftPartProperty); }
@@ -127,8 +123,6 @@ namespace Panacea.Controls
         // Using a DependencyProperty as the backing store for LeftPart.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LeftPartProperty =
             DependencyProperty.Register("LeftPart", typeof(List<int>), typeof(PagerControl), new PropertyMetadata(null));
-
-
 
 
         public List<int> RightPart
@@ -141,9 +135,6 @@ namespace Panacea.Controls
         public static readonly DependencyProperty RightPartProperty =
             DependencyProperty.Register("RightPart", typeof(List<int>), typeof(PagerControl), new PropertyMetadata(null));
 
-
-
-
         public Visibility DotsVisibility
         {
             get { return (Visibility)GetValue(DotsVisibilityProperty); }
@@ -155,32 +146,17 @@ namespace Panacea.Controls
             DependencyProperty.Register("DotsVisibility", typeof(Visibility), typeof(PagerControl), new PropertyMetadata(Visibility.Collapsed));
 
 
-
-
         public ICommand PreviousCommand
         {
-            get { return (ICommand)GetValue(PreviousCommandProperty); }
-            set { SetValue(PreviousCommandProperty, value); }
+            get;
         }
 
-        // Using a DependencyProperty as the backing store for PreviousCommand.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PreviousCommandProperty =
-            DependencyProperty.Register("PreviousCommand", typeof(ICommand), typeof(PagerControl), new PropertyMetadata(null));
-
-
-
-
+      
         public ICommand NextCommand
         {
-            get { return (ICommand)GetValue(NextCommandProperty); }
-            set { SetValue(NextCommandProperty, value); }
+            get;
         }
 
-        // Using a DependencyProperty as the backing store for NextCommand.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty NextCommandProperty =
-            DependencyProperty.Register("NextCommand", typeof(ICommand), typeof(PagerControl), new PropertyMetadata(null));
-
-
-
+        
     }
 }

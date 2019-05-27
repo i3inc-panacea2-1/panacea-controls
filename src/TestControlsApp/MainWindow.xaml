@@ -67,6 +67,9 @@
             <TabItem Header="Images">
                 <pages:ImagesExample/>
             </TabItem>
+            <TabItem Header="Items">
+                <pages:ItemPickerExample/>
+            </TabItem>
         </TabControl>
     </Grid>
     

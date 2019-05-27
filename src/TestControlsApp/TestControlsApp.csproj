@@ -64,6 +64,9 @@
     <Compile Include="Pages\ImagesExample.xaml.cs">
       <DependentUpon>ImagesExample.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ItemPickerExample.xaml.cs">
+      <DependentUpon>ItemPickerExample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ListExample.xaml.cs">
       <DependentUpon>ListExample.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ImagesExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ItemPickerExample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

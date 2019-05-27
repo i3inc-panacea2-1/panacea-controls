@@ -23,7 +23,7 @@
                             <Button
                                 VerticalAlignment="Center"
                                 local:Material.Icon="ic_skip_previous"
-                                Command="{TemplateBinding PreviousCommand}"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=PreviousCommand}"
                                 Foreground="{TemplateBinding Background}">
                                 Previous
                             </Button>
@@ -77,7 +77,7 @@
                                 Margin="1"
                                 VerticalAlignment="Center"
                                 local:Material.Icon="ic_skip_next"
-                                Command="{TemplateBinding NextCommand}"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=NextCommand}"
                                 Foreground="{TemplateBinding Background}">
                                 Next
                             </Button>

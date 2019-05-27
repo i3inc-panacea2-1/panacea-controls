@@ -9,5 +9,6 @@
         <ResourceDictionary Source="/Panacea.Controls;component/Themes/StarControl.xaml" />
         <ResourceDictionary Source="/Panacea.Controls;component/Themes/RatingControl.xaml" />
         <ResourceDictionary Source="/Panacea.Controls;component/Themes/TransitioningContentControl.xaml" />
+        <ResourceDictionary Source="/Panacea.Controls;component/Themes/ItemPicker.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
