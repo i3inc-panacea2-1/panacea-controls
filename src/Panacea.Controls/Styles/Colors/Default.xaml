@@ -30,4 +30,11 @@
     <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{Binding Source={StaticResource ColorBackgroundHover}, Path=Color}" />
     <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{Binding Source={StaticResource ColorBackgroundHover}, Path=Color}" />
     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="{Binding Source={StaticResource ColorBackgroundHover}, Path=Color}" />
+
+
+    <SolidColorBrush x:Key="ColorError" Color="#ff3e3e" />
+    <SolidColorBrush x:Key="ColorInformation" Color="#1fa8ef" />
+    <SolidColorBrush x:Key="ColorWarning" Color="#ff7e28" />
+    <SolidColorBrush x:Key="ColorNone" Color="LightGray" />
+    <SolidColorBrush x:Key="ColorSuccess" Color="#00a31b" />
 </ResourceDictionary>
