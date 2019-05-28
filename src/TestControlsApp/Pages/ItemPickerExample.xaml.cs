@@ -24,59 +24,50 @@ namespace TestControlsApp.Pages
         public ItemPickerExample()
         {
             InitializeComponent();
-            Items = new List<string>()
+            Task.Delay(3000).ContinueWith(t =>
             {
-                "asfdsf",
-                "sdfsdfs",
-                "sadfdasfs",
-                "asdfdsf",
-                "",
-                "safasdf",
-                "sadfsaf",
-                "asdfsad",
-                "asdfasd",
-                "",
-                "asdfas",
-                "",
-                "dasfdasf","asfdsf",
-                "sdfsdfs",
-                "sadfdasfs",
-                "asdfdsf",
-                "",
-                "safasdf",
-                "sadfsaf",
-                "asdfsad",
-                "asdfasd",
-                "",
-                "asdfas",
-                "",
-                "dasfdasf","asfdsf",
-                "sdfsdfs",
-                "sadfdasfs",
-                "asdfdsf",
-                "",
-                "safasdf",
-                "sadfsaf",
-                "asdfsad",
-                "asdfasd",
-                "",
-                "asdfas",
-                "",
-                "dasfdasf","asfdsf",
-                "sdfsdfs",
-                "sadfdasfs",
-                "asdfdsf",
-                "",
-                "safasdf",
-                "sadfsaf",
-                "asdfsad",
-                "asdfasd",
-                "",
-                "asdfas",
-                "",
-                "dasfdasf",
+                Dispatcher.Invoke(() =>
+                {
+                    Items = new List<string>()
+                    {
+                        "asfdsf",
+                        "sdfsdfs",
+                        "sadfdasfs",
+                        "asdfdsf",
+                        "",
+                        "safasdf",
+                        "sadfsaf",
+                        "asdfsad",
+                        "asdfasd",
+                        "",
+                        "asdfas",
+                        "",
+                        "dasfdasf","asfdsf",
+                        "sdfsdfs",
+                        "sadfdasfs",
+                        "asdfdsf",
+                        "",
+                        "safasdf",
+                        "sadfsaf",
+                        "asdfsad",
+                        "asdfasd",
+                        "",
+                        "asdfas",
+                        "",
+                        "dasfdasf","asfdsf",
+                        "sdfsdfs",
+                        "sadfdasfs",
+                        "asdfdsf",
+                        "",
+                        "safasdf",
+                        "sadfsaf",
+                        "asdfsad",
+                        "asdfasd",
+                    };
+                });
 
-            };
+            });
+
         }
 
 
