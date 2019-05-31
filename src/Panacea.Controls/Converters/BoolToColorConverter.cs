@@ -14,7 +14,7 @@ namespace Panacea.Controls.Converters
     {
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((ICommand)value[0]).CanExecute(value[1]) == true ? Application.Current.FindResource("ColorError") : Application.Current.FindResource("ColorInformation");
+            return ((ICommand)value[0]).CanExecute(value[1]) == true ? value[1] : value[2];
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
