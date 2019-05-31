@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Panacea.Controls.Converters
 {
-    class BoolToColorConverter : IMultiValueConverter
+    public class BoolToColorConverter : IMultiValueConverter
     {
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
