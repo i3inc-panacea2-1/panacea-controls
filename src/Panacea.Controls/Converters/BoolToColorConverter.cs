@@ -14,7 +14,7 @@ namespace Panacea.Controls.Converters
     {
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((ICommand)value[0]).CanExecute(value[1]) == true ? value[1] : value[2];
+            return ((ICommand)value[0]).CanExecute(value[1]) == true ? value[2] : value[3];
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
