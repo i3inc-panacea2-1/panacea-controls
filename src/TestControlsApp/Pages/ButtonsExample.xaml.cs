@@ -45,7 +45,7 @@ namespace TestControlsApp.Pages
         {
             var b = new Button();
             b.Content = "test";
-            b.SetValue(Material.RelativeFontSizeRatioProperty, 5.0);
+      
             Buttons.Children.Add(b);
         }
     }

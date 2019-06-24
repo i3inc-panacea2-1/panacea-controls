@@ -18,12 +18,12 @@
             <Setter Property="Padding" Value="10"/>
         </Style>
     </Window.Resources>
-    <Grid controls:Material.RelativeFontSize="24.0">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Slider Minimum="6" Maximum="30" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=(controls:Material.RelativeFontSize)}"/>
+        <Slider Minimum="6" Maximum="30" />
         <TabControl Grid.Row="1" controls:Material.HighlightEnabled="True">
 
             <TabItem Header="Resizable">
