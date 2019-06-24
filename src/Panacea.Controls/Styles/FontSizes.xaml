@@ -3,6 +3,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Panacea.Controls.Styles"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Double x:Key="OriginalFontSize-Xxx-Huge">85</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Xx-Huge">65</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-X-Huge">60</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Huge">55</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Xxx-Large">50</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Xx-Large">45</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-X-Large">35</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Large">30</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Normal">25</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Small">22</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-X-Small">20</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Xx-Small">18</sys:Double>
+    <sys:Double x:Key="OriginalFontSize-Xxx-Small">16</sys:Double>
+
+
     <sys:Double x:Key="FontSize-Xxx-Huge">85</sys:Double>
     <sys:Double x:Key="FontSize-Xx-Huge">65</sys:Double>
     <sys:Double x:Key="FontSize-X-Huge">60</sys:Double>
