@@ -24,60 +24,6 @@ namespace Panacea.Controls
 
         }
 
-
-        #region Busy
-
-        public static double GetRelativeFontSize(DependencyObject obj)
-        {
-            return (double)obj.GetValue(RelativeFontSizeProperty);
-        }
-
-        public static void SetRelativeFontSize(DependencyObject obj, double value)
-        {
-            obj.SetValue(RelativeFontSizeProperty, value);
-        }
-
-        public static readonly DependencyProperty RelativeFontSizeProperty =
-            DependencyProperty.RegisterAttached(
-                "RelativeFontSize",
-                typeof(double),
-                typeof(Material),
-                new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged));
-
-
-        private static void OnRelativeFontSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (GetRelativeFontSizeRatio(d) <= 0.0) return;
-            d.SetValue(TextBlock.FontSizeProperty, ((double)e.NewValue * GetRelativeFontSizeRatio(d)));
-        }
-
-        public static double GetRelativeFontSizeRatio(DependencyObject obj)
-        {
-            return (double)obj.GetValue(RelativeFontSizeRatioProperty);
-        }
-
-        public static void SetRelativeFontSizeRatio(DependencyObject obj, double value)
-        {
-            obj.SetValue(RelativeFontSizeRatioProperty, value);
-        }
-
-        public static readonly DependencyProperty RelativeFontSizeRatioProperty =
-            DependencyProperty.RegisterAttached(
-                "RelativeFontSizeRatio",
-                typeof(double),
-                typeof(Material),
-                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.AffectsRender, OnRelativeFontSizeChanged1));
-
-        private static void OnRelativeFontSizeChanged1(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if ((double)e.NewValue <= 0.0) return;
-            d.SetValue(TextElement.FontSizeProperty, GetRelativeFontSize(d) * (double)e.NewValue);
-
-        }
-
-        #endregion
-
-
         #region Busy
         public static string GetBusy(DependencyObject obj)
         {

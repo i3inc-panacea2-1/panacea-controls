@@ -16,4 +16,20 @@
     <sys:Double x:Key="FontSize-X-Small">20</sys:Double>
     <sys:Double x:Key="FontSize-Xx-Small">18</sys:Double>
     <sys:Double x:Key="FontSize-Xxx-Small">16</sys:Double>
+
+
+
+    <sys:Double x:Key="FontSize-Xxx-Huge-Ratio">3.4</sys:Double>
+    <sys:Double x:Key="FontSize-Xx-Huge-Ratio">2.6</sys:Double>
+    <sys:Double x:Key="FontSize-X-Huge-Ratio">2.4</sys:Double>
+    <sys:Double x:Key="FontSize-Huge-Ratio">2.2</sys:Double>
+    <sys:Double x:Key="FontSize-Xxx-Large-Ratio">2.0</sys:Double>
+    <sys:Double x:Key="FontSize-Xx-Large-Ratio">1.8</sys:Double>
+    <sys:Double x:Key="FontSize-X-Large-Ratio">1.4</sys:Double>
+    <sys:Double x:Key="FontSize-Large-Ratio">1.2</sys:Double>
+    <sys:Double x:Key="FontSize-Normal-Ratio">1.0</sys:Double>
+    <sys:Double x:Key="FontSize-Small-Ratio">0.9</sys:Double>
+    <sys:Double x:Key="FontSize-X-Small-Ratio">20</sys:Double>
+    <sys:Double x:Key="FontSize-Xx-Small-Ratio">18</sys:Double>
+    <sys:Double x:Key="FontSize-Xxx-Small-Ratio">16</sys:Double>
 </ResourceDictionary>
