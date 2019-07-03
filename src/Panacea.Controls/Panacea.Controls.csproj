@@ -50,6 +50,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\ButtonBehaviors.cs" />
     <Compile Include="Behaviors\ScrollViewerBehaviors.cs" />
     <Compile Include="BindableScrollBar.cs" />
     <Compile Include="CacheImage.cs" />

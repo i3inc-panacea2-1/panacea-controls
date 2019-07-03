@@ -2,6 +2,7 @@
     x:Class="TestControlsApp.Pages.ButtonsExample"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:Panacea.Controls.Behaviors;assembly=Panacea.Controls"
     xmlns:controls="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TestControlsApp.Pages"
