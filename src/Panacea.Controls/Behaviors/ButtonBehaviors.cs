@@ -17,7 +17,7 @@ namespace Panacea.Controls.Behaviors
         }
 
         public static readonly DependencyProperty MouseDownCommandProperty =
-            DependencyProperty.RegisterAttached("ScrollsHorizontally", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseDownCommandChanged));
+            DependencyProperty.RegisterAttached("MouseDown", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseDownCommandChanged));
 
         private static void OnMouseDownCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Panacea.Controls.Behaviors
         }
 
         public static readonly DependencyProperty MouseUpCommandProperty =
-            DependencyProperty.RegisterAttached("ScrollsHorizontally", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseUpCommandChanged));
+            DependencyProperty.RegisterAttached("MouseUp", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseUpCommandChanged));
 
         private static void OnMouseUpCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
