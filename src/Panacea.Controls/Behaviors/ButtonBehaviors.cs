@@ -17,7 +17,7 @@ namespace Panacea.Controls.Behaviors
         }
 
         public static readonly DependencyProperty MouseDownCommandProperty =
-            DependencyProperty.RegisterAttached("MouseDown", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseDownCommandChanged));
+            DependencyProperty.RegisterAttached("MouseDownCommand", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseDownCommandChanged));
 
         private static void OnMouseDownCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Panacea.Controls.Behaviors
         }
 
         public static readonly DependencyProperty MouseUpCommandProperty =
-            DependencyProperty.RegisterAttached("MouseUp", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseUpCommandChanged));
+            DependencyProperty.RegisterAttached("MouseUpCommand", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseUpCommandChanged));
 
         private static void OnMouseUpCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
