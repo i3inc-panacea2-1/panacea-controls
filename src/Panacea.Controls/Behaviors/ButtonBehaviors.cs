@@ -23,9 +23,9 @@ namespace Panacea.Controls.Behaviors
         {
             var b = d as Button;
             if (b == null) return;
-            b.MouseDown -= B_MouseDown;
+            b.MouseLeftButtonDown-= B_MouseDown;
             if(e.NewValue != null)
-                b.MouseDown += B_MouseUp;
+                b.MouseLeftButtonDown += B_MouseUp;
         }
 
         private static void B_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,9 +51,9 @@ namespace Panacea.Controls.Behaviors
         {
             var b = d as Button;
             if (b == null) return;
-            b.MouseUp -= B_MouseUp;
+            b.MouseLeftButtonUp -= B_MouseUp;
             if (e.NewValue != null)
-                b.MouseUp += B_MouseUp;
+                b.MouseLeftButtonUp += B_MouseUp;
         }
 
         private static void B_MouseUp(object sender, MouseButtonEventArgs e)
