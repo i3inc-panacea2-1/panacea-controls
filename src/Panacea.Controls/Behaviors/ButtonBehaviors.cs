@@ -23,9 +23,9 @@ namespace Panacea.Controls.Behaviors
         {
             var b = d as Button;
             if (b == null) return;
-            b.MouseLeftButtonDown-= B_MouseDown;
+            b.PreviewMouseLeftButtonDown -= B_MouseDown;
             if(e.NewValue != null)
-                b.MouseLeftButtonDown += B_MouseUp;
+                b.PreviewMouseLeftButtonDown += B_MouseDown;
         }
 
         private static void B_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,17 +33,15 @@ namespace Panacea.Controls.Behaviors
             var b = sender as Button;
             GetMouseDownCommand(b)?.Execute(b.GetValue(Button.CommandParameterProperty));
         }
-        
+
         public static ICommand GetMouseUpCommand(DependencyObject d)
         {
             return (ICommand)d.GetValue(MouseUpCommandProperty);
         }
-
         public static void SetMouseUpCommand(DependencyObject d, string value)
         {
             d.SetValue(MouseUpCommandProperty, value);
         }
-
         public static readonly DependencyProperty MouseUpCommandProperty =
             DependencyProperty.RegisterAttached("MouseUpCommand", typeof(ICommand), typeof(ButtonBehaviors), new PropertyMetadata(null, OnMouseUpCommandChanged));
 
@@ -51,11 +49,10 @@ namespace Panacea.Controls.Behaviors
         {
             var b = d as Button;
             if (b == null) return;
-            b.MouseLeftButtonUp -= B_MouseUp;
+            b.PreviewMouseLeftButtonUp -= B_MouseUp;
             if (e.NewValue != null)
-                b.MouseLeftButtonUp += B_MouseUp;
+                b.PreviewMouseLeftButtonUp += B_MouseUp;
         }
-
         private static void B_MouseUp(object sender, MouseButtonEventArgs e)
         {
             var b = sender as Button;

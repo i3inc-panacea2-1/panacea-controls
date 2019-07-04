@@ -24,7 +24,13 @@
                 Style="{StaticResource PrimaryButton}">
                 Primary Button
             </Button>
-            <Button Foreground="Black" Style="{StaticResource PrimaryButton}">
+            <Button
+                behaviors:ButtonBehaviors.MouseDownCommand="{Binding RelativeSource={RelativeSource AncestorType=local:ButtonsExample}, Path=MouseDownCommand}"
+                behaviors:ButtonBehaviors.MouseUpCommand="{Binding RelativeSource={RelativeSource AncestorType=local:ButtonsExample}, Path=MouseUpCommand}"
+                Command="{Binding RelativeSource={RelativeSource AncestorType=local:ButtonsExample}, Path=MouseClickCommand}"
+                Foreground="Black"
+                Style="{StaticResource PrimaryButton}">
+
                 <controls:MaterialIcon Icon="access_alarm" />
             </Button>
             <Button HorizontalContentAlignment="Left" Click="Button_Click">

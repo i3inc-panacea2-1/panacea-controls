@@ -27,10 +27,25 @@ namespace TestControlsApp.Pages
              {
                  await Task.Delay(2000);
              }, (args) => true);
+            MouseClickCommand = new RelayCommand((args) =>
+            {
+                Console.WriteLine("MouseClick");
+            });
+            MouseUpCommand = new RelayCommand((args) =>
+            {
+                Console.WriteLine("MouseUp");
+            });
+            MouseDownCommand = new RelayCommand((args) =>
+            {
+                Console.WriteLine("MouseDown");
+            });
             InitializeComponent();
         }
 
         public IAsyncCommand TestAsyncCommand { get; set; }
+        public ICommand MouseClickCommand { get; set; }
+        public ICommand MouseUpCommand { get; set; }
+        public ICommand MouseDownCommand { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
