@@ -68,6 +68,14 @@ namespace Panacea.Controls
                 CurrentPage--;
             },
             (args) => CurrentPage > 1);
+            FirstCommand = new RelayCommand(args =>
+            {
+                CurrentPage = 1;
+            });
+            LastCommand = new RelayCommand(args =>
+            {
+                CurrentPage = MaxPages;
+            });
         }
 
         public ICommand ChangePageCommand { get;  }
@@ -100,6 +108,9 @@ namespace Panacea.Controls
                 lst2.Add(i);
             }
             pager.RightPart = lst2;
+            pager.FirstPageVisibility = pager.CurrentPage > 3 ? Visibility.Visible : Visibility.Collapsed;
+
+            pager.LastPageVisibility = pager.CurrentPage <= pager.MaxPages - 3 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public int MaxPages
@@ -144,6 +155,44 @@ namespace Panacea.Controls
         // Using a DependencyProperty as the backing store for DotsVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DotsVisibilityProperty =
             DependencyProperty.Register("DotsVisibility", typeof(Visibility), typeof(PagerControl), new PropertyMetadata(Visibility.Collapsed));
+
+
+
+
+        public Visibility FirstPageVisibility
+        {
+            get { return (Visibility)GetValue(FirstPageVisibilityProperty); }
+            set { SetValue(FirstPageVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FirstPageVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FirstPageVisibilityProperty =
+            DependencyProperty.Register("FirstPageVisibility", typeof(Visibility), typeof(PagerControl), new PropertyMetadata(Visibility.Collapsed));
+
+
+        public Visibility LastPageVisibility
+        {
+            get { return (Visibility)GetValue(LastPageVisibilityProperty); }
+            set { SetValue(LastPageVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FirstPageVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LastPageVisibilityProperty =
+            DependencyProperty.Register("LastPageVisibility", typeof(Visibility), typeof(PagerControl), new PropertyMetadata(Visibility.Collapsed));
+
+
+
+        public ICommand FirstCommand     
+        {
+            get;
+        }
+
+
+        public ICommand LastCommand
+        {
+            get;
+        }
+
 
 
         public ICommand PreviousCommand

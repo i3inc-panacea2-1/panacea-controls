@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Panacea.Controls">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Panacea.Controls">
     <Style TargetType="{x:Type local:PagerControl}">
         <Setter Property="Background" Value="{DynamicResource ColorPrimary}" />
         <Setter Property="Template">
@@ -19,15 +20,32 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Button
                                 VerticalAlignment="Center"
-                                local:Material.Icon="ic_skip_previous"
+                                local:Material.Icon="skip_previous"
                                 Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=PreviousCommand}"
                                 Foreground="{TemplateBinding Background}">
                                 Previous
                             </Button>
-                            <ItemsControl Grid.Column="1" ItemsSource="{TemplateBinding LeftPart}">
+                            <Grid Grid.Column="1" Visibility="{TemplateBinding FirstPageVisibility}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Button
+                                    Content="1"
+                                    Style="{DynamicResource OutlinedButton}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=FirstCommand}"/>
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text=" ... " />
+                            </Grid>
+                            <ItemsControl Grid.Column="2" ItemsSource="{TemplateBinding LeftPart}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button
@@ -47,14 +65,14 @@
                             </ItemsControl>
 
                             <Button
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 VerticalAlignment="Center"
                                 Background="{TemplateBinding Background}"
                                 Content="{TemplateBinding CurrentPage}"
                                 Style="{DynamicResource PrimaryButton}" />
 
 
-                            <ItemsControl Grid.Column="3" ItemsSource="{TemplateBinding RightPart}">
+                            <ItemsControl Grid.Column="4" ItemsSource="{TemplateBinding RightPart}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button
@@ -72,11 +90,27 @@
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
+                            <Grid Grid.Column="5" Visibility="{TemplateBinding LastPageVisibility}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Button
+                                    Grid.Column="1"
+                                    Content="{TemplateBinding MaxPages}"
+                                    Style="{DynamicResource OutlinedButton}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=Background}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=LastCommand}"/>
+                                <TextBlock
+                                    
+                                    VerticalAlignment="Center"
+                                    Text=" ... " />
+                            </Grid>
                             <Button
-                                Grid.Column="4"
+                                Grid.Column="6"
                                 Margin="1"
                                 VerticalAlignment="Center"
-                                local:Material.Icon="ic_skip_next"
+                                local:Material.Icon="skip_next"
                                 Command="{Binding RelativeSource={RelativeSource AncestorType=local:PagerControl}, Path=NextCommand}"
                                 Foreground="{TemplateBinding Background}">
                                 Next
