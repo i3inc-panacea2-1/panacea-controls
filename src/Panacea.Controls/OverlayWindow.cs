@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Panacea.Controls
 {
-    public class OverlayWindow : NonFocusableWindow
+    public class OverlayWindow : Window
     {
         double _dpiX;
         double _dpiY;
