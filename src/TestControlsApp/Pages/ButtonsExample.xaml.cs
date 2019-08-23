@@ -23,10 +23,12 @@ namespace TestControlsApp.Pages
     {
         public ButtonsExample()
         {
+            bool val = true;
             TestAsyncCommand = new AsyncCommand(async (args) =>
              {
                  await Task.Delay(2000);
-             }, (args) => true);
+                 val = false;
+             }, (args) => val);
             MouseClickCommand = new RelayCommand((args) =>
             {
                 Console.WriteLine("MouseClick");
@@ -60,7 +62,7 @@ namespace TestControlsApp.Pages
         {
             var b = new Button();
             b.Content = "test";
-      
+
             Buttons.Children.Add(b);
         }
     }

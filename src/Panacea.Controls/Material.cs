@@ -276,10 +276,32 @@ namespace Panacea.Controls
             if (button == null) return;
 
             button.Click -= Button_Click;
-            if (e.NewValue != null)
+            
+            var oldcommand = e.OldValue as IAsyncCommand;
+            if(oldcommand != null)
             {
-                button.Click += Button_Click;
+                if (Handlers.ContainsKey(button))
+                {
+                    oldcommand.CanExecuteChanged -= Handlers[button];
+                    Handlers.Remove(button);
+                }
+               
             }
+            var newcommand = e.NewValue as IAsyncCommand;
+            if (newcommand != null)
+            {
+                Handlers.Add(button, (oo, ee) => button.IsEnabled = newcommand.CanExecute(button.CommandParameter));
+                button.Click += Button_Click;
+                newcommand.CanExecuteChanged += Handlers[button];
+                newcommand.RaiseCanExecuteChanged();
+            }
+        }
+        internal readonly static Dictionary<Button, EventHandler> Handlers = new Dictionary<Button, EventHandler>();
+
+
+        private static void Oldcommand_CanExecuteChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private static async void Button_Click(object sender, RoutedEventArgs e)
@@ -318,6 +340,10 @@ namespace Panacea.Controls
     {
         bool CanExecute(object args);
         Task Execute(object args);
+
+        event EventHandler CanExecuteChanged;
+
+        void RaiseCanExecuteChanged();
     }
 
     public class AsyncCommand : IAsyncCommand
@@ -331,8 +357,19 @@ namespace Panacea.Controls
             _canExecute = canExecute;
         }
 
+        public event EventHandler CanExecuteChanged;
+
         public bool CanExecute(object args) => _canExecute(args);
 
-        public Task Execute(object args) => _execute(args);
+        public async Task Execute(object args)
+        {
+            await _execute(args);
+            RaiseCanExecuteChanged();
+        }
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, null);
+        }
     }
 }
