@@ -276,16 +276,16 @@ namespace Panacea.Controls
             if (button == null) return;
 
             button.Click -= Button_Click;
-            
+
             var oldcommand = e.OldValue as IAsyncCommand;
-            if(oldcommand != null)
+            if (oldcommand != null)
             {
                 if (Handlers.ContainsKey(button))
                 {
                     oldcommand.CanExecuteChanged -= Handlers[button];
                     Handlers.Remove(button);
                 }
-               
+
             }
             var newcommand = e.NewValue as IAsyncCommand;
             if (newcommand != null)
@@ -359,7 +359,7 @@ namespace Panacea.Controls
 
         public event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object args) => _canExecute(args);
+        public bool CanExecute(object args) => _canExecute != null ? _canExecute(args) : true;
 
         public async Task Execute(object args)
         {
